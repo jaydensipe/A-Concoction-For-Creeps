@@ -44,7 +44,8 @@ enabled=PackedStringArray("res://addons/gd_local_history/plugin.cfg", "res://add
 
 folder_colors={
 "res://addons/": "yellow",
-"res://addons/jaysreusablecomponentsandthings/": "yellow"
+"res://addons/jaysreusablecomponentsandthings/": "yellow",
+"res://users/": "blue"
 }
 
 [input]
