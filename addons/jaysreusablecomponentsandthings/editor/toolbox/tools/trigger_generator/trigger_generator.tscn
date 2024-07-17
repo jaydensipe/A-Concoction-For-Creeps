@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://jmdpskpq41uf"]
+
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/editor/toolbox/tools/trigger_generator/trigger_generator.gd" id="1_2vli8"]
+[ext_resource type="Texture2D" uid="uid://bfb2aw7m82hx6" path="res://addons/jaysreusablecomponentsandthings/assets/icons/icon_trigger_3d.svg" id="1_n5h6e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xllp7"]
+
+[node name="TriggerGenerator" type="Panel"]
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xllp7")
+script = ExtResource("1_2vli8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -179.0
+offset_right = 425.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="TriggerHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TriggerTypeOptionButton" type="OptionButton" parent="VBoxContainer/TriggerHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 5
+popup/item_0/text = "Function"
+popup/item_0/icon = ExtResource("1_n5h6e")
+popup/item_1/text = "Interact"
+popup/item_1/icon = ExtResource("1_n5h6e")
+popup/item_1/id = 1
+popup/item_2/text = "Soundscape"
+popup/item_2/icon = ExtResource("1_n5h6e")
+popup/item_2/id = 2
+popup/item_3/text = "Teleport"
+popup/item_3/icon = ExtResource("1_n5h6e")
+popup/item_3/id = 3
+popup/item_4/text = "Scene"
+popup/item_4/icon = ExtResource("1_n5h6e")
+popup/item_4/id = 4
+
+[node name="VarietyOptionButton" type="OptionButton" parent="VBoxContainer/TriggerHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Multiple"
+popup/item_1/text = "Once"
+popup/item_1/id = 1
+
+[node name="NameHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/NameHBoxContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer/NameHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CollisionMaskHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CollisionMaskHBoxContainer"]
+layout_mode = 2
+text = "Collision Mask:"
+
+[node name="CollisionLayerLineEdit" type="LineEdit" parent="VBoxContainer/CollisionMaskHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Determines what collision layer the trigger activates on."
+max_length = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GenerateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "📦 Generate Trigger "
+
+[node name="DebugCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Debug Label"
+
+[connection signal="item_selected" from="VBoxContainer/TriggerHBoxContainer/TriggerTypeOptionButton" to="." method="_on_trigger_type_option_button_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GenerateButton" to="." method="_on_button_pressed"]

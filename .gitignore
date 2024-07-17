@@ -1,5 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+.gd_local_history/
+*.tmp
 
 # Godot-specific ignores
 .import/

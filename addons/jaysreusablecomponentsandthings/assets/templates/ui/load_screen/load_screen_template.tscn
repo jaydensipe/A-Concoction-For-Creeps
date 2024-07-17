@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://qta56go11vf"]
+
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/assets/templates/ui/load_screen/load_screen_template.gd" id="1_fqxid"]
+
+[node name="LoadScreenTemplate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fqxid")
+tooltips = Array[String](["Test tooltip!"])
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PressAnyKeyLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.5
+offset_top = -22.5
+offset_right = 210.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Press any key to continue..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -412.0
+offset_top = -142.685
+offset_right = 412.0
+offset_bottom = -115.685
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TopBlackBorder" type="ColorRect" parent="Panel"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomBlackBorder" type="ColorRect" parent="Panel"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TooltipLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -50.86
+offset_right = 211.0
+offset_bottom = -27.8594
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadingLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.8
+offset_top = -50.86
+offset_right = -65.8
+offset_bottom = -27.86
+grow_horizontal = 0
+grow_vertical = 0
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1

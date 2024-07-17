@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ch4j3053qj2bo"]
+
+[ext_resource type="FontFile" uid="uid://cbu5g6uv31jit" path="res://addons/jaysreusablecomponentsandthings/assets/font/montserrat.otf" id="1_xl5hf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqbtt"]
+
+[resource]
+default_font = ExtResource("1_xl5hf")
+TabContainer/constants/side_margin = 17
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_iqbtt")
+Tree/constants/button_margin = 6
+Tree/constants/v_separation = 8

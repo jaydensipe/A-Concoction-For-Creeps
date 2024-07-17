@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bva88bkjwdlyn"]
+
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/debug_box/debug_box.gd" id="1_ryyhj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhpxr"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_m5ygy"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DebugBoxContainer" type="MarginContainer"]
+offset_right = 101.0
+offset_bottom = 170.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_ryyhj")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhpxr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_m5ygy")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 25
+columns = 2

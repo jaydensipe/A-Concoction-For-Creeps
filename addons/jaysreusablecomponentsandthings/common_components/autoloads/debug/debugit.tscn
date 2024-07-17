@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy0q60vlkv5xb"]
+
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/debugit.gd" id="1_4pexd"]
+[ext_resource type="Theme" uid="uid://ch4j3053qj2bo" path="res://addons/jaysreusablecomponentsandthings/assets/theme/debugit_theme.tres" id="1_upi3j"]
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/inspector/inspector.gd" id="2_c1qnf"]
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/menu/debug_window.gd" id="3_y1dr7"]
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/menu/debug_tab_container.gd" id="4_21lsg"]
+[ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/menu/debug_system_monitor.gd" id="6_h22fl"]
+
+[node name="DebugIt" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_upi3j")
+script = ExtResource("1_4pexd")
+
+[node name="Window" type="Window" parent="."]
+unique_name_in_owner = true
+title = "DebugIt 🤖"
+position = Vector2i(0, 36)
+size = Vector2i(500, 500)
+visible = false
+wrap_controls = true
+script = ExtResource("3_y1dr7")
+
+[node name="TabContainer" type="TabContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+current_tab = 0
+script = ExtResource("4_21lsg")
+
+[node name="Debug" type="ScrollContainer" parent="Window/TabContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+
+[node name="Debug" type="FlowContainer" parent="Window/TabContainer/Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Inspector" type="Tree" parent="Window/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("2_c1qnf")
+metadata/_tab_index = 1
+
+[node name="System Monitor" type="Panel" parent="Window/TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("6_h22fl")
+metadata/_tab_index = 2
+
+[node name="DebugValueContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[connection signal="button_clicked" from="Window/TabContainer/Inspector" to="Window/TabContainer/Inspector" method="_on_button_clicked"]
+[connection signal="item_edited" from="Window/TabContainer/Inspector" to="Window/TabContainer/Inspector" method="_on_item_edited"]
+[connection signal="item_selected" from="Window/TabContainer/Inspector" to="Window/TabContainer/Inspector" method="_on_item_selected"]
