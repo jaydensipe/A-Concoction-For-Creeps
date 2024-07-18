@@ -12,9 +12,11 @@ config_version=5
 
 config/name="Turbo Pancake Jam"
 config/description="Created for the Pirate Software - Game Jam 15."
+run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://helix.png"
+boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
@@ -45,6 +47,8 @@ enabled=PackedStringArray("res://addons/gd_local_history/plugin.cfg", "res://add
 folder_colors={
 "res://addons/": "yellow",
 "res://addons/jaysreusablecomponentsandthings/": "yellow",
+"res://assets/": "green",
+"res://scenes/": "gray",
 "res://users/": "blue"
 }
 

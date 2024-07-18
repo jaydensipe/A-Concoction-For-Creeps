@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://b522b5yl0s1aa"]
+
+[ext_resource type="PackedScene" uid="uid://8lmjunmgchx3" path="res://assets/ui/tablet_ui/tablet_interface.tscn" id="1_4uckr"]
+[ext_resource type="Script" path="res://scenes/magical_tablet/magical_tablet.gd" id="1_bwi6j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xw5w"]
+size = Vector3(0.532227, 0.0449219, 0.656006)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dj0ht"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1xf6n"]
+material = SubResource("ShaderMaterial_dj0ht")
+size = Vector3(0.53, 0.045, 0.655)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n4ab5"]
+size = Vector2(0.535, 0.685)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6i3h1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jl1fy"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_6i3h1")
+
+[node name="MagicalTablet" type="Node3D"]
+script = ExtResource("1_bwi6j")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+physics_object_picking = true
+
+[node name="TabletInterface" parent="SubViewport" instance=ExtResource("1_4uckr")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_7xw5w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1xf6n")
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1.24866, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0335758, 0)
+mesh = SubResource("PlaneMesh_n4ab5")
+surface_material_override/0 = SubResource("StandardMaterial3D_jl1fy")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
