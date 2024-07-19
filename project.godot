@@ -28,6 +28,7 @@ LevelIt="*res://addons/jaysreusablecomponentsandthings/common_components/scene/l
 RaycastIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/raycast/raycastit.gd"
 ResonateIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/audio/resonateit.gd"
 SceneIt="*res://addons/jaysreusablecomponentsandthings/common_components/scene/scene_it.gd"
+GlobalEventBus="*res://scripts/global_event_bus.gd"
 
 [debug]
 
@@ -49,6 +50,7 @@ folder_colors={
 "res://addons/jaysreusablecomponentsandthings/": "yellow",
 "res://assets/": "green",
 "res://scenes/": "gray",
+"res://scripts/": "red",
 "res://users/": "blue"
 }
 

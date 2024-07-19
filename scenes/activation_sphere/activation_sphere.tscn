@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://irsnjlysj0uu"]
+
+[ext_resource type="Script" path="res://scenes/activation_sphere/activation_sphere.gd" id="1_f21om"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7qxt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_isjj4"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qulf2"]
+radius = 1.57187
+
+[node name="ActivationSphere" type="Node3D"]
+script = ExtResource("1_f21om")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_g7qxt")
+mesh = SubResource("SphereMesh_isjj4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_qulf2")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
