@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ol8kdxictbe1"]
+[gd_scene load_steps=6 format=3 uid="uid://ol8kdxictbe1"]
 
 [ext_resource type="VoxelGIData" uid="uid://xe4846ht1kar" path="res://scenes/bar/lightmap/bar.VoxelGI_data.res" id="1_610vp"]
 
@@ -12,11 +12,6 @@ albedo_color = Color(0.318969, 0.125604, 0.00705136, 1)
 
 [sub_resource type="Environment" id="Environment_hum5y"]
 background_mode = 1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_c8igd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p811f"]
-albedo_color = Color(0, 0, 0, 1)
 
 [node name="Bar" type="Node3D"]
 
@@ -103,8 +98,3 @@ spot_angle = 57.58
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hum5y")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -1.2)
-mesh = SubResource("CapsuleMesh_c8igd")
-surface_material_override/0 = SubResource("StandardMaterial3D_p811f")

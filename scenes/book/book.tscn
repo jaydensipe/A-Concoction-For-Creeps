@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgwrcy7vx0yyw"]
+[gd_scene load_steps=3 format=3 uid="uid://cgwrcy7vx0yyw"]
+
+[ext_resource type="Texture2D" uid="uid://evccbf6elsmh" path="res://assets/ui/temp_ingredient_list/ingredient_list.png" id="1_4iv5r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bag8f"]
 size = Vector3(0.4, 0.035, 0.74)
@@ -7,3 +9,7 @@ size = Vector3(0.4, 0.035, 0.74)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_bag8f")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-3.81455e-10, -0.015115, 0.00872668, -6.607e-10, 0.00872668, 0.015115, -0.0174534, -2.9947e-17, -7.6291e-10, 0.1, 0.17692, -0.0714115)
+texture = ExtResource("1_4iv5r")

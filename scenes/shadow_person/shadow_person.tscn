@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0otrmlwid20e"]
+
+[ext_resource type="Script" path="res://scenes/shadow_person/shadow_person.gd" id="1_an7rs"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1us5c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_antg0"]
+albedo_color = Color(0.183196, 0.183196, 0.183196, 1)
+
+[node name="ShadowPerson" type="Node3D"]
+script = ExtResource("1_an7rs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_1us5c")
+surface_material_override/0 = SubResource("StandardMaterial3D_antg0")

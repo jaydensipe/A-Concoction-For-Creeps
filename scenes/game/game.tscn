@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://gp6hkg7jb80"]
+[gd_scene load_steps=10 format=3 uid="uid://gp6hkg7jb80"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o5ugh"]
 [ext_resource type="PackedScene" uid="uid://ol8kdxictbe1" path="res://scenes/bar/bar.tscn" id="1_qqe3r"]
 [ext_resource type="PackedScene" uid="uid://cgwrcy7vx0yyw" path="res://scenes/book/book.tscn" id="3_3tv4j"]
 [ext_resource type="PackedScene" uid="uid://b522b5yl0s1aa" path="res://scenes/magical_tablet/magical_tablet.tscn" id="4_hh4kn"]
+[ext_resource type="PackedScene" uid="uid://d0181m4p4r5ts" path="res://scenes/shadow_manager/shadow_manager.tscn" id="5_5aau3"]
 
 [sub_resource type="Animation" id="Animation_ipkhv"]
 length = 0.001
@@ -105,6 +106,9 @@ transform = Transform3D(0.981677, 0, -0.190552, 0, 1, 0, 0.190552, 0, 0.981677, 
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0, 0.5, 0)
+
+[node name="ShadowManager" parent="." instance=ExtResource("5_5aau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -5)
 
 [node name="Camera" type="Node" parent="."]
 

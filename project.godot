@@ -29,6 +29,7 @@ RaycastIt="*res://addons/jaysreusablecomponentsandthings/common_components/autol
 ResonateIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/audio/resonateit.gd"
 SceneIt="*res://addons/jaysreusablecomponentsandthings/common_components/scene/scene_it.gd"
 GlobalEventBus="*res://scripts/global_event_bus.gd"
+GameState="*res://scenes/game/state/game_state.gd"
 
 [debug]
 
