@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0otrmlwid20e"]
 
-[ext_resource type="Script" path="res://scenes/shadow_person/shadow_person.gd" id="1_an7rs"]
+[ext_resource type="Script" path="res://scenes/shadow_manager/shadow_person/shadow_person.gd" id="1_an7rs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1us5c"]
 

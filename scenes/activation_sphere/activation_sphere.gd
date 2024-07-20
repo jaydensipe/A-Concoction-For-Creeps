@@ -4,7 +4,7 @@ extends Node3D
 @onready var TEXTURE_ACTIVATED: Resource = preload("res://scenes/activation_sphere/texture_activated.tres")
 @onready var TEXTURE_FIRST: Resource = preload("res://scenes/activation_sphere/texture_first.tres")
 @onready var TEXTURE_WAITING: Resource = preload("res://scenes/activation_sphere/texture_waiting.tres")
-@onready var activated: bool = false
+var activated: bool = false
 
 func _ready() -> void:
 	_clear()

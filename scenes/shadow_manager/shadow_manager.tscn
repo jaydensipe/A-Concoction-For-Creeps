@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/shadow_manager/shadow_manager.gd" id="1_aw56c"]
 [ext_resource type="Script" path="res://addons/jaysreusablecomponentsandthings/3d_components/spawners/component/scene_spawn_component_3d.gd" id="2_u66hr"]
-[ext_resource type="PackedScene" uid="uid://c0otrmlwid20e" path="res://scenes/shadow_person/shadow_person.tscn" id="3_576wa"]
+[ext_resource type="PackedScene" uid="uid://c0otrmlwid20e" path="res://scenes/shadow_manager/shadow_person/shadow_person.tscn" id="3_576wa"]
 
-[node name="ShadowManager" type="Node3D"]
+[node name="ShadowManager" type="Node"]
 script = ExtResource("1_aw56c")
 
 [node name="SceneSpawnComponent3D" type="Marker3D" parent="."]
 script = ExtResource("2_u66hr")
 scene = ExtResource("3_576wa")
 enable_delay = true
-spawn_delay_time = 2.0
+spawn_delay_time = 1.0

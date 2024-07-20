@@ -50,6 +50,7 @@ folder_colors={
 "res://addons/": "yellow",
 "res://addons/jaysreusablecomponentsandthings/": "yellow",
 "res://assets/": "green",
+"res://resources/": "teal",
 "res://scenes/": "gray",
 "res://scripts/": "red",
 "res://users/": "blue"

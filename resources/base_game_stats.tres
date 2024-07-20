@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GameStatsResource" load_steps=2 format=3 uid="uid://brmhe355wwmbn"]
+
+[ext_resource type="Script" path="res://resources/stats/game_stats.gd" id="1_axx25"]
+
+[resource]
+script = ExtResource("1_axx25")
+base_percent_chance_of_modifier = 20.0
