@@ -23,3 +23,5 @@ per_modifier_percent_chance = SubResource("Resource_rhixu")
 tier_ingredient_percent_chance = SubResource("Resource_swc63")
 max_amount_of_ingredients = 1
 min_amount_of_ingredients = 1
+sanity_depletion_rate = 0.01
+sanity_multiplier = 1.0

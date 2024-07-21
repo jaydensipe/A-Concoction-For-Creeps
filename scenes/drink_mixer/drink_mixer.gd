@@ -20,10 +20,14 @@ func _ready() -> void:
 	)
 
 	GlobalEventBus.successful_drink_create.connect(func() -> void:
-		var mat: BaseMaterial3D = mesh_instance_3d.get_surface_override_material(0)
-		mat.albedo_color = Color.GREEN
-		mesh_instance_3d.set_surface_override_material(0, mat)
+		#var mat: BaseMaterial3D = mesh_instance_3d.get_surface_override_material(0)
+		#mat.albedo_color = Color.GREEN
+		#mesh_instance_3d.set_surface_override_material(0, mat)
 		_mix_and_serve_drink_animation()
+	)
+
+	GlobalEventBus.failure_symbol_match.connect(func(symbol: Array[int]) -> void:
+		_reset_drink()
 	)
 
 	GlobalEventBus.failure_drink_create.connect(func() -> void:
