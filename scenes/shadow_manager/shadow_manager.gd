@@ -5,15 +5,13 @@ class_name ShadowManager
 @onready var current_shadow_person: ShadowPerson
 
 func _ready() -> void:
-	GlobalEventBus.successful_drink_create.connect(func() -> void:
-		current_shadow_person.queue_free()
-		spawn_shadow_person()
-	)
+	GlobalEventBus.shadow_finish_drink_animation.connect(func() -> void:
+		GameState.customers_served += 1
+		DebugIt.show_value_on_screen("Customers Served", GameState.customers_served)
 
-	#GlobalEventBus.failure_drink_create.connect(func() -> void:
-		#current_shadow_person.queue_free()
-		#spawn_shadow_person()
-	#)
+		spawn_shadow_person()
+		current_shadow_person.queue_free()
+	)
 
 func spawn_shadow_person() -> void:
 	current_shadow_person = await scene_spawn_component_3d.spawn_at_location()

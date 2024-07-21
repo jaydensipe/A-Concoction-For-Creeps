@@ -11,4 +11,3 @@ script = ExtResource("1_aw56c")
 script = ExtResource("2_u66hr")
 scene = ExtResource("3_576wa")
 enable_delay = true
-spawn_delay_time = 1.0

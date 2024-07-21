@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gp6hkg7jb80"]
+[gd_scene load_steps=14 format=3 uid="uid://gp6hkg7jb80"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o5ugh"]
 [ext_resource type="PackedScene" uid="uid://ol8kdxictbe1" path="res://scenes/bar/bar.tscn" id="1_qqe3r"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://b522b5yl0s1aa" path="res://scenes/magical_tablet/magical_tablet.tscn" id="4_hh4kn"]
 [ext_resource type="PackedScene" uid="uid://d0181m4p4r5ts" path="res://scenes/shadow_manager/shadow_manager.tscn" id="5_5aau3"]
 [ext_resource type="PackedScene" uid="uid://cfthp5641qtne" path="res://scenes/drink_mixer/drink_mixer.tscn" id="6_t51f0"]
+[ext_resource type="Shader" path="res://scenes/game/game.gdshader" id="7_vuekc"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hcarn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0ope"]
+render_priority = 0
+shader = ExtResource("7_vuekc")
 
 [sub_resource type="Animation" id="Animation_ipkhv"]
 length = 0.001
@@ -106,20 +113,35 @@ script = ExtResource("1_o5ugh")
 transform = Transform3D(0.981677, 0, -0.190552, 0, 1, 0, 0.190552, 0, 0.981677, -0.85939, 0.525658, -0.0192016)
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
-transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0, 0.5, 0)
+transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.532567, 0.0180161)
 
 [node name="DrinkMixer" parent="." instance=ExtResource("6_t51f0")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0.6, 0.573076, 0)
 
+[node name="SlideRightMarker3D" parent="DrinkMixer" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5714, 0, 0)
+
+[node name="ResetPositionMarker3D" parent="DrinkMixer" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.571, 1.8598, -5)
+
+[node name="SlideLeftMarker3D" parent="DrinkMixer" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28529, 1.8598, -5)
+
 [node name="ShadowManager" parent="." instance=ExtResource("5_5aau3")]
 
 [node name="SceneSpawnComponent3D" parent="ShadowManager" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
 [node name="Camera" type="Node" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera/Camera3D"]
+transform = Transform3D(1.485, 0, 0, 0, 0.99, 0, 0, 0, 1, 0, -0.1, -0.7)
+mesh = SubResource("QuadMesh_hcarn")
+skeleton = NodePath("../../../Bar")
+surface_material_override/0 = SubResource("ShaderMaterial_n0ope")
 
 [node name="CameraAnimations" type="AnimationPlayer" parent="Camera"]
 root_node = NodePath("../..")
@@ -127,4 +149,5 @@ libraries = {
 "": SubResource("AnimationLibrary_piqdd")
 }
 
+[editable path="DrinkMixer"]
 [editable path="ShadowManager"]

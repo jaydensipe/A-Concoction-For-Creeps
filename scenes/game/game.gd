@@ -6,17 +6,17 @@ class_name Game
 #region Camera Variables
 @onready var main_camera: Camera3D = get_viewport().get_camera_3d()
 @onready var camera_animations: AnimationPlayer = $Camera/CameraAnimations
-enum CAMERA_STATE { FORWARD, PLAYSPACE, BOOK }
+enum CAMERA_STATE { FORWARD, PLAYSPACE, BOOK, MIXING_AND_DRINKING }
 static var _camera_state: CAMERA_STATE = CAMERA_STATE.FORWARD
 #endregion
 
 func _ready() -> void:
+	_init_debug()
 	shadow_manager.spawn_shadow_person()
 
 	GlobalEventBus.activation_sphere_selected.connect(func(sphere_index: int) -> void:
 		# Ensure if this is our first activated symbol, we mark it as the start
 		GameState.current_draw_index += 1
-
 		if (is_board_empty()):
 			GameState.current_symbol[sphere_index] = GameState.SYMBOL_STATES.START
 		else:
@@ -25,8 +25,25 @@ func _ready() -> void:
 
 	GlobalEventBus.lock_in.connect(_match_ingredient)
 
+func _init_debug() -> void:
+	var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game", Color.DODGER_BLUE)
+	debug_box.add_button("Generate Correct Drink", func() -> void:
+		GameState.concocted_drink = GameState.wanted_drink
+		_concoct_drink()
+	)
+
+#region Game Logic
 func _physics_process(delta: float) -> void:
 	_camera_controls()
+	_calculate_sanity()
+
+func _calculate_sanity() -> void:
+	if (!GameState.should_deplete_sanity): return
+
+	GameState.sanity_level -= GameState.game_stats.sanity_depletion_rate
+	DebugIt.show_value_on_screen("Sanity", GameState.sanity_level)
+
+#endregion
 
 #region Ingredients Logic
 func _match_ingredient() -> void:
@@ -57,9 +74,6 @@ func _add_drink_ingredient(ingredient: Ingredient) -> void:
 		_concoct_drink()
 
 func _concoct_drink() -> void:
-	LogIt.custom("Concocted drink with ingredients: %s" % str(GameState.concocted_drink), "CONCONT", "PURPLE")
-	LogIt.custom("Wanted drink with ingredients: %s" % str(GameState.wanted_drink), "CONCONT", "PURPLE")
-
 	# We always create a successful drink
 	GlobalEventBus.signal_successful_drink_create()
 
@@ -96,14 +110,14 @@ func _reset_for_next_customer() -> void:
 
 static func generate_wanted_drink() -> void:
 	# Always have a min of two ingredients
-	var random_amount_of_ingredients: int = randi() % GameState.max_amount_of_ingredients + 2
+	var random_amount_of_ingredients: int = randi_range(GameState.game_stats.min_amount_of_ingredients, GameState.game_stats.max_amount_of_ingredients)
 
 	var counter: int = 0
+
 	while (counter < random_amount_of_ingredients):
-		GameState.wanted_drink.append(Utils.parse_ingredient(GameState.ingredients.keys().pick_random()).ingredient_name)
+		GameState.wanted_drink.append(Utils.picked_weighted_ingredient().ingredient_name)
 		counter += 1
 
-	LogIt.custom("Generated wanted drink: %s" % [str(GameState.wanted_drink)], "DRINK", "orange")
 	DebugIt.show_value_on_screen("Wanted Drink", str(GameState.wanted_drink))
 
 static func is_board_empty() -> bool:

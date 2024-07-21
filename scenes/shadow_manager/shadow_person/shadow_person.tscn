@@ -1,15 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0otrmlwid20e"]
+[gd_scene load_steps=3 format=3 uid="uid://c0otrmlwid20e"]
 
 [ext_resource type="Script" path="res://scenes/shadow_manager/shadow_person/shadow_person.gd" id="1_an7rs"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1us5c"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_antg0"]
-albedo_color = Color(0.183196, 0.183196, 0.183196, 1)
+[ext_resource type="PackedScene" uid="uid://c4yrsh1dnm27a" path="res://assets/models/shadow/shadowman.tscn" id="2_34tq7"]
 
 [node name="ShadowPerson" type="Node3D"]
 script = ExtResource("1_an7rs")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_1us5c")
-surface_material_override/0 = SubResource("StandardMaterial3D_antg0")
+[node name="ShadowMan" parent="." instance=ExtResource("2_34tq7")]
+transform = Transform3D(5.022, 0, 0, 0, 5.022, 0, 0, 0, 5.022, 0, 0.169144, 0)

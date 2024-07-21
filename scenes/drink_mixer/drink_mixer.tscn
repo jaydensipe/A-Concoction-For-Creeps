@@ -14,3 +14,9 @@ script = ExtResource("1_digkv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_nwsdo")
 surface_material_override/0 = SubResource("StandardMaterial3D_ryt36")
+
+[node name="SlideRightMarker3D" type="Marker3D" parent="."]
+
+[node name="ResetPositionMarker3D" type="Marker3D" parent="."]
+
+[node name="SlideLeftMarker3D" type="Marker3D" parent="."]
