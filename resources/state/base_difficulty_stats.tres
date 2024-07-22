@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DifficultyStats" load_steps=6 format=3 uid="uid://oqfgkspsebvo"]
+
+[ext_resource type="Script" path="res://resources/stats/modifier_stats.gd" id="1_4cl05"]
+[ext_resource type="Script" path="res://resources/state/scripts/difficulty_stats.gd" id="1_io1nr"]
+[ext_resource type="Script" path="res://resources/stats/ingredient_stats.gd" id="3_om6oa"]
+
+[sub_resource type="Resource" id="Resource_1ur7t"]
+script = ExtResource("1_4cl05")
+assassin_chance = 5.0
+
+[sub_resource type="Resource" id="Resource_hymmw"]
+script = ExtResource("3_om6oa")
+ingredient_chance = {
+"tier1": 45.0,
+"tier2": 35.0,
+"tier3": 25.0
+}
+
+[resource]
+script = ExtResource("1_io1nr")
+base_percent_chance_of_modifier = 15.0
+per_modifier_percent_chance = SubResource("Resource_1ur7t")
+tier_ingredient_percent_chance = SubResource("Resource_hymmw")
+max_amount_of_ingredients = 7
+min_amount_of_ingredients = 3
+sanity_depletion_rate = 0.01
+sanity_wrong_symbol = 10.0
+sanity_wrong_ingredient = 15.0
+sanity_correct_drink = 30.0

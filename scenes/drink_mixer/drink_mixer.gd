@@ -8,7 +8,7 @@ extends Node3D
 var _is_first_ingredient: bool = true
 
 func _ready() -> void:
-	GlobalEventBus.successful_symbol_match.connect(func(ingredient: Ingredient, symbol: Array[int]) -> void:
+	GlobalEventBus.successful_symbol_match.connect(func(ingredient: Ingredient, _symbol: Array[int]) -> void:
 		var color_of_ingredient: Color = Color.html("#%s" % ingredient.color)
 		if (_is_first_ingredient):
 			_mat.albedo_color = color_of_ingredient
@@ -26,7 +26,7 @@ func _ready() -> void:
 		_mix_and_serve_drink_animation()
 	)
 
-	GlobalEventBus.failure_symbol_match.connect(func(symbol: Array[int]) -> void:
+	GlobalEventBus.failure_symbol_match.connect(func(_symbol: Array[int]) -> void:
 		_reset_drink()
 	)
 

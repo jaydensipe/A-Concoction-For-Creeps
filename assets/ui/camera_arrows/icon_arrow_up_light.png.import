@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b52v1qvhblnos"
-path="res://.godot/imported/icon_arrow_left_light.png-1a9735102fb998b9da19acc07026e15e.ctex"
+uid="uid://c3fbyqby7v4rx"
+path="res://.godot/imported/icon_arrow_up_light.png-69a51e887c831095719685967674559c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/camera_arrows/icon_arrow_left_light.png"
-dest_files=["res://.godot/imported/icon_arrow_left_light.png-1a9735102fb998b9da19acc07026e15e.ctex"]
+source_file="res://assets/ui/camera_arrows/icon_arrow_up_light.png"
+dest_files=["res://.godot/imported/icon_arrow_up_light.png-69a51e887c831095719685967674559c.ctex"]
 
 [params]
 

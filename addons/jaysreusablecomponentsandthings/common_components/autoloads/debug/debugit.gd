@@ -51,6 +51,10 @@ func show_value_on_screen(title: String, value: Variant) -> void:
 		label.add_theme_font_size_override("font_size", 32)
 		debug_value_container.add_child(label)
 
+func clear_debug_values_temp() -> void:
+	for child: Label in debug_value_container.get_children():
+		child.queue_free()
+
 func _input(event: InputEvent) -> void:
 	if (event is InputEventKey):
 		if (event.is_action_pressed(&"debug")):

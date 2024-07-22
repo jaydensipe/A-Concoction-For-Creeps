@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gp6hkg7jb80"]
+[gd_scene load_steps=12 format=3 uid="uid://gp6hkg7jb80"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_o5ugh"]
 [ext_resource type="PackedScene" uid="uid://ol8kdxictbe1" path="res://scenes/bar/bar.tscn" id="1_qqe3r"]
@@ -7,98 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d0181m4p4r5ts" path="res://scenes/shadow_manager/shadow_manager.tscn" id="5_5aau3"]
 [ext_resource type="PackedScene" uid="uid://cfthp5641qtne" path="res://scenes/drink_mixer/drink_mixer.tscn" id="6_t51f0"]
 [ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="7_8xpy0"]
+[ext_resource type="PackedScene" uid="uid://d0ct1uciod7et" path="res://scenes/camera/camera.tscn" id="7_pergs"]
 [ext_resource type="PackedScene" uid="uid://bri65e4kh0xj" path="res://assets/ui/main_menu/main_menu.tscn" id="8_m2kv7"]
-[ext_resource type="PackedScene" uid="uid://bx3fcasbqkwib" path="res://assets/camera_arrows/camera_arrows.tscn" id="9_ljnq5"]
-
-[sub_resource type="Animation" id="Animation_ipkhv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Camera3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xmbs2"]
-resource_name = "look_at_book_from_playspace"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Camera3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0), Vector3(-0.490438, 1.35088, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.1, 0), Vector3(-0.4, 0.8, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vyd3c"]
-resource_name = "look_at_playspace"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/Camera3D:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/Camera3D:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.1, 1), Vector3(0, 1.1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_piqdd"]
-_data = {
-"RESET": SubResource("Animation_ipkhv"),
-"look_at_book_from_playspace": SubResource("Animation_xmbs2"),
-"look_at_playspace": SubResource("Animation_vyd3c")
-}
+[ext_resource type="PackedScene" uid="uid://bx3fcasbqkwib" path="res://assets/ui/camera_arrows/camera_arrows.tscn" id="9_ljnq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
 shader = ExtResource("7_8xpy0")
@@ -136,16 +47,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28529, 1.8598, -5)
 [node name="SceneSpawnComponent3D" parent="ShadowManager" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
-[node name="Camera" type="Node" parent="."]
+[node name="Camera" parent="." instance=ExtResource("7_pergs")]
 
-[node name="Camera3D" type="Camera3D" parent="Camera"]
+[node name="Camera3D" parent="Camera" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1)
 
-[node name="CameraAnimations" type="AnimationPlayer" parent="Camera"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_piqdd")
-}
+[node name="PlaySpaceMarker3D" parent="Camera" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 1.1, 0.2)
+
+[node name="BookMarker3D" parent="Camera" index="3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.3, 0.8, 0)
 
 [node name="Shaders" type="Node" parent="."]
 
@@ -175,3 +86,4 @@ layout_mode = 1
 
 [editable path="DrinkMixer"]
 [editable path="ShadowManager"]
+[editable path="Camera"]

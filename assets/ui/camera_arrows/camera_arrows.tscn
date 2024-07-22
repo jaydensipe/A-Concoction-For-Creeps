@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bx3fcasbqkwib"]
 
-[ext_resource type="Script" path="res://assets/camera_arrows/camera_arrows.gd" id="1_1d7dv"]
-[ext_resource type="Texture2D" uid="uid://c3fbyqby7v4rx" path="res://assets/camera_arrows/icon_arrow_up_light.png" id="1_c4oml"]
-[ext_resource type="Texture2D" uid="uid://ccwgj4gn468el" path="res://assets/camera_arrows/icon_arrow_down_light.png" id="2_k4c0c"]
-[ext_resource type="Texture2D" uid="uid://b52v1qvhblnos" path="res://assets/camera_arrows/icon_arrow_left_light.png" id="3_vlsua"]
-[ext_resource type="Texture2D" uid="uid://c3dkdtsxle7oj" path="res://assets/camera_arrows/icon_arrow_right_light.png" id="4_y1xlf"]
+[ext_resource type="Script" path="res://assets/ui/camera_arrows/camera_arrows.gd" id="1_1d7dv"]
+[ext_resource type="Texture2D" uid="uid://c3fbyqby7v4rx" path="res://assets/ui/camera_arrows/icon_arrow_up_light.png" id="1_c4oml"]
+[ext_resource type="Texture2D" uid="uid://ccwgj4gn468el" path="res://assets/ui/camera_arrows/icon_arrow_down_light.png" id="2_k4c0c"]
+[ext_resource type="Texture2D" uid="uid://b52v1qvhblnos" path="res://assets/ui/camera_arrows/icon_arrow_left_light.png" id="3_vlsua"]
+[ext_resource type="Texture2D" uid="uid://c3dkdtsxle7oj" path="res://assets/ui/camera_arrows/icon_arrow_right_light.png" id="4_y1xlf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eu4od"]
 

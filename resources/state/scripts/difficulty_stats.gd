@@ -1,5 +1,7 @@
 extends Resource
-class_name GameStatsResource
+class_name DifficultyStats
+
+# These change based on game "difficulty".
 
 @export_group("Modifiers")
 @export var base_percent_chance_of_modifier: float = 15.0

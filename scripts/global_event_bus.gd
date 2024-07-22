@@ -64,7 +64,7 @@ func signal_end_game() -> void:
 	LogIt.custom("Ending Game!", "SIGNAL", "sandybrown")
 	end_game.emit()
 
-signal camera_changed_state(new_camera_state: Game.CAMERA_STATE)
-func signal_camera_changed_state(new_camera_state: Game.CAMERA_STATE) -> void:
+signal camera_changed_state(new_camera_state: GameStateResource.CAMERA_STATE)
+func signal_camera_changed_state(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
 	camera_changed_state.emit(new_camera_state)
 #endregion

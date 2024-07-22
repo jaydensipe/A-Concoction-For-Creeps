@@ -15,8 +15,8 @@ func _clear() -> void:
 	activated = false
 	mesh_instance_3d.material_override = TEXTURE_WAITING
 
-func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if (activated or !GameState.holding_mouse_button_down or Game._camera_state != Game.CAMERA_STATE.PLAYSPACE): return
+func _on_area_3d_input_event(_camera: Node, _event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if (activated or !GameState.game_state.holding_mouse_button_down or GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.PLAYSPACE): return
 
 	activated = true
 	if (Game.is_board_empty()):

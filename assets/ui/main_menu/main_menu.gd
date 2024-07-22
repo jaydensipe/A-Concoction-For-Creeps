@@ -6,7 +6,7 @@ extends Control
 func _ready() -> void:
 	play_button.pressed.connect(_start_game_press)
 	check_button.pressed.connect(func() -> void:
-		GameState.skip_intro = check_button.button_pressed
+		GameState.game_state.skip_intro = check_button.button_pressed
 	)
 
 func _start_game_press() -> void:

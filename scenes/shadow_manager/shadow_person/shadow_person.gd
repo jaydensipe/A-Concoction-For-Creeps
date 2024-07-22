@@ -9,9 +9,9 @@ func _ready() -> void:
 func _init_shadow_person() -> void:
 	get_tree().create_tween().tween_property(self, ^"global_position:z", global_position.z - 1.5, 1.75).set_trans(Tween.TRANS_CIRC) \
 		.finished.connect(func() -> void:
-			GameState.ready_to_take_order = true
+			GameState.game_state.ready_to_take_order = true
 			waiting_at_table.emit() \
 		)
 
 func _exit_tree() -> void:
-	GameState.ready_to_take_order = false
+	GameState.game_state.ready_to_take_order = false

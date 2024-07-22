@@ -2,7 +2,7 @@ extends Node
 class_name Utils
 
 static var _ingredient_list: Array[Ingredient] = []
-static var _weighted_spawn_index: Array[int] = []
+
 
 static func print_symbol(symbol: Array) -> void:
 	print("%d %d %d" % [symbol[0], symbol[1], symbol[2]])
@@ -21,16 +21,25 @@ static func parse_ingredient(ingredient_name: StringName) -> Ingredient:
 static func pick_random_ingredient_with_tier(tier: int) -> Ingredient:
 	# Cache ingredient list
 	if (_ingredient_list.is_empty()):
-		for key: String in GameState.ingredients:
+		for key: String in GameState.game_state.ingredients:
 			_ingredient_list.append(parse_ingredient(key))
 
 	return _ingredient_list.filter(func(ingredient: Ingredient) -> bool: return ingredient.tier == tier).pick_random()
 
 static func picked_weighted_ingredient() -> Ingredient:
 	var index: int = 1
-	for key: int in GameState.game_stats.tier_ingredient_percent_chance.ingredient_chance.values():
+	for key: int in GameState.game_state.difficulty_stats.tier_ingredient_percent_chance.ingredient_chance.values():
 		for num: int in key:
-			_weighted_spawn_index.append(index)
+			GameState.game_state.weighted_ingredient_spawn_array.append(index)
 		index += 1
 
-	return pick_random_ingredient_with_tier(_weighted_spawn_index.pick_random())
+	return pick_random_ingredient_with_tier(GameState.game_state.weighted_ingredient_spawn_array.pick_random())
+
+#static func picked_weighted_modifier() -> Ingredient:
+	#var index: int = 1
+	#for key: int in GameState.game_state.difficulty_stats.tier_ingredient_percent_chance.ingredient_chance.values():
+		#for num: int in key:
+			#_weighted_spawn_index.append(index)
+		#index += 1
+#
+	#return pick_random_ingredient_with_tier(_weighted_spawn_index.pick_random())
