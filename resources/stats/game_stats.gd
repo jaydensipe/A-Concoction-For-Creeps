@@ -12,4 +12,8 @@ class_name GameStatsResource
 
 @export_group("Sanity")
 @export var sanity_depletion_rate: float = 0.01
-@export var sanity_multiplier: float = 1.0
+@export_subgroup("Wrong")
+@export var sanity_wrong_symbol: float = 10.0
+@export var sanity_wrong_ingredient: float = 15.0
+@export_subgroup("Correct")
+@export var sanity_correct_drink: float = 30.0

@@ -10,7 +10,7 @@ var min_amount_of_customers_served_before_intro_over: int = 5
 var can_look_at_book: bool = true
 var ready_to_take_order: bool = false
 var customers_served: int = 0
-var should_deplete_sanity: bool = true
+var should_deplete_sanity: bool = false
 var sanity_level: float = 100.0
 #endregion
 
@@ -81,7 +81,6 @@ var modifier_hsm: LimboHSM
 #endregion
 
 func _ready() -> void:
-	_init_modifier_state_machine()
 	_init_debug()
 
 func _init_debug() -> void:
@@ -90,7 +89,7 @@ func _init_debug() -> void:
 	debug_box.add_button("End Intro", func() -> void: intro_complete = true)
 
 #region Modifier HSM Setup
-func _init_modifier_state_machine() -> void:
+func init_modifier_state_machine() -> void:
 	modifier_hsm = LimboHSM.new()
 	add_child(modifier_hsm)
 
@@ -100,7 +99,7 @@ func _init_modifier_state_machine() -> void:
 	var tutorial_modifier_state: LimboState = LimboState.new().named(&"Tutorial") \
 		.call_on_enter(_on_enter_tutorial).call_on_update(_on_update_tutorial).call_on_exit(_on_exit_tutorial)
 	var intro_modifier_state: LimboState = LimboState.new().named(&"Intro") \
-		.call_on_enter(_on_enter_intro).call_on_update(_on_update_intro)
+		.call_on_enter(_on_enter_intro).call_on_update(_on_update_intro).call_on_exit(_on_exit_intro)
 	var assassin_modifier_state: LimboState = LimboState.new().named(&"Assassin") \
 		.call_on_enter(_on_enter_assassin).call_on_exit(_on_exit_assassin)
 
@@ -111,10 +110,7 @@ func _init_modifier_state_machine() -> void:
 	modifier_hsm.add_child(assassin_modifier_state)
 
 	# Add initial game state
-	if (!skip_intro):
-		modifier_hsm.initial_state = tutorial_modifier_state
-	else:
-		modifier_hsm.initial_state = none_modifier_state
+	modifier_hsm.initial_state = tutorial_modifier_state
 
 	# Add transitions
 	modifier_hsm.add_transition(modifier_hsm.ANYSTATE, none_modifier_state, &"end_modifier")
@@ -135,6 +131,7 @@ func _init_modifier_state_machine() -> void:
 #region None Modifier
 func _on_enter_none() -> void:
 	game_stats = preload("res://resources/base_game_stats.tres")
+	should_deplete_sanity = true
 
 func _on_exit_none() -> void:
 	pass
@@ -144,12 +141,15 @@ func _on_exit_none() -> void:
 func _on_enter_tutorial() -> void:
 	should_deplete_sanity = false
 
+	if (skip_intro):
+		modifier_hsm.dispatch(&"end_modifier")
+
 func _on_update_tutorial(_delta: float) -> void:
 	if (tutorial_complete or customers_served >= 1):
 		modifier_hsm.dispatch(&"trans_tut_to_intro")
-		tutorial_complete = true
 
 func _on_exit_tutorial() -> void:
+	tutorial_complete = true
 	should_deplete_sanity = true
 #endregion
 
@@ -160,7 +160,9 @@ func _on_enter_intro() -> void:
 func _on_update_intro(_delta: float) -> void:
 	if (intro_complete or customers_served >= min_amount_of_customers_served_before_intro_over):
 		modifier_hsm.dispatch(&"end_modifier")
-		intro_complete = true
+
+func _on_exit_intro() -> void:
+	intro_complete = true
 #endregion
 
 #region Assassin Modifier

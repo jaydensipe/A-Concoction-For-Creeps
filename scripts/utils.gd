@@ -1,7 +1,7 @@
 extends Node
 class_name Utils
 
-static var ingredient_list: Array[Ingredient] = []
+static var _ingredient_list: Array[Ingredient] = []
 static var _weighted_spawn_index: Array[int] = []
 
 static func print_symbol(symbol: Array) -> void:
@@ -19,11 +19,12 @@ static func parse_ingredient(ingredient_name: StringName) -> Ingredient:
 	return ingredient
 
 static func pick_random_ingredient_with_tier(tier: int) -> Ingredient:
-	if (ingredient_list.is_empty()):
+	# Cache ingredient list
+	if (_ingredient_list.is_empty()):
 		for key: String in GameState.ingredients:
-			ingredient_list.append(parse_ingredient(key))
+			_ingredient_list.append(parse_ingredient(key))
 
-	return ingredient_list.filter(func(ingredient: Ingredient) -> bool: return ingredient.tier == tier).pick_random()
+	return _ingredient_list.filter(func(ingredient: Ingredient) -> bool: return ingredient.tier == tier).pick_random()
 
 static func picked_weighted_ingredient() -> Ingredient:
 	var index: int = 1

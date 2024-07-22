@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx3fcasbqkwib"]
+
+[ext_resource type="Script" path="res://assets/camera_arrows/camera_arrows.gd" id="1_1d7dv"]
+[ext_resource type="Texture2D" uid="uid://c3fbyqby7v4rx" path="res://assets/camera_arrows/icon_arrow_up_light.png" id="1_c4oml"]
+[ext_resource type="Texture2D" uid="uid://ccwgj4gn468el" path="res://assets/camera_arrows/icon_arrow_down_light.png" id="2_k4c0c"]
+[ext_resource type="Texture2D" uid="uid://b52v1qvhblnos" path="res://assets/camera_arrows/icon_arrow_left_light.png" id="3_vlsua"]
+[ext_resource type="Texture2D" uid="uid://c3dkdtsxle7oj" path="res://assets/camera_arrows/icon_arrow_right_light.png" id="4_y1xlf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eu4od"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h11ww"]
+
+[node name="CameraArrows" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1d7dv")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eu4od")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 950
+
+[node name="UpArrow" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
+disabled = true
+text = "W"
+icon = ExtResource("1_c4oml")
+flat = true
+
+[node name="DownArrow" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
+disabled = true
+text = "S"
+icon = ExtResource("2_k4c0c")
+flat = true
+alignment = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 1790
+
+[node name="LeftArrow" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
+disabled = true
+text = "A"
+icon = ExtResource("3_vlsua")
+flat = true
+
+[node name="RightArrow" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
+disabled = true
+text = "D"
+icon = ExtResource("4_y1xlf")
+flat = true
