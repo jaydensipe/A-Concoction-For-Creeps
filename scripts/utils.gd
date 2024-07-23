@@ -35,11 +35,11 @@ static func picked_weighted_ingredient() -> Ingredient:
 
 	return pick_random_ingredient_with_tier(GameState.game_state.weighted_ingredient_spawn_array.pick_random())
 
-#static func picked_weighted_modifier() -> Ingredient:
-	#var index: int = 1
-	#for key: int in GameState.game_state.difficulty_stats.tier_ingredient_percent_chance.ingredient_chance.values():
-		#for num: int in key:
-			#_weighted_spawn_index.append(index)
-		#index += 1
-#
-	#return pick_random_ingredient_with_tier(_weighted_spawn_index.pick_random())
+static func picked_weighted_modifier() -> StringName:
+	var index: int = 1
+	for key: int in GameState.game_state.difficulty_stats.per_modifier_percent_chance.modifier_chance.values():
+		for num: int in key:
+			GameState.game_state.weighted_modifier_array.append(index)
+		index += 1
+
+	return GameState.game_state.difficulty_stats.per_modifier_percent_chance.modifier_chance.keys()[GameState.game_state.weighted_modifier_array.pick_random() - 1]

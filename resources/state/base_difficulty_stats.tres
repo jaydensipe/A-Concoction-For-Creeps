@@ -6,7 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_1ur7t"]
 script = ExtResource("1_4cl05")
-assassin_chance = 5.0
+modifier_chance = {
+"trans_assassin_state": 0.0,
+"trans_blinder_state": 100.0
+}
 
 [sub_resource type="Resource" id="Resource_hymmw"]
 script = ExtResource("3_om6oa")
@@ -18,7 +21,7 @@ ingredient_chance = {
 
 [resource]
 script = ExtResource("1_io1nr")
-base_percent_chance_of_modifier = 15.0
+base_percent_chance_of_modifier = 40.0
 per_modifier_percent_chance = SubResource("Resource_1ur7t")
 tier_ingredient_percent_chance = SubResource("Resource_hymmw")
 max_amount_of_ingredients = 7

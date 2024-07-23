@@ -3,10 +3,10 @@ class_name Game
 
 @onready var shadow_manager: ShadowManager = $ShadowManager
 @onready var camera: Camera = $Camera
-@onready var ui: Control = $UI
+@onready var ui: CanvasLayer = $UI
 
 #region UI Preload
-const MAIN_MENU = preload("res://assets/ui/main_menu/main_menu.tscn")
+const DEATH_SCREEN = preload("res://assets/screen_wipe/death_screen.tscn")
 #endregion
 
 func _ready() -> void:
@@ -38,7 +38,8 @@ func start_game() -> void:
 func end_game() -> void:
 	DebugIt.clear_debug_values_temp()
 
-	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+	ui.add_child(DEATH_SCREEN.instantiate())
+	#get_tree().reload_current_scene()
 #endregion
 
 #region Sanity Logic
@@ -156,8 +157,10 @@ static func is_board_empty() -> bool:
 	return GameState.game_state.current_symbol == GameState.game_state.empty_symbol
 #endregion
 
+#region Modifier Logic
 static func generate_modifier_chance() -> void:
 	var random_gen: int = randi() % 100
 	if (random_gen <= GameState.game_state.difficulty_stats.base_percent_chance_of_modifier):
-		print("should generate modifier")
+		GameState.game_state.modifier_hsm.dispatch(Utils.picked_weighted_modifier())
 	pass
+#endregion

@@ -29,14 +29,19 @@ func init_modifier_state_machine() -> void:
 		.call_on_enter(_on_enter_tutorial).call_on_update(_on_update_tutorial).call_on_exit(_on_exit_tutorial)
 	var intro_modifier_state: LimboState = LimboState.new().named(&"Intro") \
 		.call_on_enter(_on_enter_intro).call_on_update(_on_update_intro).call_on_exit(_on_exit_intro)
+
+	# Modifiers
 	var assassin_modifier_state: LimboState = LimboState.new().named(&"Assassin") \
 		.call_on_enter(_on_enter_assassin).call_on_exit(_on_exit_assassin)
+	var blinder_modifier_state: LimboState = LimboState.new().named(&"Blinder") \
+		.call_on_enter(_on_enter_blinder).call_on_exit(_on_exit_blinder)
 
 	# Add children
 	game_state.modifier_hsm.add_child(none_modifier_state)
 	game_state.modifier_hsm.add_child(tutorial_modifier_state)
 	game_state.modifier_hsm.add_child(intro_modifier_state)
 	game_state.modifier_hsm.add_child(assassin_modifier_state)
+	game_state.modifier_hsm.add_child(blinder_modifier_state)
 
 	# Add initial game state
 	game_state.modifier_hsm.initial_state = tutorial_modifier_state
@@ -44,7 +49,8 @@ func init_modifier_state_machine() -> void:
 	# Add transitions
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, none_modifier_state, &"end_modifier")
 	game_state.modifier_hsm.add_transition(tutorial_modifier_state, intro_modifier_state, &"trans_tut_to_intro")
-	game_state.modifier_hsm.add_transition(none_modifier_state, assassin_modifier_state, &"trans_assassin_state")
+	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, assassin_modifier_state, &"trans_assassin_state")
+	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, blinder_modifier_state, &"trans_blinder_state")
 
 	# Initialize HSM
 	game_state.modifier_hsm.initialize(self)
@@ -101,4 +107,12 @@ func _on_enter_assassin() -> void:
 
 func _on_exit_assassin() -> void:
 	game_state.can_look_at_book = true
+#endregion
+
+#region Blinder Modifier
+func _on_enter_blinder() -> void:
+	GlobalEventBus.signal_toggle_shader(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+
+func _on_exit_blinder() -> void:
+	GlobalEventBus.signal_toggle_shader(ShaderModifier.SHADER_TYPES.GRAYSCALE)
 #endregion

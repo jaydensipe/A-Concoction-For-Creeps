@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpytofi11kvg2"]
+
+[ext_resource type="Script" path="res://scenes/shader/shader.gd" id="1_nf8vu"]
+[ext_resource type="Shader" path="res://assets/shaders/grayscale.gdshader" id="1_oe5rb"]
+[ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="2_yglo8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
+shader = ExtResource("1_oe5rb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
+shader = ExtResource("2_yglo8")
+shader_parameter/inner_radius = 0.1
+shader_parameter/outer_radius = 1.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = null
+
+[node name="Shaders" type="Node"]
+script = ExtResource("1_nf8vu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Grayscale" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_3oble")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_mdkjy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

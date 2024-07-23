@@ -1,34 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://b522b5yl0s1aa"]
+[gd_scene load_steps=4 format=3 uid="uid://b522b5yl0s1aa"]
 
 [ext_resource type="Script" path="res://scenes/magical_tablet/magical_tablet.gd" id="1_bwi6j"]
 [ext_resource type="PackedScene" uid="uid://irsnjlysj0uu" path="res://scenes/activation_sphere/activation_sphere.tscn" id="2_ng3bi"]
+[ext_resource type="PackedScene" uid="uid://dyvna8httsmyv" path="res://assets/models/tablet/tablet.tscn" id="3_h5t0k"]
 
 [node name="MagicalTablet" type="Node3D"]
 script = ExtResource("1_bwi6j")
 
 [node name="ActivationSphere" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1, 0, -1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, -0.85, 0.144194, -0.85)
 
 [node name="ActivationSphere2" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0, 0.144194, -0.85)
 
 [node name="ActivationSphere3" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1, 0, -1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0.85, 0.144194, -0.85)
 
 [node name="ActivationSphere4" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1, 0, 0)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, -0.85, 0.144194, 0)
 
 [node name="ActivationSphere5" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0, 0.144194, 0)
 
 [node name="ActivationSphere6" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1, 0, 0)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0.85, 0.144194, 0)
 
 [node name="ActivationSphere7" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1, 0, 1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, -0.85, 0.144194, 0.85)
 
 [node name="ActivationSphere8" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0, 0.144194, 0.85)
 
 [node name="ActivationSphere9" parent="." instance=ExtResource("2_ng3bi")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1, 0, 1)
+transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0.85, 0.144194, 0.85)
+
+[node name="Tablet" parent="." instance=ExtResource("3_h5t0k")]
+transform = Transform3D(-3.55819e-08, 1.19332e-08, 0.273, -9.54657e-09, 0.273, -1.19332e-08, -0.2184, -1.19332e-08, -4.44773e-08, 0, 0, 0)

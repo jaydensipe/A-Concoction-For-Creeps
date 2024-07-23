@@ -10,6 +10,16 @@ class_name Camera
 func _physics_process(_delta: float) -> void:
 	_camera_controls()
 
+	GlobalEventBus.request_camera_change.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
+		match(new_camera_state):
+			GameStateResource.CAMERA_STATE.FORWARD:
+				move_camera_forward()
+			GameStateResource.CAMERA_STATE.PLAYSPACE:
+				move_camera_to_playspace()
+			GameStateResource.CAMERA_STATE.BOOK:
+				move_camera_to_book()
+	)
+
 func _camera_controls() -> void:
 	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.DISABLED): return
 

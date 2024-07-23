@@ -52,14 +52,14 @@ func _ready() -> void:
 
 func _camera_button_functionality() -> void:
 	up_arrow.pressed.connect(func() -> void:
-		Camera.switch_camera_state(GameStateResource.CAMERA_STATE.FORWARD)
+		GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.FORWARD)
 	)
 	down_arrow.pressed.connect(func() -> void:
-		Camera.switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
+		GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.PLAYSPACE)
 	)
 	left_arrow.pressed.connect(func() -> void:
-		Camera.switch_camera_state(GameStateResource.CAMERA_STATE.BOOK)
+		GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.BOOK)
 	)
 	right_arrow.pressed.connect(func() -> void:
-		Camera.switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
+		GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.PLAYSPACE)
 	)

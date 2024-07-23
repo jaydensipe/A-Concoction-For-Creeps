@@ -12,6 +12,7 @@ albedo_color = Color(0.318969, 0.125604, 0.00705136, 1)
 background_mode = 1
 ssr_enabled = true
 ssao_enabled = true
+glow_enabled = true
 adjustment_brightness = 1.03
 adjustment_contrast = 1.7
 adjustment_saturation = 0.51
