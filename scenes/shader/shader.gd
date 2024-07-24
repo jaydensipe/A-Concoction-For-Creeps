@@ -6,7 +6,7 @@ class_name ShaderModifier
 enum SHADER_TYPES { GRAYSCALE }
 
 func _ready() -> void:
-	GlobalEventBus.toggle_shader.connect(func(shader_type: SHADER_TYPES) -> void:
+	GlobalEventBus.shader_toggle.connect(func(shader_type: SHADER_TYPES) -> void:
 		match (shader_type):
 			SHADER_TYPES.GRAYSCALE:
 				grayscale.visible = !grayscale.visible

@@ -9,7 +9,7 @@ func _ready() -> void:
 	_init_shadow_person()
 
 func _init_shadow_person() -> void:
-	get_tree().create_tween().tween_property(self, ^"global_position:z", global_position.z - 1.5, 1.75).set_trans(Tween.TRANS_CIRC) \
+	create_tween().tween_property(self, ^"global_position:z", global_position.z - 1.5, 1.75).set_trans(Tween.TRANS_CIRC) \
 		.finished.connect(func() -> void:
 			GameState.game_state.ready_to_take_order = true
 			speech_bubble.show()

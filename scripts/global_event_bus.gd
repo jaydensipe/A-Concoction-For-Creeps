@@ -1,40 +1,60 @@
 extends Node
 
-#region Symbol Signals
-signal lock_in()
-func signal_lock_in() -> void:
-	lock_in.emit()
+#region Symbol & Ingredient Signals
+# Lets go of mouse and locks symbol in.
+signal symbol_lock_in()
+func signal_symbol_lock_in() -> void:
+	symbol_lock_in.emit()
 
-signal clear_board()
-func signal_clear_board() -> void:
-	clear_board.emit()
+# Clears symbol playspace.
+signal symbol_clear()
+func signal_symbol_clear() -> void:
+	symbol_clear.emit()
 
-signal activation_sphere_selected(sphere_index: int)
-func signal_activation_sphere_selected(sphere_index: int) -> void:
-	activation_sphere_selected.emit(sphere_index)
+# A symbol stone was selected and activated.
+signal symbol_stone_selected(stone_index: int)
+func signal_symbol_stone_selected(stone_index: int) -> void:
+	symbol_stone_selected.emit(stone_index)
 
-signal successful_symbol_match(ingredient: Ingredient, symbol: Array[int])
-func signal_successful_symbol_match(ingredient: Ingredient, symbol: Array[int]) -> void:
-	LogIt.custom("Symbol successfully matched: %s, tier %d" % [ingredient.ingredient_name, ingredient.tier], "SIGNAL", "green")
-	successful_symbol_match.emit(ingredient, symbol)
+# Drawn symbol matches an ingredient.
+signal ingredient_match_success(ingredient: Ingredient)
+func signal_ingredient_match_success(ingredient: Ingredient) -> void:
+	LogIt.custom("Ingredient successfully matched: %s, tier %d" % [ingredient.ingredient_name, ingredient.tier], "SIGNAL", "green")
+	ingredient_match_success.emit(ingredient)
 
-signal failure_symbol_match(symbol: Array[int])
-func signal_failure_symbol_match(symbol: Array[int]) -> void:
+# Drawn symbol matches the currently wanted ingredient.
+signal ingredient_matches_wanted(ingredient: Ingredient)
+func signal_ingredient_matches_wanted(ingredient: Ingredient) -> void:
+	ingredient_matches_wanted.emit(ingredient)
+
+# Drawn symbol does not match any ingredient.
+signal ingredient_match_failure(symbol: Array[int])
+func signal_ingredient_match_failure(symbol: Array[int]) -> void:
 	LogIt.custom("No symbol matches drawing!", "SIGNAL", "red")
-	failure_symbol_match.emit(symbol)
+	ingredient_match_failure.emit(symbol)
 #endregion
 
 #region Drink Signals
-signal successful_drink_create()
-func signal_successful_drink_create() -> void:
+# Fired when a drink is generated.
+signal drink_generated(drink: Array[Ingredient])
+func signal_drink_generated(drink: Array[Ingredient]) -> void:
+	drink_generated.emit(drink)
+
+# Drink has been successfully made.
+signal drink_create_success()
+func signal_drink_create_success() -> void:
 	LogIt.custom("Created the correct drink!", "SIGNAL", "springgreen")
-	successful_drink_create.emit()
+	drink_create_success.emit()
 
-signal failure_drink_create()
-func signal_failure_drink_create() -> void:
+# Drink has been fucked up.
+signal drink_create_failure()
+func signal_drink_create_failure() -> void:
 	LogIt.custom("Failed to create correct drink!", "SIGNAL", "crimson")
-	failure_drink_create.emit()
+	drink_create_failure.emit()
+#endregion
 
+#region Shadow Signals
+# TODO: Rewrite?
 signal shadow_finish_drink_animation()
 func signal_shadow_finish_drink_animation() -> void:
 	LogIt.custom("Shadow animation finished!", "SIGNAL", "lightblue")
@@ -42,39 +62,47 @@ func signal_shadow_finish_drink_animation() -> void:
 #endregion
 
 #region Sanity Signals
-signal penalized_sanity(amount: float)
-func signal_penalized_sanity(amount: float) -> void:
+# Penalize sanity by an amount.
+signal sanity_penalize(amount: float)
+func signal_sanity_penalize(amount: float) -> void:
 	LogIt.custom("Penalized sanity by %f!" % amount, "SIGNAL", "darkorchid")
-	penalized_sanity.emit(amount)
+	sanity_penalize.emit(amount)
 
-signal gain_sanity(amount: float)
-func signal_gain_sanity(amount: float) -> void:
+# Gain sanity by an amount.
+signal sanity_gain(amount: float)
+func signal_sanity_gain(amount: float) -> void:
 	LogIt.custom("Gained %f sanity!" % amount, "SIGNAL", "fuchsia")
-	gain_sanity.emit(amount)
+	sanity_gain.emit(amount)
 #endregion
 
 #region Game Signals
-signal start_game()
-func signal_start_game() -> void:
+# Starts the game.
+signal game_start()
+func signal_game_start() -> void:
 	LogIt.custom("Starting Game!", "SIGNAL", "darkseagreen")
-	start_game.emit()
+	game_start.emit()
 
-signal end_game()
-func signal_end_game() -> void:
+# Ends the game.
+signal game_end()
+func signal_game_end() -> void:
 	LogIt.custom("Ending Game!", "SIGNAL", "sandybrown")
-	end_game.emit()
+	game_end.emit()
 #endregion
 
 #region Camera Signals
+# Fires when the camera changes state.
 signal camera_changed_state(new_camera_state: GameStateResource.CAMERA_STATE)
 func signal_camera_changed_state(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
 	camera_changed_state.emit(new_camera_state)
 
+# Requests the camera state to be switched.
 signal request_camera_change(new_camera_state: GameStateResource.CAMERA_STATE)
 func signal_request_camera_change(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
 	request_camera_change.emit(new_camera_state)
 #endregion
 
-signal toggle_shader(shader_type: ShaderModifier.SHADER_TYPES)
-func signal_toggle_shader(shader_type: ShaderModifier.SHADER_TYPES) -> void:
-	toggle_shader.emit(shader_type)
+#region Shader Signals
+signal shader_toggle(shader_type: ShaderModifier.SHADER_TYPES)
+func signal_shader_toggle(shader_type: ShaderModifier.SHADER_TYPES) -> void:
+	shader_toggle.emit(shader_type)
+#endregion

@@ -14,6 +14,8 @@ func _physics_process(_delta: float) -> void:
 		match(new_camera_state):
 			GameStateResource.CAMERA_STATE.FORWARD:
 				move_camera_forward()
+			GameStateResource.CAMERA_STATE.DISABLED:
+				move_camera_forward(true)
 			GameStateResource.CAMERA_STATE.PLAYSPACE:
 				move_camera_to_playspace()
 			GameStateResource.CAMERA_STATE.BOOK:
@@ -39,7 +41,7 @@ func move_camera_forward(disable: bool = false) -> void:
 	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.FORWARD or GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.BOOK): return
 
 	create_tween().tween_property(camera_3d, "global_transform", forward_marker_3d.global_transform, camera_tween_speed)
-	switch_camera_state(GameStateResource.CAMERA_STATE.DISABLED if disable else GameStateResource.CAMERA_STATE.FORWARD)
+	_switch_camera_state(GameStateResource.CAMERA_STATE.DISABLED if disable else GameStateResource.CAMERA_STATE.FORWARD)
 
 func move_camera_to_playspace() -> void:
 	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.BOOK):
@@ -47,14 +49,14 @@ func move_camera_to_playspace() -> void:
 	else:
 		if (GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.PLAYSPACE):
 			create_tween().tween_property(camera_3d, "global_transform", play_space_marker_3d.global_transform, camera_tween_speed)
-	switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
+	_switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
 
 func move_camera_to_book() -> void:
 	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.PLAYSPACE and GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.BOOK and GameState.game_state.can_look_at_book):
 		create_tween().tween_property(camera_3d, "global_transform", book_marker_3d.global_transform, camera_tween_speed)
-		switch_camera_state(GameStateResource.CAMERA_STATE.BOOK)
+		_switch_camera_state(GameStateResource.CAMERA_STATE.BOOK)
 
-static func switch_camera_state(camera_state: GameStateResource.CAMERA_STATE) -> void:
+func _switch_camera_state(camera_state: GameStateResource.CAMERA_STATE) -> void:
 	GameState.game_state.camera_state = camera_state
 
 	GlobalEventBus.signal_camera_changed_state(camera_state)

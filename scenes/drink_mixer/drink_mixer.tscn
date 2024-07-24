@@ -20,3 +20,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ryt36")
 [node name="ResetPositionMarker3D" type="Marker3D" parent="."]
 
 [node name="SlideLeftMarker3D" type="Marker3D" parent="."]
+
+[node name="IngredientSpawnPoint" type="Marker3D" parent="."]
+
+[node name="IngredientMoveToMixer" type="Marker3D" parent="."]
+
+[node name="IngredientMoveToDrink" type="Marker3D" parent="."]

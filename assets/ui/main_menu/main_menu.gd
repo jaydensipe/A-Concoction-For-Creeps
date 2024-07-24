@@ -10,5 +10,5 @@ func _ready() -> void:
 	)
 
 func _start_game_press() -> void:
-	GlobalEventBus.signal_start_game()
+	GlobalEventBus.signal_game_start()
 	queue_free()

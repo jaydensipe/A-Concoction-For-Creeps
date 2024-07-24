@@ -8,6 +8,8 @@
 
 config_version=5
 
+=false
+
 [application]
 
 config/name="Turbo Pancake Jam"
@@ -40,6 +42,8 @@ gdscript/warnings/untyped_declaration=2
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/always_on_top=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

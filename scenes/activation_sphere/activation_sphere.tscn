@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://irsnjlysj0uu"]
+[gd_scene load_steps=10 format=4 uid="uid://irsnjlysj0uu"]
 
 [ext_resource type="Script" path="res://scenes/activation_sphere/activation_sphere.gd" id="1_f21om"]
-[ext_resource type="Material" uid="uid://bqwqtjcb8qkkn" path="res://scenes/activation_sphere/texture_waiting.tres" id="2_wn7jx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgdk5"]
 resource_name = "DefaultMaterial"
@@ -43,6 +42,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_184ya")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k2xbb"]
+load_path = "res://.godot/imported/t_button_01_d.png-8bdea5cc935cc22dc5a68ff2df419813.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fl1in"]
+load_path = "res://.godot/imported/t_button_01_ao.png-5edb6e4976b9085e6a3158f970bfb868.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rr6c1"]
+load_path = "res://.godot/imported/t_button_01_n.png-1aea2497a8bbd1045e94255398be9114.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xg2lq"]
+resource_local_to_scene = true
+albedo_texture = SubResource("CompressedTexture2D_k2xbb")
+emission_enabled = true
+emission_energy_multiplier = 8.0
+emission_operator = 1
+normal_enabled = true
+normal_texture = SubResource("CompressedTexture2D_rr6c1")
+ao_enabled = true
+ao_texture = SubResource("CompressedTexture2D_fl1in")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_qulf2"]
 radius = 1.57187
 
@@ -53,12 +72,14 @@ script = ExtResource("1_f21om")
 transform = Transform3D(130, 0, 0, 0, -1.54972e-05, 130, 0, -130, -1.54972e-05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ox525")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_wn7jx")
+surface_material_override/0 = SubResource("StandardMaterial3D_xg2lq")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.911373, 0, 0, 0, 0.911373, 0, 0, 0, 0.911373, 0, 0, 0)
 shape = SubResource("SphereShape3D_qulf2")
 
 [connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

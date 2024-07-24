@@ -17,6 +17,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 script = ExtResource("1_1d7dv")
 
@@ -46,19 +48,18 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
 disabled = true
-text = "W"
 icon = ExtResource("1_c4oml")
 flat = true
+icon_alignment = 1
 
 [node name="DownArrow" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
 disabled = true
-text = "S"
 icon = ExtResource("2_k4c0c")
 flat = true
-alignment = 0
+icon_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -72,7 +73,6 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
 disabled = true
-text = "A"
 icon = ExtResource("3_vlsua")
 flat = true
 
@@ -81,6 +81,5 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h11ww")
 disabled = true
-text = "D"
 icon = ExtResource("4_y1xlf")
 flat = true

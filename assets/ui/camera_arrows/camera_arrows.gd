@@ -5,8 +5,6 @@ extends Control
 @onready var left_arrow: Button = $PanelContainer/MarginContainer/HBoxContainer/LeftArrow
 @onready var right_arrow: Button = $PanelContainer/MarginContainer/HBoxContainer/RightArrow
 
-# TODO: Switch camera animations with arrows and fix GUI scale
-
 func _ready() -> void:
 	_camera_button_functionality()
 

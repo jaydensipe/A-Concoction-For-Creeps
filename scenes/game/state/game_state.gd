@@ -5,7 +5,7 @@ extends Node
 func _ready() -> void:
 	_init_debug()
 
-	GlobalEventBus.end_game.connect(_reset_game_state)
+	GlobalEventBus.game_end.connect(_reset_game_state)
 
 func _init_debug() -> void:
 	var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game Stats", Color.BROWN)
@@ -35,6 +35,10 @@ func init_modifier_state_machine() -> void:
 		.call_on_enter(_on_enter_assassin).call_on_exit(_on_exit_assassin)
 	var blinder_modifier_state: LimboState = LimboState.new().named(&"Blinder") \
 		.call_on_enter(_on_enter_blinder).call_on_exit(_on_exit_blinder)
+	var reverser_modifier_state: LimboState = LimboState.new().named(&"Reverser") \
+		.call_on_enter(_on_enter_reverser)
+	var wraith_modifier_state: LimboState = LimboState.new().named(&"Wraith") \
+		.call_on_enter(_on_enter_wraith)
 
 	# Add children
 	game_state.modifier_hsm.add_child(none_modifier_state)
@@ -42,6 +46,8 @@ func init_modifier_state_machine() -> void:
 	game_state.modifier_hsm.add_child(intro_modifier_state)
 	game_state.modifier_hsm.add_child(assassin_modifier_state)
 	game_state.modifier_hsm.add_child(blinder_modifier_state)
+	game_state.modifier_hsm.add_child(reverser_modifier_state)
+	game_state.modifier_hsm.add_child(wraith_modifier_state)
 
 	# Add initial game state
 	game_state.modifier_hsm.initial_state = tutorial_modifier_state
@@ -51,6 +57,8 @@ func init_modifier_state_machine() -> void:
 	game_state.modifier_hsm.add_transition(tutorial_modifier_state, intro_modifier_state, &"trans_tut_to_intro")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, assassin_modifier_state, &"trans_assassin_state")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, blinder_modifier_state, &"trans_blinder_state")
+	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, reverser_modifier_state, &"trans_reverser_state")
+	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, wraith_modifier_state, &"trans_wraith_state")
 
 	# Initialize HSM
 	game_state.modifier_hsm.initialize(self)
@@ -111,8 +119,36 @@ func _on_exit_assassin() -> void:
 
 #region Blinder Modifier
 func _on_enter_blinder() -> void:
-	GlobalEventBus.signal_toggle_shader(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+	GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
 
 func _on_exit_blinder() -> void:
-	GlobalEventBus.signal_toggle_shader(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+	GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+#endregion
+
+#region Reverser Modifier
+func _on_enter_reverser() -> void:
+	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
+		drink.reverse()
+		GameState.game_state.wanted_drink = drink
+	)
+#endregion
+
+#region Wraith Modifier
+var _wraith_has_completed_ingredient: bool = false
+func _on_enter_wraith() -> void:
+	var timer: SceneTreeTimer = get_tree().create_timer(5.0, false)
+	GlobalEventBus.drink_create_success.connect(func() -> void:
+		_wraith_has_completed_ingredient = true
+	)
+
+	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
+		GameState.game_state.wanted_drink = [drink[0]]
+	)
+
+	timer.timeout.connect(func() -> void:
+		if (_wraith_has_completed_ingredient):
+			pass
+		else:
+			GlobalEventBus.signal_game_end()
+	)
 #endregion

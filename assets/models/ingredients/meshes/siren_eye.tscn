@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd7g4x4stgohh"]
+
+[ext_resource type="PackedScene" uid="uid://brkv63p8lmnkk" path="res://assets/models/ingredients/meshes/siren_eye.fbx" id="1_el5ie"]
+[ext_resource type="Texture2D" uid="uid://c3qg041aiqko6" path="res://assets/models/ingredients/textures/siren_eye/t_sireneye_d.png" id="2_ats14"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgoev"]
+albedo_texture = ExtResource("2_ats14")
+texture_filter = 0
+
+[node name="SirenEye" instance=ExtResource("1_el5ie")]
+
+[node name="Sphere" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hgoev")

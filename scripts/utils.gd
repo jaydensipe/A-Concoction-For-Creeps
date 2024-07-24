@@ -1,8 +1,7 @@
-extends Node
+extends RefCounted
 class_name Utils
 
 static var _ingredient_list: Array[Ingredient] = []
-
 
 static func print_symbol(symbol: Array) -> void:
 	print("%d %d %d" % [symbol[0], symbol[1], symbol[2]])
@@ -15,8 +14,19 @@ static func parse_ingredient(ingredient_name: StringName) -> Ingredient:
 	ingredient.ingredient_name = split[0]
 	ingredient.tier = int(split[1])
 	ingredient.color = split[2]
+	ingredient.model = Utils.match_ingredient_model(ingredient_name)
 
 	return ingredient
+
+static func match_ingredient_model(ingredient_name: StringName) -> PackedScene:
+	var model: PackedScene = null
+	match (ingredient_name):
+		&"siren_eye":
+			model = load("res://assets/models/ingredients/meshes/siren_eye.tscn")
+		_:
+			model = load("res://assets/models/ingredients/meshes/siren_eye.tscn")
+
+	return model
 
 static func pick_random_ingredient_with_tier(tier: int) -> Ingredient:
 	# Cache ingredient list

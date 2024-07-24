@@ -4,11 +4,13 @@
 [ext_resource type="Script" path="res://resources/state/scripts/difficulty_stats.gd" id="1_io1nr"]
 [ext_resource type="Script" path="res://resources/stats/ingredient_stats.gd" id="3_om6oa"]
 
-[sub_resource type="Resource" id="Resource_1ur7t"]
+[sub_resource type="Resource" id="Resource_li10y"]
 script = ExtResource("1_4cl05")
 modifier_chance = {
 "trans_assassin_state": 0.0,
-"trans_blinder_state": 100.0
+"trans_blinder_state": 0.0,
+"trans_reverser_state": 0.0,
+"trans_wraith_state": 100.0
 }
 
 [sub_resource type="Resource" id="Resource_hymmw"]
@@ -21,8 +23,8 @@ ingredient_chance = {
 
 [resource]
 script = ExtResource("1_io1nr")
-base_percent_chance_of_modifier = 40.0
-per_modifier_percent_chance = SubResource("Resource_1ur7t")
+base_percent_chance_of_modifier = 0.0
+per_modifier_percent_chance = SubResource("Resource_li10y")
 tier_ingredient_percent_chance = SubResource("Resource_hymmw")
 max_amount_of_ingredients = 7
 min_amount_of_ingredients = 3

@@ -34,6 +34,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.571, 1.8598, -5)
 [node name="SlideLeftMarker3D" parent="DrinkMixer" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28529, 1.8598, -5)
 
+[node name="IngredientSpawnPoint" parent="DrinkMixer" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28571, 0.714285, -2.14286)
+
+[node name="IngredientMoveToMixer" parent="DrinkMixer" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85714, 0)
+
 [node name="ShadowManager" parent="." instance=ExtResource("5_5aau3")]
 
 [node name="SceneSpawnComponent3D" parent="ShadowManager" index="0"]
@@ -42,7 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 [node name="Camera" parent="." instance=ExtResource("7_pergs")]
 
 [node name="Camera3D" parent="Camera" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1)
 current = true
 
 [node name="PlaySpaceMarker3D" parent="Camera" index="2"]
