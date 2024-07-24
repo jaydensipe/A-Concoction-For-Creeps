@@ -14,17 +14,49 @@ static func parse_ingredient(ingredient_name: StringName) -> Ingredient:
 	ingredient.ingredient_name = split[0]
 	ingredient.tier = int(split[1])
 	ingredient.color = split[2]
-	ingredient.model = Utils.match_ingredient_model(ingredient_name)
+	ingredient.model = Utils.match_ingredient_model(split[0])
 
 	return ingredient
 
 static func match_ingredient_model(ingredient_name: StringName) -> PackedScene:
 	var model: PackedScene = null
 	match (ingredient_name):
+		&"flamefern":
+			model = load("res://assets/models/ingredients/meshes/flamefern.tscn")
+		&"frostfern":
+			model = load("res://assets/models/ingredients/meshes/frostfern.tscn")
+		&"faefern":
+			model = load("res://assets/models/ingredients/meshes/faefern.tscn")
+		&"skiverwing_feathers":
+			model = load("res://assets/models/ingredients/meshes/skiverwing_feather_stack.tscn")
+		&"blood_feather":
+			model = load("res://assets/models/ingredients/meshes/blood_feather_stack.tscn")
+		&"harpy_feather":
+			model = load("res://assets/models/ingredients/meshes/harpy_feather_stack.tscn")
+		&"sackfruit":
+			model = load("res://assets/models/ingredients/meshes/sackfruit.tscn")
+		&"imbued_salt":
+			model = load("res://assets/models/ingredients/meshes/imbued_salt.tscn")
+		&"harpberry_cluster":
+			model = load("res://assets/models/ingredients/meshes/berry_cluster.tscn")
+		&"baobulb_cluster":
+			model = load("res://assets/models/ingredients/meshes/baobulb_cluster.tscn")
+		&"poppletop_mushroom":
+			model = load("res://assets/models/ingredients/meshes/poppletop_mushroom.tscn")
+		&"dragon_dewdrop":
+			model = load("res://assets/models/ingredients/meshes/dragon_dewdrop.tscn")
+		&"bundled_ragweed":
+			model = load("res://assets/models/ingredients/meshes/bundled_ragweed.tscn")
+		&"wolpertinger_antler":
+			model = load("res://assets/models/ingredients/meshes/wolpertinger_antler.tscn")
+		&"aged_hydra_skin":
+			model = load("res://assets/models/ingredients/meshes/aged_hydra_skin.tscn")
 		&"siren_eye":
 			model = load("res://assets/models/ingredients/meshes/siren_eye.tscn")
+		&"coiled_gloworm":
+			model = load("res://assets/models/ingredients/meshes/coiled_gloworm.tscn")
 		_:
-			model = load("res://assets/models/ingredients/meshes/siren_eye.tscn")
+			model = load("res://assets/models/ingredients/meshes/goop.tscn")
 
 	return model
 

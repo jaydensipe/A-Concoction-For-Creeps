@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpytofi11kvg2"]
+[gd_scene load_steps=8 format=3 uid="uid://cpytofi11kvg2"]
 
 [ext_resource type="Script" path="res://scenes/shader/shader.gd" id="1_nf8vu"]
 [ext_resource type="Shader" path="res://assets/shaders/grayscale.gdshader" id="1_oe5rb"]
 [ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="2_yglo8"]
+[ext_resource type="Shader" path="res://scenes/shader/abberation_vignette.gdshader" id="4_bryaq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
 shader = ExtResource("1_oe5rb")
@@ -14,6 +15,13 @@ shader_parameter/outer_radius = 1.0
 shader_parameter/vignette_strength = 1.0
 shader_parameter/dither_strength = 0.03
 shader_parameter/vignette_color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmb2u"]
+shader = ExtResource("4_bryaq")
+shader_parameter/alpha = 0.655
+shader_parameter/scale = 1.0
+shader_parameter/border_mask = 5.0
+shader_parameter/strength = 3.383
 
 [node name="Shaders" type="Node"]
 script = ExtResource("1_nf8vu")
@@ -33,6 +41,24 @@ mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mdkjy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ChromaticAbberation" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_wmb2u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AbberationVignette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_wmb2u")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

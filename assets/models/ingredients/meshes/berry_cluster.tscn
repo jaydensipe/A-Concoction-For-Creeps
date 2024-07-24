@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj0wuaf6ou1md"]
+
+[ext_resource type="PackedScene" uid="uid://cy18b8n46gmx1" path="res://assets/models/ingredients/meshes/berry_cluster.fbx" id="1_juln5"]
+[ext_resource type="Texture2D" uid="uid://b8jvfwcl0fkhc" path="res://assets/models/ingredients/textures/harpberry_cluster/t_harpberry_d.png" id="2_6wgiq"]
+[ext_resource type="Texture2D" uid="uid://t8ufqn2acp2a" path="res://assets/models/ingredients/textures/harpberry_cluster/t_harpberry_ao.png" id="3_fbs0p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6tbv"]
+albedo_texture = ExtResource("2_6wgiq")
+ao_enabled = true
+ao_texture = ExtResource("3_fbs0p")
+texture_filter = 0
+
+[node name="berry_cluster" instance=ExtResource("1_juln5")]
+
+[node name="berry_cluster" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n6tbv")

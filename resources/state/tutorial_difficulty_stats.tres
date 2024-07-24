@@ -30,3 +30,4 @@ sanity_depletion_rate = 0.0
 sanity_wrong_symbol = 0.0
 sanity_wrong_ingredient = 0.0
 sanity_correct_drink = 0.0
+sanity_correct_ingredient = 0.0

@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://piqfcdr1o0ml"]
+
+[ext_resource type="PackedScene" uid="uid://prohd1x5x54h" path="res://assets/models/ingredients/meshes/feather_stack.fbx" id="1_i7jh2"]
+[ext_resource type="Texture2D" uid="uid://wjb0arvy1g83" path="res://assets/models/ingredients/textures/skiverwing_feather/t_skiverwing_d.png" id="2_et1od"]
+[ext_resource type="Texture2D" uid="uid://dr8o3adxkryv" path="res://assets/models/ingredients/textures/skiverwing_feather/t_skiverwing_n.png" id="3_twcjq"]
+[ext_resource type="Texture2D" uid="uid://btl3faek0jgbf" path="res://assets/models/ingredients/textures/skiverwing_feather/t_skiverwing_ao.png" id="4_uetwc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_623ur"]
+albedo_texture = ExtResource("2_et1od")
+normal_enabled = true
+normal_texture = ExtResource("4_uetwc")
+ao_enabled = true
+ao_texture = ExtResource("3_twcjq")
+texture_filter = 0
+
+[node name="feather_stack" instance=ExtResource("1_i7jh2")]
+
+[node name="feather_stack" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_623ur")

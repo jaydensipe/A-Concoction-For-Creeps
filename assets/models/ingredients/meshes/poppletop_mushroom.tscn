@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://whuum57n2ah2"]
+
+[ext_resource type="PackedScene" uid="uid://cbn5y4obmh6ha" path="res://assets/models/ingredients/meshes/poppletop_mushroom.fbx" id="1_gnu2h"]
+[ext_resource type="Texture2D" uid="uid://dj0qxsuwvuitb" path="res://assets/models/ingredients/textures/poppletop_mushroom/t_poppletop_d.png" id="2_37qk6"]
+[ext_resource type="Texture2D" uid="uid://dk3sdeynukc7d" path="res://assets/models/ingredients/textures/poppletop_mushroom/t_poppletop_ao.png" id="3_qwo76"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gnt7"]
+albedo_texture = ExtResource("2_37qk6")
+ao_enabled = true
+ao_texture = ExtResource("3_qwo76")
+texture_filter = 0
+
+[node name="poppletop_mushroom" instance=ExtResource("1_gnu2h")]
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8gnt7")

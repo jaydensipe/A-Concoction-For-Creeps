@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://thqa5sjqh3ow"]
+
+[ext_resource type="PackedScene" uid="uid://cfcc853yrby6o" path="res://assets/models/ingredients/meshes/coiled_gloworm.fbx" id="1_es508"]
+[ext_resource type="Texture2D" uid="uid://clwt030v3o3el" path="res://assets/models/ingredients/textures/coiled_gloworm/t_gloworm_d.png" id="2_rxdi4"]
+[ext_resource type="Texture2D" uid="uid://bd7gpqd3fwqtb" path="res://assets/models/ingredients/textures/coiled_gloworm/t_gloworm_ao.png" id="3_8owr1"]
+[ext_resource type="Texture2D" uid="uid://xv7w2bwvlig1" path="res://assets/models/ingredients/textures/coiled_gloworm/t_gloworm_n.png" id="4_jni6q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jug84"]
+albedo_texture = ExtResource("2_rxdi4")
+normal_enabled = true
+normal_texture = ExtResource("4_jni6q")
+ao_enabled = true
+ao_texture = ExtResource("3_8owr1")
+texture_filter = 0
+
+[node name="coiled_gloworm" instance=ExtResource("1_es508")]
+
+[node name="Fearworm_low" parent="." index="0"]
+transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_jug84")

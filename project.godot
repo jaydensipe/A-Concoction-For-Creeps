@@ -8,8 +8,6 @@
 
 config_version=5
 
-=false
-
 [application]
 
 config/name="Turbo Pancake Jam"

@@ -38,7 +38,9 @@ func init_modifier_state_machine() -> void:
 	var reverser_modifier_state: LimboState = LimboState.new().named(&"Reverser") \
 		.call_on_enter(_on_enter_reverser)
 	var wraith_modifier_state: LimboState = LimboState.new().named(&"Wraith") \
-		.call_on_enter(_on_enter_wraith)
+		.call_on_enter(_on_enter_wraith).call_on_exit(_on_exit_wraith)
+	var thirsty_intro_modifier_state: LimboState = LimboState.new().named(&"Thirsty") \
+		.call_on_enter(_on_enter_thirsty).call_on_update(_on_update_thirsty)
 
 	# Add children
 	game_state.modifier_hsm.add_child(none_modifier_state)
@@ -48,6 +50,7 @@ func init_modifier_state_machine() -> void:
 	game_state.modifier_hsm.add_child(blinder_modifier_state)
 	game_state.modifier_hsm.add_child(reverser_modifier_state)
 	game_state.modifier_hsm.add_child(wraith_modifier_state)
+	game_state.modifier_hsm.add_child(thirsty_intro_modifier_state)
 
 	# Add initial game state
 	game_state.modifier_hsm.initial_state = tutorial_modifier_state
@@ -55,10 +58,12 @@ func init_modifier_state_machine() -> void:
 	# Add transitions
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, none_modifier_state, &"end_modifier")
 	game_state.modifier_hsm.add_transition(tutorial_modifier_state, intro_modifier_state, &"trans_tut_to_intro")
+	game_state.modifier_hsm.add_transition(thirsty_intro_modifier_state, intro_modifier_state, &"trans_thirsty_to_intro")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, assassin_modifier_state, &"trans_assassin_state")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, blinder_modifier_state, &"trans_blinder_state")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, reverser_modifier_state, &"trans_reverser_state")
 	game_state.modifier_hsm.add_transition(game_state.modifier_hsm.ANYSTATE, wraith_modifier_state, &"trans_wraith_state")
+	game_state.modifier_hsm.add_transition(intro_modifier_state, thirsty_intro_modifier_state, &"trans_intro_to_thirsty_state")
 
 	# Initialize HSM
 	game_state.modifier_hsm.initialize(self)
@@ -101,12 +106,24 @@ func _on_enter_intro() -> void:
 	game_state.difficulty_stats = preload("res://resources/state/intro_difficulty_stats.tres")
 
 func _on_update_intro(_delta: float) -> void:
-	# Add hardcoded thirsty modifier to show player
 	if (game_state.intro_complete or game_state.customers_served >= game_state.min_amount_of_customers_served_before_intro_over):
 		game_state.modifier_hsm.dispatch(&"end_modifier")
 
+	if (game_state.customers_served == game_state.customer_intro_thirsty_modifier):
+		game_state.modifier_hsm.dispatch(&"trans_intro_to_thirsty_state")
+
 func _on_exit_intro() -> void:
 	game_state.intro_complete = true
+#endregion
+
+#region Thirsty (Intro) Modifier
+func _on_enter_thirsty() -> void:
+	game_state.difficulty_stats.max_amount_of_ingredients = 4
+	game_state.difficulty_stats.min_amount_of_ingredients = 4
+
+func _on_update_thirsty(_delta: float) -> void:
+	if (game_state.customers_served >= game_state.customer_intro_thirsty_modifier + 1):
+		game_state.modifier_hsm.dispatch(&"trans_thirsty_to_intro")
 #endregion
 
 #region Assassin Modifier
@@ -151,4 +168,7 @@ func _on_enter_wraith() -> void:
 		else:
 			GlobalEventBus.signal_game_end()
 	)
+
+func _on_exit_wraith() -> void:
+	_wraith_has_completed_ingredient = false
 #endregion

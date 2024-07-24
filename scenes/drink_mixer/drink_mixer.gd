@@ -10,7 +10,7 @@ extends Node3D
 @onready var _mat: BaseMaterial3D = mesh_instance_3d.get_surface_override_material(0)
 var _is_first_ingredient: bool = true
 
-signal finished_adding_ingredient()
+signal _finished_adding_ingredient()
 
 func _ready() -> void:
 	GlobalEventBus.ingredient_matches_wanted.connect(_add_ingredient_to_drink_and_change_color)
@@ -23,20 +23,24 @@ func _reset_drink() -> void:
 	_is_first_ingredient = true
 
 	_mat.albedo_color = Color(0.0, 0.0, 0.0, 0.0)
-	mesh_instance_3d.global_transform = global_transform
+	mesh_instance_3d.global_transform = ingredient_move_to_drink.global_transform
 	mesh_instance_3d.set_surface_override_material(0, _mat)
 
 func _add_ingredient_to_drink_and_change_color(ingredient: Ingredient) -> void:
 	# Instantiate the ingredient model
 	var model: Node3D = ingredient.model.instantiate()
-	model.scale_object_local(Vector3(0.25, 0.25, 0.25))
-	model.global_transform = ingredient_spawn_point.global_transform
 	add_child(model)
+	model.global_transform = ingredient_spawn_point.global_transform
 
-	var tween: Tween = create_tween()
-	tween.tween_property(model, ^"global_transform", ingredient_move_to_mixer.global_transform, 0.1).set_trans(Tween.TRANS_BACK)
-	tween.tween_interval(0.25)
-	tween.tween_property(model, ^"global_transform", ingredient_move_to_drink.global_transform, 0.2).set_trans(Tween.TRANS_BACK)
+	# Animate model going into drink
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_BACK)
+	tween.tween_interval(0.15)
+	tween.tween_property(model, ^"position:y", position.y + 0.5, 0.3).as_relative()
+	tween.tween_interval(0.15)
+	tween.tween_property(model, ^"global_position", ingredient_move_to_mixer.global_position, 0.3)
+	tween.tween_interval(0.15)
+	tween.parallel().tween_property(model, ^"global_position", ingredient_move_to_drink.global_position, 0.3)
+	tween.parallel().tween_property(model, ^"scale", Vector3.ZERO, 0.3)
 	tween.tween_callback(func() -> void:
 		var color_of_ingredient: Color = Color.html("#%s" % ingredient.color)
 		if (_is_first_ingredient):
@@ -47,9 +51,12 @@ func _add_ingredient_to_drink_and_change_color(ingredient: Ingredient) -> void:
 
 		model.queue_free()
 		mesh_instance_3d.set_surface_override_material(0, _mat)
+		_finished_adding_ingredient.emit()
 	)
 
 func _mix_and_serve_drink_animation() -> void:
+	await _finished_adding_ingredient
+
 	# Slide to the right
 	var tween: Tween = create_tween()
 	tween.tween_interval(0.5)

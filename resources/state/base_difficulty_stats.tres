@@ -7,10 +7,10 @@
 [sub_resource type="Resource" id="Resource_li10y"]
 script = ExtResource("1_4cl05")
 modifier_chance = {
-"trans_assassin_state": 0.0,
-"trans_blinder_state": 0.0,
-"trans_reverser_state": 0.0,
-"trans_wraith_state": 100.0
+"trans_assassin_state": 25.0,
+"trans_blinder_state": 25.0,
+"trans_reverser_state": 25.0,
+"trans_wraith_state": 25.0
 }
 
 [sub_resource type="Resource" id="Resource_hymmw"]
@@ -23,12 +23,12 @@ ingredient_chance = {
 
 [resource]
 script = ExtResource("1_io1nr")
-base_percent_chance_of_modifier = 0.0
+base_percent_chance_of_modifier = 15.0
 per_modifier_percent_chance = SubResource("Resource_li10y")
 tier_ingredient_percent_chance = SubResource("Resource_hymmw")
-max_amount_of_ingredients = 7
+max_amount_of_ingredients = 6
 min_amount_of_ingredients = 3
-sanity_depletion_rate = 0.01
-sanity_wrong_symbol = 10.0
-sanity_wrong_ingredient = 15.0
+sanity_depletion_rate = 0.03
+sanity_wrong_symbol = 15.0
+sanity_wrong_ingredient = 20.0
 sanity_correct_drink = 30.0

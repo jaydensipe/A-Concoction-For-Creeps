@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://drclckmdcv6av"]
+
+[ext_resource type="PackedScene" uid="uid://vfr4h2xuknk2" path="res://assets/models/ingredients/meshes/fern.fbx" id="1_km76q"]
+[ext_resource type="Texture2D" uid="uid://c1lngyaj2md15" path="res://assets/models/ingredients/textures/flamefern/t_frostfern_d.png" id="2_ksyyc"]
+[ext_resource type="Texture2D" uid="uid://dwlr3tsbbyexa" path="res://assets/models/ingredients/textures/flamefern/t_frostfern_ao.png" id="3_143us"]
+[ext_resource type="Texture2D" uid="uid://vh5fovd0i3ip" path="res://assets/models/ingredients/textures/flamefern/t_frostfern_n.png" id="4_ankce"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvq7r"]
+albedo_texture = ExtResource("2_ksyyc")
+normal_enabled = true
+normal_texture = ExtResource("4_ankce")
+ao_enabled = true
+ao_texture = ExtResource("3_143us")
+texture_filter = 0
+
+[node name="fern" instance=ExtResource("1_km76q")]
+
+[node name="fern" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nvq7r")

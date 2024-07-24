@@ -17,6 +17,7 @@ func _ready() -> void:
 	GlobalEventBus.symbol_stone_selected.connect(_calculate_symbol_draw)
 	GlobalEventBus.ingredient_match_success.connect(_add_drink_ingredient)
 	GlobalEventBus.ingredient_match_failure.connect(_fail_drink_ingredient)
+	GlobalEventBus.ingredient_matches_wanted.connect(_add_wanted_ingredient)
 	GlobalEventBus.drink_generated.connect(_generated_drink)
 	GlobalEventBus.drink_create_success.connect(_concoct_drink)
 	GlobalEventBus.drink_create_failure.connect(_fail_drink)
@@ -37,7 +38,7 @@ func _init_debug() -> void:
 
 #region Game Logic
 func _physics_process(delta: float) -> void:
-	_calculate_sanity(delta)
+	_calculate_sanity()
 
 func start_game() -> void:
 	GameState.init_modifier_state_machine()
@@ -57,11 +58,10 @@ func _penalize_sanity(amount: float) -> void:
 func _gain_sanity(amount: float) -> void:
 	GameState.game_state.sanity_level += amount
 
-func _calculate_sanity(delta: float) -> void:
+func _calculate_sanity() -> void:
 	if (!GameState.game_state.should_deplete_sanity): return
 
-	# Do I need delta here?
-	GameState.game_state.sanity_level -= GameState.game_state.difficulty_stats.sanity_depletion_rate * delta * 5.0
+	GameState.game_state.sanity_level -= GameState.game_state.difficulty_stats.sanity_depletion_rate
 	GameState.game_state.sanity_level = clampf(GameState.game_state.sanity_level, 0.0, 100.0)
 	DebugIt.show_value_on_screen("Sanity", GameState.game_state.sanity_level)
 
@@ -108,6 +108,9 @@ func _add_drink_ingredient(ingredient: Ingredient) -> void:
 func _fail_drink_ingredient(_symbol: Array[int]) -> void:
 	GlobalEventBus.signal_sanity_penalize(GameState.game_state.difficulty_stats.sanity_wrong_symbol)
 	_clear_drink()
+
+func _add_wanted_ingredient(_ingredient: Ingredient) -> void:
+	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_ingredient)
 
 func _concoct_drink() -> void:
 	camera.move_camera_forward(true)

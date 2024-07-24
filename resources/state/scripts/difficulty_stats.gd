@@ -19,3 +19,4 @@ class_name DifficultyStats
 @export var sanity_wrong_ingredient: float = 15.0
 @export_subgroup("Correct")
 @export var sanity_correct_drink: float = 30.0
+@export var sanity_correct_ingredient: float = 5.0

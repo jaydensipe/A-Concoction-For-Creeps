@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://f2nct2g0qtxn"]
+
+[ext_resource type="PackedScene" uid="uid://c6bsgkvvucct" path="res://assets/models/ingredients/meshes/imbued_salt.fbx" id="1_jdm6r"]
+[ext_resource type="Texture2D" uid="uid://dyuf6iftp6khs" path="res://assets/models/ingredients/textures/imbued_salt/t_imbuedsalt_d.png" id="2_e2rmc"]
+[ext_resource type="Texture2D" uid="uid://cstwxsxbyvnly" path="res://assets/models/ingredients/textures/imbued_salt/t_imbuedsalt_ao.png" id="3_vxuyr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq0ik"]
+albedo_texture = ExtResource("2_e2rmc")
+ao_enabled = true
+ao_texture = ExtResource("3_vxuyr")
+texture_filter = 0
+
+[node name="imbued_salt" instance=ExtResource("1_jdm6r")]
+
+[node name="imbued_salt" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sq0ik")

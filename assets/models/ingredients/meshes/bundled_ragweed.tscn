@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfc6t826ykim4"]
+
+[ext_resource type="PackedScene" uid="uid://c36lmn50aic3a" path="res://assets/models/ingredients/meshes/bundled_ragweed.fbx" id="1_d46tx"]
+[ext_resource type="Texture2D" uid="uid://nvhiwmms1p1b" path="res://assets/models/ingredients/textures/ragweed/t_ragweed_d.png" id="2_kbwoo"]
+[ext_resource type="Texture2D" uid="uid://8uhctsx0xd7o" path="res://assets/models/ingredients/textures/ragweed/t_ragweed_ao.png" id="3_x6a2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jggsi"]
+albedo_texture = ExtResource("2_kbwoo")
+ao_enabled = true
+ao_texture = ExtResource("3_x6a2u")
+texture_filter = 0
+
+[node name="bundled_ragweed" instance=ExtResource("1_d46tx")]
+
+[node name="ragweed" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jggsi")
