@@ -15,6 +15,7 @@ var tutorial_complete: bool = false
 var intro_complete: bool = false
 var should_deplete_sanity: bool = false
 var sanity_level: float = 100.0
+var wraith_has_completed_ingredient: bool = false
 enum CAMERA_STATE { FORWARD, PLAYSPACE, BOOK, DISABLED }
 var camera_state: CAMERA_STATE = CAMERA_STATE.DISABLED
 var weighted_ingredient_spawn_array: Array[int] = []

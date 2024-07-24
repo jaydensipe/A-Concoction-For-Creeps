@@ -151,11 +151,10 @@ func _on_enter_reverser() -> void:
 #endregion
 
 #region Wraith Modifier
-var _wraith_has_completed_ingredient: bool = false
 func _on_enter_wraith() -> void:
 	var timer: SceneTreeTimer = get_tree().create_timer(5.0, false)
 	GlobalEventBus.drink_create_success.connect(func() -> void:
-		_wraith_has_completed_ingredient = true
+		game_state.wraith_has_completed_ingredient = true
 	)
 
 	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
@@ -163,12 +162,12 @@ func _on_enter_wraith() -> void:
 	)
 
 	timer.timeout.connect(func() -> void:
-		if (_wraith_has_completed_ingredient):
+		if (game_state.wraith_has_completed_ingredient):
 			pass
 		else:
 			GlobalEventBus.signal_game_end()
 	)
 
 func _on_exit_wraith() -> void:
-	_wraith_has_completed_ingredient = false
+	game_state.wraith_has_completed_ingredient = false
 #endregion

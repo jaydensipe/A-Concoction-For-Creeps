@@ -59,7 +59,7 @@ func _gain_sanity(amount: float) -> void:
 	GameState.game_state.sanity_level += amount
 
 func _calculate_sanity() -> void:
-	if (!GameState.game_state.should_deplete_sanity): return
+	if (!GameState.game_state.should_deplete_sanity or !GameState.game_state.ready_to_take_order): return
 
 	GameState.game_state.sanity_level -= GameState.game_state.difficulty_stats.sanity_depletion_rate
 	GameState.game_state.sanity_level = clampf(GameState.game_state.sanity_level, 0.0, 100.0)
