@@ -8,6 +8,8 @@ extends Node3D
 @onready var tween: Tween
 @onready var _reset_position: Vector3 = global_position
 @onready var _mat: StandardMaterial3D = button.get_surface_override_material(0)
+@onready var stone_activate_sound: AudioStreamPlayer = $StoneActivateSound
+
 var activated: bool = false
 
 # Fix camera when hovering over one of the spheres
@@ -41,6 +43,8 @@ func _activate_stone(_stone_index: int) -> void:
 	if (_stone_index != get_index()): return
 
 	activated = true
+	stone_activate_sound.pitch_scale = 1 + (GameState.game_state.current_draw_index * 0.10)
+	stone_activate_sound.play()
 	tween.kill()
 	tween = create_tween()
 	tween.tween_property(self, ^"global_position:y", _reset_position.y + 0.025, 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)

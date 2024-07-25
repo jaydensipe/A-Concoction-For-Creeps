@@ -75,8 +75,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.3, 
 
 [node name="Shaders" parent="." instance=ExtResource("8_6urt7")]
 
-[node name="Vignette" parent="Shaders/CanvasLayer" index="1"]
+[node name="Vignette" parent="Shaders/CanvasLayer" index="0"]
 material = SubResource("ShaderMaterial_mdkjy")
+
+[node name="AbberationVignette" parent="Shaders/CanvasLayer" index="2"]
+visible = false
 
 [node name="Music" type="Node" parent="."]
 

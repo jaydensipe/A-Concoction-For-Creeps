@@ -111,12 +111,16 @@ func _fail_drink_ingredient(_symbol: Array[int]) -> void:
 
 func _add_wanted_ingredient(_ingredient: Ingredient) -> void:
 	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_ingredient)
+	GameState.game_state.current_correct_ingredient_count += 1
 
 func _concoct_drink() -> void:
 	camera.move_camera_forward(true)
 
 	_clear_drink()
 	_clear_wanted_drink()
+
+	GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
+	GameState.game_state.ready_to_take_order = false
 	GlobalEventBus.signal_symbol_clear()
 	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
 
@@ -140,6 +144,7 @@ func _clear_symbol() -> void:
 
 func _clear_drink() -> void:
 	GameState.game_state.concocted_drink = []
+	GameState.game_state.current_correct_ingredient_count = 0
 	DebugIt.show_value_on_screen("Concocted Drink", str(GameState.game_state.concocted_drink))
 
 func _clear_wanted_drink() -> void:

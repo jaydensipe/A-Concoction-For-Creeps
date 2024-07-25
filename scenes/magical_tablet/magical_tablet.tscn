@@ -1,8 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://b522b5yl0s1aa"]
+[gd_scene load_steps=14 format=3 uid="uid://b522b5yl0s1aa"]
 
 [ext_resource type="Script" path="res://scenes/magical_tablet/magical_tablet.gd" id="1_bwi6j"]
 [ext_resource type="PackedScene" uid="uid://irsnjlysj0uu" path="res://scenes/activation_sphere/activation_sphere.tscn" id="2_ng3bi"]
 [ext_resource type="PackedScene" uid="uid://dyvna8httsmyv" path="res://assets/models/tablet/tablet.tscn" id="3_h5t0k"]
+[ext_resource type="AudioStream" uid="uid://db2l8nmienofd" path="res://assets/audio/sfx/fail_1.wav" id="4_5oqp0"]
+[ext_resource type="AudioStream" uid="uid://b6soirvfoygt7" path="res://assets/audio/sfx/success_1.wav" id="4_d31n7"]
+[ext_resource type="AudioStream" uid="uid://chk1d4axhvvkh" path="res://assets/audio/sfx/fail_2.wav" id="5_ws7df"]
+[ext_resource type="AudioStream" uid="uid://bnf1oy4cm3m0m" path="res://assets/audio/sfx/success_2.wav" id="5_y80so"]
+[ext_resource type="AudioStream" uid="uid://dwdlj36snkewj" path="res://assets/audio/sfx/fail_3.wav" id="6_6aus5"]
+[ext_resource type="AudioStream" uid="uid://da26x1a25qhd" path="res://assets/audio/sfx/success_3.wav" id="6_6wtmi"]
+[ext_resource type="AudioStream" uid="uid://i0dllo3pngf5" path="res://assets/audio/sfx/fail_4.wav" id="7_1k0f8"]
+[ext_resource type="AudioStream" uid="uid://bcq1qi6u6ftce" path="res://assets/audio/sfx/fail_5.wav" id="8_s71xu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yxxst"]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("4_5oqp0")
+stream_1/stream = ExtResource("5_ws7df")
+stream_2/stream = ExtResource("6_6aus5")
+stream_3/stream = ExtResource("7_1k0f8")
+stream_4/stream = ExtResource("8_s71xu")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kxuui"]
+streams_count = 3
+stream_0/stream = ExtResource("4_d31n7")
+stream_1/stream = ExtResource("5_y80so")
+stream_2/stream = ExtResource("6_6wtmi")
 
 [node name="MagicalTablet" type="Node3D"]
 script = ExtResource("1_bwi6j")
@@ -36,3 +59,14 @@ transform = Transform3D(0.2125, 0, 0, 0, 0.2125, 0, 0, 0, 0.2125, 0.85, 0.157754
 
 [node name="Tablet" parent="." instance=ExtResource("3_h5t0k")]
 transform = Transform3D(-3.55819e-08, 1.19332e-08, 0.273, -9.54657e-09, 0.273, -1.19332e-08, -0.2184, -1.19332e-08, -4.44773e-08, 0, 0, 0)
+
+[node name="FailSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_yxxst")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_kxuui")
+volume_db = -5.0
+pitch_scale = 0.95
+bus = &"SFX"

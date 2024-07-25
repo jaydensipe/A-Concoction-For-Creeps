@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://irsnjlysj0uu"]
+[gd_scene load_steps=11 format=4 uid="uid://irsnjlysj0uu"]
 
 [ext_resource type="Script" path="res://scenes/activation_sphere/activation_sphere.gd" id="1_f21om"]
+[ext_resource type="AudioStream" uid="uid://b202vnhejyuh6" path="res://assets/audio/stone/stone_activate.wav" id="2_wkgmh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgdk5"]
 resource_name = "DefaultMaterial"
@@ -79,6 +80,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_xg2lq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.911373, 0, 0, 0, 0.911373, 0, 0, 0, 0.911373, 0, 0, 0)
 shape = SubResource("SphereShape3D_qulf2")
+
+[node name="StoneActivateSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wkgmh")
+volume_db = 2.0
+max_polyphony = 9
+bus = &"SFX"
 
 [connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

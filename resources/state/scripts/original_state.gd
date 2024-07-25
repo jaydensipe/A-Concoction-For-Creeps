@@ -10,6 +10,7 @@ var holding_mouse_button_down: bool = false
 var can_look_at_book: bool = true
 var skip_intro: bool = false
 var min_amount_of_customers_served_before_intro_over: int = 5
+var current_correct_ingredient_count: int = 0
 var customer_intro_thirsty_modifier: int = 3
 var tutorial_complete: bool = false
 var intro_complete: bool = false

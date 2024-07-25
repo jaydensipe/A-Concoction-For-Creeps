@@ -5,9 +5,6 @@
 [ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="2_yglo8"]
 [ext_resource type="Shader" path="res://scenes/shader/abberation_vignette.gdshader" id="4_bryaq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
-shader = ExtResource("1_oe5rb")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
 shader = ExtResource("2_yglo8")
 shader_parameter/inner_radius = 0.1
@@ -23,21 +20,13 @@ shader_parameter/scale = 1.0
 shader_parameter/border_mask = 5.0
 shader_parameter/strength = 3.383
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
+shader = ExtResource("1_oe5rb")
+
 [node name="Shaders" type="Node"]
 script = ExtResource("1_nf8vu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Grayscale" type="ColorRect" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_3oble")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_mdkjy")
@@ -59,6 +48,17 @@ mouse_filter = 2
 
 [node name="AbberationVignette" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_wmb2u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Grayscale" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_3oble")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

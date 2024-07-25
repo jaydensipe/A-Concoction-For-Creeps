@@ -7,6 +7,9 @@ extends Node3D
 @onready var ingredient_spawn_point: Marker3D = $IngredientSpawnPoint
 @onready var ingredient_move_to_mixer: Marker3D = $IngredientMoveToMixer
 @onready var ingredient_move_to_drink: Marker3D = $IngredientMoveToDrink
+@onready var glass_start_audio: AudioStreamPlayer3D = $MeshInstance3D/GlassStartAudio
+@onready var shake_audio: AudioStreamPlayer3D = $MeshInstance3D/ShakeAudio
+@onready var glass_end_audio: AudioStreamPlayer3D = $MeshInstance3D/GlassEndAudio
 @onready var _mat: BaseMaterial3D = mesh_instance_3d.get_surface_override_material(0)
 var _is_first_ingredient: bool = true
 
@@ -60,11 +63,16 @@ func _mix_and_serve_drink_animation() -> void:
 	# Slide to the right
 	var tween: Tween = create_tween()
 	tween.tween_interval(0.5)
-	tween.tween_property(mesh_instance_3d, ^"global_position", \
+	tween.parallel().tween_callback(func() -> void: glass_start_audio.play())
+	tween.parallel().tween_property(mesh_instance_3d, ^"global_position", \
 		slide_right_marker_3d.global_position, 0.5).set_trans(Tween.TRANS_EXPO)
 	tween.tween_interval(0.5)
-	tween.tween_callback(func() -> void:mesh_instance_3d.global_transform = reset_position_marker_3d.global_transform)
-	tween.tween_property(mesh_instance_3d, ^"global_position", \
-		slide_left_marker_3d.global_position, 0.5).set_trans(Tween.TRANS_EXPO)
+	tween.tween_callback(func() -> void: shake_audio.play())
+	tween.tween_interval(1.0)
+	tween.tween_callback(func() -> void: mesh_instance_3d.global_transform = reset_position_marker_3d.global_transform)
+	tween.tween_interval(0.5)
+	tween.parallel().tween_callback(func() -> void: glass_end_audio.play())
+	tween.parallel().tween_property(mesh_instance_3d, ^"global_position", \
+		slide_left_marker_3d.global_position, 1.5).set_trans(Tween.TRANS_EXPO)
 	tween.tween_interval(0.5)
 	tween.tween_callback(GlobalEventBus.signal_shadow_finish_drink_animation)

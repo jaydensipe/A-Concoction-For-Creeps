@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b8vni4235a5yg"
+uid="uid://b202vnhejyuh6"
 path="res://.godot/imported/stone_activate.wav-73f6348d1f28b83207f9cba90581983b.sample"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/stone_activate.wav-73f6348d1f28b83207f9cba905
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

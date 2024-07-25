@@ -8,7 +8,9 @@
 script = ExtResource("1_m2y4v")
 modifier_chance = {
 "trans_assassin_state": 0.0,
-"trans_blinder_state": 100.0
+"trans_blinder_state": 0.0,
+"trans_reverser_state": 0.0,
+"trans_wraith_state": 0.0
 }
 
 [sub_resource type="Resource" id="Resource_qxx3l"]
@@ -30,3 +32,4 @@ sanity_depletion_rate = 0.01
 sanity_wrong_symbol = 5.0
 sanity_wrong_ingredient = 10.0
 sanity_correct_drink = 30.0
+sanity_correct_ingredient = 5.0

@@ -36,7 +36,7 @@ func init_modifier_state_machine() -> void:
 	var blinder_modifier_state: LimboState = LimboState.new().named(&"Blinder") \
 		.call_on_enter(_on_enter_blinder).call_on_exit(_on_exit_blinder)
 	var reverser_modifier_state: LimboState = LimboState.new().named(&"Reverser") \
-		.call_on_enter(_on_enter_reverser)
+		.call_on_enter(_on_enter_reverser).call_on_exit(_on_exit_reverser)
 	var wraith_modifier_state: LimboState = LimboState.new().named(&"Wraith") \
 		.call_on_enter(_on_enter_wraith).call_on_exit(_on_exit_wraith)
 	var thirsty_intro_modifier_state: LimboState = LimboState.new().named(&"Thirsty") \
@@ -127,6 +127,7 @@ func _on_update_thirsty(_delta: float) -> void:
 #endregion
 
 #region Assassin Modifier
+# TODO: Can't lose to assassin?
 func _on_enter_assassin() -> void:
 	game_state.can_look_at_book = false
 
@@ -143,23 +144,30 @@ func _on_exit_blinder() -> void:
 #endregion
 
 #region Reverser Modifier
+func _reverse_drink(drink: Array[Ingredient]) -> void:
+	drink.reverse()
+	GameState.game_state.wanted_drink = drink
+
 func _on_enter_reverser() -> void:
-	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
-		drink.reverse()
-		GameState.game_state.wanted_drink = drink
-	)
+	GlobalEventBus.drink_generated.connect(_reverse_drink)
+
+func _on_exit_reverser() -> void:
+	GlobalEventBus.drink_generated.disconnect(_reverse_drink)
 #endregion
 
 #region Wraith Modifier
+func _wraith_drink_modify(drink: Array[Ingredient]) -> void:
+	GameState.game_state.wanted_drink = [drink[0]]
+
+func _wraith_complete_ingredient() -> void:
+	game_state.wraith_has_completed_ingredient = true
+
 func _on_enter_wraith() -> void:
 	var timer: SceneTreeTimer = get_tree().create_timer(5.0, false)
-	GlobalEventBus.drink_create_success.connect(func() -> void:
-		game_state.wraith_has_completed_ingredient = true
-	)
 
-	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
-		GameState.game_state.wanted_drink = [drink[0]]
-	)
+	game_state.wraith_has_completed_ingredient = false
+	GlobalEventBus.drink_create_success.connect(_wraith_complete_ingredient)
+	GlobalEventBus.drink_generated.connect(_wraith_drink_modify)
 
 	timer.timeout.connect(func() -> void:
 		if (game_state.wraith_has_completed_ingredient):
@@ -169,5 +177,6 @@ func _on_enter_wraith() -> void:
 	)
 
 func _on_exit_wraith() -> void:
-	game_state.wraith_has_completed_ingredient = false
+	GlobalEventBus.drink_create_success.disconnect(_wraith_complete_ingredient)
+	GlobalEventBus.drink_generated.disconnect(_wraith_drink_modify)
 #endregion

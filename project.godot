@@ -20,6 +20,10 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
+[audio]
+
+general/default_playback_type.web=0
+
 [autoload]
 
 DebugIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/debugit.tscn"

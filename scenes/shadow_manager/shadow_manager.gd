@@ -14,8 +14,10 @@ func _ready() -> void:
 	)
 
 func spawn_shadow_person() -> void:
+	scene_spawn_component_3d.spawn_delay_time = randf_range(0.1, 0.5)
 	current_shadow_person = await scene_spawn_component_3d.spawn_at_location()
 	await current_shadow_person.waiting_at_table
 
+	GameState.game_state.ready_to_take_order = true
 	Game.generate_modifier_chance()
 	Game.generate_wanted_drink()
