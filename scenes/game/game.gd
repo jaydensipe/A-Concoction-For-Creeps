@@ -6,7 +6,7 @@ class_name Game
 @onready var ui: CanvasLayer = $UI
 
 #region UI Preload
-const DEATH_SCREEN = preload("res://assets/screen_wipe/death_screen.tscn")
+const DEATH_SCREEN = preload("res://assets/ui/screen_wipe/death_screen.tscn")
 #endregion
 
 func _ready() -> void:
