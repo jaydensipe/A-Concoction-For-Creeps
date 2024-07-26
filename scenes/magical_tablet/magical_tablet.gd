@@ -5,13 +5,13 @@ class_name MagicalTablet
 @onready var success_sound: AudioStreamPlayer = $SuccessSound
 
 func _ready() -> void:
-	GlobalEventBus.ingredient_match_failure.connect(func(symbol: Array[int]) -> void:
+	GlobalEventBus.ingredient_match_failure.connect(func(_symbol: Array[int]) -> void:
 		fail_sound.play()
 	)
 	GlobalEventBus.drink_create_failure.connect(func() -> void:
 		fail_sound.play()
 	)
-	GlobalEventBus.ingredient_matches_wanted.connect(func(ingredient: Ingredient) -> void:
+	GlobalEventBus.ingredient_matches_wanted.connect(func(_ingredient: Ingredient) -> void:
 		success_sound.pitch_scale = 0.95 + (GameState.game_state.current_correct_ingredient_count * 0.15)
 		success_sound.play()
 	)

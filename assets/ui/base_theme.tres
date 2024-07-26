@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bg3qtag78l1y3"]
+
+[ext_resource type="FontFile" uid="uid://cbu5g6uv31jit" path="res://addons/jaysreusablecomponentsandthings/assets/font/montserrat.otf" id="1_57f1w"]
+
+[resource]
+default_font = ExtResource("1_57f1w")

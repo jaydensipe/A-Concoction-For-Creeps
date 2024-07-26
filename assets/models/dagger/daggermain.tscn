@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhcxnpf2gi44s"]
+
+[ext_resource type="PackedScene" uid="uid://b1t6bqydmuxkj" path="res://assets/models/dagger/daggermain.fbx" id="1_d4ukt"]
+[ext_resource type="Texture2D" uid="uid://118j4uaqd7np" path="res://assets/models/dagger/t_dagger_d.1001.png" id="2_p6no5"]
+[ext_resource type="Texture2D" uid="uid://d255iyag75c0i" path="res://assets/models/dagger/t_dagger_e.1001.png" id="3_ct3pw"]
+[ext_resource type="Texture2D" uid="uid://drg4p3itnucu7" path="res://assets/models/dagger/t_dagger_h.1001.png" id="4_koeu6"]
+[ext_resource type="Texture2D" uid="uid://cxdl84mjjtyg2" path="res://assets/models/dagger/t_dagger_m.1001.png" id="5_h05bt"]
+[ext_resource type="Texture2D" uid="uid://bgaagd1hahi11" path="res://assets/models/dagger/t_dagger_n.1001.png" id="6_khx00"]
+[ext_resource type="Texture2D" uid="uid://n1bk5mkrgvrl" path="res://assets/models/dagger/t_dagger_r.1001.png" id="7_pbfv0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvmqq"]
+albedo_texture = ExtResource("2_p6no5")
+metallic = 1.0
+metallic_texture = ExtResource("5_h05bt")
+roughness_texture = ExtResource("7_pbfv0")
+emission_enabled = true
+emission_texture = ExtResource("3_ct3pw")
+normal_enabled = true
+normal_texture = ExtResource("6_khx00")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_koeu6")
+texture_filter = 0
+
+[node name="Dagger" instance=ExtResource("1_d4ukt")]
+
+[node name="Pommel_low" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HiltCuffs_low" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HiltPeg_low" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="Blade_low" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HandleRing_low" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HiltBase_low" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HandleTop_low" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HandleBot_low" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HiltEnds_low" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HandleMain_low" parent="." index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")
+
+[node name="HandleStart_low" parent="." index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cvmqq")

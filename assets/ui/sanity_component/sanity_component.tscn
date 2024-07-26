@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://o5sk53klvqsp"]
+
+[ext_resource type="Script" path="res://assets/ui/sanity_component/sanity_component.gd" id="1_surqp"]
+[ext_resource type="FontFile" uid="uid://doj6fsl6g18sd" path="res://assets/fonts/MAEL____.TTF" id="1_uhk28"]
+[ext_resource type="Texture2D" uid="uid://bpwqrloepno3t" path="res://assets/ui/sanity_component/sanitybar_gray.png" id="3_d4wm8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_omf5h"]
+font = ExtResource("1_uhk28")
+font_size = 64
+outline_size = 2
+
+[node name="SanityComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_surqp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.495301, 0.495301)
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SANITY"
+label_settings = SubResource("LabelSettings_omf5h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SanityProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+value = 100.0
+texture_under = ExtResource("3_d4wm8")
+texture_progress = ExtResource("3_d4wm8")
+tint_under = Color(0.5, 0, 0.381324, 1)
+tint_progress = Color(0.741696, 0, 0.776072, 1)

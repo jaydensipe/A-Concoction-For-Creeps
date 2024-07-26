@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://clx1c3wquxcv3"]
+
+[ext_resource type="Texture2D" uid="uid://cdxp7pjbl0xi5" path="res://assets/ui/speech_bubble/speechbubble_01_w.png" id="1_0c6om"]
+[ext_resource type="Texture2D" uid="uid://ckd3wistjfrf8" path="res://assets/ui/speech_bubble/speechbubble_02_w.png" id="2_h16ym"]
+[ext_resource type="Texture2D" uid="uid://dqplo5222q3gs" path="res://assets/ui/speech_bubble/speechbubble_03_w.png" id="3_4gchu"]
+[ext_resource type="Texture2D" uid="uid://dk0dks3lh25vr" path="res://assets/ui/speech_bubble/speechbubble_04_w.png" id="4_62eah"]
+[ext_resource type="PackedScene" uid="uid://b7tdbwmyajrl0" path="res://assets/ui/ingredient_bubble/ingredient_bubble.tscn" id="5_x724g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3cjj3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0c6om")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h16ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4gchu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_62eah")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="QuadMesh" id="QuadMesh_cudyw"]
+size = Vector2(15, 15)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_glapt"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lql3t"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_glapt")
+
+[node name="SpeechBubble" type="AnimatedSprite3D"]
+transform = Transform3D(0.133875, 0, 0, 0, 0.133875, 0, 0, 0, 0.133875, -1.5, 0.8, 0.3)
+sprite_frames = SubResource("SpriteFrames_3cjj3")
+autoplay = "default"
+frame_progress = 0.394085
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.646103, -1.22334, 0.746965)
+mesh = SubResource("QuadMesh_cudyw")
+surface_material_override/0 = SubResource("StandardMaterial3D_lql3t")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(2048, 2048)
+
+[node name="IngredientBubble" parent="SubViewport" instance=ExtResource("5_x724g")]

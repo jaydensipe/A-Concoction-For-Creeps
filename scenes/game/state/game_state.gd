@@ -70,6 +70,7 @@ func init_modifier_state_machine() -> void:
 	game_state.modifier_hsm.set_active(true)
 
 	game_state.modifier_hsm.active_state_changed.connect(func(current: LimboState, _previous: LimboState) -> void:
+		GlobalEventBus.signal_modifier_changed(current, _previous)
 		DebugIt.show_value_on_screen("Current Modifier", current.name)
 	)
 

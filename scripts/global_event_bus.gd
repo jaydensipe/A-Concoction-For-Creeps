@@ -54,7 +54,10 @@ func signal_drink_create_failure() -> void:
 #endregion
 
 #region Shadow Signals
-# TODO: Rewrite?
+signal shadow_finish_modifier_animation()
+func signal_shadow_finish_modifier_animation() -> void:
+	shadow_finish_modifier_animation.emit()
+
 signal shadow_finish_drink_animation()
 func signal_shadow_finish_drink_animation() -> void:
 	LogIt.custom("Shadow animation finished!", "SHADOW", "lightblue")
@@ -106,3 +109,8 @@ signal shader_toggle(shader_type: ShaderModifier.SHADER_TYPES)
 func signal_shader_toggle(shader_type: ShaderModifier.SHADER_TYPES) -> void:
 	shader_toggle.emit(shader_type)
 #endregion
+
+signal modifier_changed(current: LimboState, _previous: LimboState)
+func signal_modifier_changed(current: LimboState, _previous: LimboState) -> void:
+	LogIt.custom("Modifier changed to %s from %s!" % [current.name, _previous.name], "MODIFIER", "chocolate")
+	modifier_changed.emit(current, _previous)

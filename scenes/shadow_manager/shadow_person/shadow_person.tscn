@@ -1,34 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0otrmlwid20e"]
+[gd_scene load_steps=8 format=3 uid="uid://c0otrmlwid20e"]
 
 [ext_resource type="Script" path="res://scenes/shadow_manager/shadow_person/shadow_person.gd" id="1_an7rs"]
 [ext_resource type="PackedScene" uid="uid://c4yrsh1dnm27a" path="res://assets/models/shadow/shadowman.tscn" id="2_34tq7"]
-[ext_resource type="Texture2D" uid="uid://cdxp7pjbl0xi5" path="res://assets/ui/speech_bubble/speechbubble_01_w.png" id="3_ji5jc"]
-[ext_resource type="Texture2D" uid="uid://ckd3wistjfrf8" path="res://assets/ui/speech_bubble/speechbubble_02_w.png" id="4_e3wj3"]
-[ext_resource type="Texture2D" uid="uid://dqplo5222q3gs" path="res://assets/ui/speech_bubble/speechbubble_03_w.png" id="5_1u2ro"]
-[ext_resource type="Texture2D" uid="uid://dk0dks3lh25vr" path="res://assets/ui/speech_bubble/speechbubble_04_w.png" id="6_ffdem"]
+[ext_resource type="PackedScene" uid="uid://clx1c3wquxcv3" path="res://assets/ui/speech_bubble/speech_bubble.tscn" id="3_jbqdy"]
 [ext_resource type="AudioStream" uid="uid://cwe5tfeh1q0eo" path="res://assets/audio/sfx/footstep_1.wav" id="7_nhx8q"]
 [ext_resource type="AudioStream" uid="uid://cxprt8gcunxfw" path="res://assets/audio/sfx/footstep_2.wav" id="8_lirxs"]
 [ext_resource type="AudioStream" uid="uid://bm2ev8165n6kr" path="res://assets/audio/sfx/footstep_3.wav" id="9_q45n6"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3cjj3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ji5jc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_e3wj3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_1u2ro")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ffdem")
-}],
-"loop": true,
-"name": &"default",
-"speed": 6.0
-}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wm0w1"]
 random_pitch = 1.2
@@ -43,12 +20,8 @@ script = ExtResource("1_an7rs")
 [node name="ShadowMan" parent="." instance=ExtResource("2_34tq7")]
 transform = Transform3D(5.022, 0, 0, 0, 5.022, 0, 0, 0, 5.022, 0, 0.169144, 0)
 
-[node name="SpeechBubble" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, -1.8, 1, 0.3)
+[node name="SpeechBubble" parent="." instance=ExtResource("3_jbqdy")]
 visible = false
-sprite_frames = SubResource("SpriteFrames_3cjj3")
-autoplay = "default"
-frame_progress = 0.394085
 
 [node name="FootstepAudio" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)

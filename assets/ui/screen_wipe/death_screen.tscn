@@ -1,6 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvgp3cls6kblx"]
+[gd_scene load_steps=25 format=3 uid="uid://dvgp3cls6kblx"]
 
 [ext_resource type="Texture2D" uid="uid://d24rgu6l4s6xd" path="res://assets/ui/screen_wipe/screen-10000.png" id="1_bpvpk"]
+[ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_cogw0"]
+[ext_resource type="Script" path="res://assets/ui/screen_wipe/death_screen.gd" id="1_xeye2"]
 [ext_resource type="Texture2D" uid="uid://b6oak7ee3ydcc" path="res://assets/ui/screen_wipe/screen-10001.png" id="2_ecifi"]
 [ext_resource type="Texture2D" uid="uid://b4c8b4g1cs4sw" path="res://assets/ui/screen_wipe/screen-10002.png" id="3_gfy4c"]
 [ext_resource type="Texture2D" uid="uid://b2w4jmomu61c4" path="res://assets/ui/screen_wipe/screen-10003.png" id="4_hxetp"]
@@ -82,8 +84,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 25.0
+"speed": 30.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_auo15"]
+font_size = 128
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_80w8q"]
+font_size = 64
 
 [node name="DeathScreen" type="Control"]
 layout_mode = 3
@@ -92,10 +101,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_cogw0")
+script = ExtResource("1_xeye2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="DeathAnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_26onp")
 autoplay = "default"
 frame = 18
 frame_progress = 1.0
 centered = false
+
+[node name="InfoVBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="Label" type="Label" parent="InfoVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You've Lost It"
+label_settings = SubResource("LabelSettings_auo15")
+
+[node name="CustomerLabel" type="Label" parent="InfoVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Customers Served: %s"
+label_settings = SubResource("LabelSettings_80w8q")
+
+[node name="IngredientsLabel" type="Label" parent="InfoVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Correct Ingredients: %s"
+label_settings = SubResource("LabelSettings_80w8q")
+
+[node name="Button" type="Button" parent="InfoVBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "PLAY AGAIN"
+flat = true
+
+[connection signal="animation_finished" from="DeathAnimatedSprite" to="." method="_on_death_animated_sprite_animation_finished"]
+[connection signal="pressed" from="InfoVBoxContainer/Button" to="." method="_on_button_pressed"]

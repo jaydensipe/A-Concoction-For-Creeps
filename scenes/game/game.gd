@@ -7,6 +7,7 @@ class_name Game
 
 #region UI Preload
 const DEATH_SCREEN = preload("res://assets/ui/screen_wipe/death_screen.tscn")
+const GAME_MENU = preload("res://assets/ui/game_menu/game_menu.tscn")
 #endregion
 
 func _ready() -> void:
@@ -37,18 +38,19 @@ func _init_debug() -> void:
 	)
 
 #region Game Logic
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_calculate_sanity()
 
 func start_game() -> void:
 	GameState.init_modifier_state_machine()
-	shadow_manager.spawn_shadow_person()
+
+	ui.add_child(GAME_MENU.instantiate())
+	shadow_manager.spawn_shadow_person(true)
 
 func end_game() -> void:
 	DebugIt.clear_debug_values_temp()
 
 	ui.add_child(DEATH_SCREEN.instantiate())
-	get_tree().reload_current_scene()
 #endregion
 
 #region Sanity Logic
@@ -119,7 +121,7 @@ func _concoct_drink() -> void:
 	_clear_drink()
 	_clear_wanted_drink()
 
-	GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
+	#GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
 	GameState.game_state.ready_to_take_order = false
 	GlobalEventBus.signal_symbol_clear()
 	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
