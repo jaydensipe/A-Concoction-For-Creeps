@@ -1,5 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmnj3m2ie8map"]
+[gd_scene format=3 uid="uid://chbjpf6k74ga6"]
 
-[ext_resource type="PackedScene" uid="uid://d24t4bf4vfclh" path="res://assets/models/ingredients/meshes/feather_single.fbx" id="1_agn2a"]
-
-[node name="feather_single" instance=ExtResource("1_agn2a")]
+[node name="feather_single"]

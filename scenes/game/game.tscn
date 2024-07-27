@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dqv2d2x5q7rqd" path="res://assets/audio/music/song1.wav" id="10_k3ruq"]
 [ext_resource type="Script" path="res://scenes/music/music.gd" id="10_uaabf"]
 [ext_resource type="AudioStream" uid="uid://ccb7r46fnxjbj" path="res://assets/audio/music/song1_reverse.wav" id="12_nlfpb"]
-[ext_resource type="Script" path="res://scenes/animations/animations.gd" id="13_mu1ly"]
+[ext_resource type="PackedScene" uid="uid://c0p8m5uovvryf" path="res://scenes/animations/animations.tscn" id="13_vt2t7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
 shader = ExtResource("9_onv0f")
@@ -30,7 +30,7 @@ script = ExtResource("1_o5ugh")
 [node name="Bar" parent="." instance=ExtResource("1_qqe3r")]
 
 [node name="Book" parent="." instance=ExtResource("3_3tv4j")]
-transform = Transform3D(0.981677, 0, -0.190552, 0, 1, 0, 0.190552, 0, 0.981677, -0.85939, 0.525658, -0.0192016)
+transform = Transform3D(0.981677, 0, -0.190552, -0.0121972, 0.997949, -0.0628369, 0.190161, 0.0640098, 0.979664, -1.20575, 0.572923, -0.0686409)
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.523549, 0.0180161)
@@ -100,8 +100,22 @@ stream = ExtResource("12_nlfpb")
 panning_strength = 0.0
 bus = &"Music"
 
-[node name="Animations" type="Node" parent="."]
-script = ExtResource("13_mu1ly")
+[node name="Animations" parent="." instance=ExtResource("13_vt2t7")]
+
+[node name="DaggerSpawn" parent="Animations/Assassin" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1.2, 0)
+
+[node name="DaggerMoveBook" parent="Animations/Assassin" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.4, 0)
+
+[node name="KnifeSpawnAudio" parent="Animations/Assassin" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)
+
+[node name="KnifeSwooshAudio" parent="Animations/Assassin" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)
+
+[node name="KnifeImpactAudio" parent="Animations/Assassin" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -113,3 +127,4 @@ script = ExtResource("13_mu1ly")
 [editable path="ShadowManager"]
 [editable path="Camera"]
 [editable path="Shaders"]
+[editable path="Animations"]

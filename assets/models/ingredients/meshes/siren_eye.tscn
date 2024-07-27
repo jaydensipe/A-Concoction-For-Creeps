@@ -10,4 +10,5 @@ texture_filter = 0
 [node name="SirenEye" instance=ExtResource("1_el5ie")]
 
 [node name="Sphere" parent="." index="0"]
+transform = Transform3D(120, 0, 0, 0, -5.24537e-06, 120, 0, -120, -5.24537e-06, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_hgoev")

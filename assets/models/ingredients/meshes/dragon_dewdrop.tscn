@@ -14,7 +14,7 @@ ao_texture = ExtResource("3_b1cjt")
 texture_filter = 0
 
 [node name="dragon_dewdrop" instance=ExtResource("1_mlly4")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="Retopo_dewdrop" parent="." index="0"]
+transform = Transform3D(10000, 0, 0, 0, -0.000437114, 10000, 0, -10000, -0.000437114, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_8vkiy")

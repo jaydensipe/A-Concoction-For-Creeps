@@ -1,11 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0otrmlwid20e"]
+[gd_scene load_steps=14 format=3 uid="uid://c0otrmlwid20e"]
 
 [ext_resource type="Script" path="res://scenes/shadow_manager/shadow_person/shadow_person.gd" id="1_an7rs"]
 [ext_resource type="PackedScene" uid="uid://c4yrsh1dnm27a" path="res://assets/models/shadow/shadowman.tscn" id="2_34tq7"]
 [ext_resource type="PackedScene" uid="uid://clx1c3wquxcv3" path="res://assets/ui/speech_bubble/speech_bubble.tscn" id="3_jbqdy"]
 [ext_resource type="AudioStream" uid="uid://cwe5tfeh1q0eo" path="res://assets/audio/sfx/footstep_1.wav" id="7_nhx8q"]
+[ext_resource type="AudioStream" uid="uid://dpak5o4vp8i2o" path="res://assets/audio/sfx/ghost_1.wav" id="7_o0v77"]
+[ext_resource type="AudioStream" uid="uid://bajkk3l8nfnok" path="res://assets/audio/sfx/ghost_2.wav" id="8_bodqc"]
 [ext_resource type="AudioStream" uid="uid://cxprt8gcunxfw" path="res://assets/audio/sfx/footstep_2.wav" id="8_lirxs"]
+[ext_resource type="AudioStream" uid="uid://rec5228afm0j" path="res://assets/audio/sfx/ghost_3.wav" id="9_7wwhn"]
 [ext_resource type="AudioStream" uid="uid://bm2ev8165n6kr" path="res://assets/audio/sfx/footstep_3.wav" id="9_q45n6"]
+[ext_resource type="AudioStream" uid="uid://b6dsnfjfrdxsx" path="res://assets/audio/sfx/ghost_4.wav" id="10_jbmge"]
+[ext_resource type="AudioStream" uid="uid://i65njnswljl2" path="res://assets/audio/sfx/ghost_5.wav" id="11_ksq7u"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wm0w1"]
 random_pitch = 1.2
@@ -13,6 +18,15 @@ streams_count = 3
 stream_0/stream = ExtResource("7_nhx8q")
 stream_1/stream = ExtResource("8_lirxs")
 stream_2/stream = ExtResource("9_q45n6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7a2m7"]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("7_o0v77")
+stream_1/stream = ExtResource("8_bodqc")
+stream_2/stream = ExtResource("9_7wwhn")
+stream_3/stream = ExtResource("10_jbmge")
+stream_4/stream = ExtResource("11_ksq7u")
 
 [node name="ShadowPerson" type="Node3D"]
 script = ExtResource("1_an7rs")
@@ -30,3 +44,9 @@ volume_db = -5.0
 max_polyphony = 2
 bus = &"SFX"
 emission_angle_enabled = true
+
+[node name="GhostAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449191, 0)
+stream = SubResource("AudioStreamRandomizer_7a2m7")
+volume_db = -15.0
+bus = &"SFX"

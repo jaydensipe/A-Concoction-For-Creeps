@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d24t4bf4vfclh"
-path="res://.godot/imported/feather_single.fbx-ffd63ac51bb5c0ed1833bfe284d83130.scn"
+uid="uid://bmrlg7tgoo80s"
+path="res://.godot/imported/bookmain.fbx-45fc3fb6f9c2d110764cd3647daad09f.scn"
 
 [deps]
 
-source_file="res://assets/models/ingredients/meshes/feather_single.fbx"
-dest_files=["res://.godot/imported/feather_single.fbx-ffd63ac51bb5c0ed1833bfe284d83130.scn"]
+source_file="res://assets/models/book/bookmain.fbx"
+dest_files=["res://.godot/imported/bookmain.fbx-45fc3fb6f9c2d110764cd3647daad09f.scn"]
 
 [params]
 
@@ -35,5 +35,3 @@ _subresources={}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
-gltf/naming_version=1
-gltf/embedded_image_handling=1

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7tdbwmyajrl0"]
+[gd_scene load_steps=6 format=3 uid="uid://b7tdbwmyajrl0"]
 
+[ext_resource type="Script" path="res://assets/ui/ingredient_bubble/ingredient_bubble.gd" id="1_ykc7k"]
 [ext_resource type="Texture2D" uid="uid://c7emvy0eknrfi" path="res://assets/ui/ingredient_bubble/icons/order_frostfern_01.png" id="2_2rriq"]
 [ext_resource type="Texture2D" uid="uid://n5u3wcpinxww" path="res://assets/ui/ingredient_bubble/icons/order_frostfern_02.png" id="3_fs6w5"]
 [ext_resource type="Texture2D" uid="uid://4i2o3t7i30ha" path="res://assets/ui/ingredient_bubble/icons/order_frostfern_03.png" id="3_t44e8"]
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ykc7k")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1

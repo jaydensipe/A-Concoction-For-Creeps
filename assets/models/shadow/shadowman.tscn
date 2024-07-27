@@ -15,12 +15,15 @@ ao_texture = ExtResource("2_0prgx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm5ji"]
 emission_enabled = true
+emission_energy_multiplier = 6.73
 emission_texture = ExtResource("4_i0j77")
 
 [node name="ShadowMan" instance=ExtResource("1_m1k31")]
 
 [node name="Shadowman_low" parent="." index="0"]
+layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_3pwvl")
 
 [node name="Eyes_low" parent="." index="1"]
+layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_jm5ji")

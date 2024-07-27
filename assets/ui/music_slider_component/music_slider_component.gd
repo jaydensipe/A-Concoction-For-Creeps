@@ -3,7 +3,6 @@ extends Control
 @onready var _music_bus: int = AudioServer.get_bus_index(&"Music")
 @onready var h_slider: HSlider = $VBoxContainer/HSlider
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	h_slider.value = db_to_linear(AudioServer.get_bus_volume_db(_music_bus))
 	h_slider.max_value = db_to_linear(AudioServer.get_bus_volume_db(_music_bus))

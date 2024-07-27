@@ -32,7 +32,7 @@ func init_modifier_state_machine() -> void:
 
 	# Modifiers
 	var assassin_modifier_state: LimboState = LimboState.new().named(&"Assassin") \
-		.call_on_enter(_on_enter_assassin).call_on_exit(_on_exit_assassin)
+		.call_on_enter(_on_enter_assassin).call_on_exit(_on_exit_assassin).call_on_update(_on_update_assassin)
 	var blinder_modifier_state: LimboState = LimboState.new().named(&"Blinder") \
 		.call_on_enter(_on_enter_blinder).call_on_exit(_on_exit_blinder)
 	var reverser_modifier_state: LimboState = LimboState.new().named(&"Reverser") \
@@ -128,9 +128,15 @@ func _on_update_thirsty(_delta: float) -> void:
 #endregion
 
 #region Assassin Modifier
-# TODO: Can't lose to assassin?
+var _min_amount_to_not_lose_by_assassin: float = 0.0
 func _on_enter_assassin() -> void:
+	_min_amount_to_not_lose_by_assassin = game_state.sanity_level / 2.0
 	game_state.can_look_at_book = false
+
+func _on_update_assassin(_delta: float) -> void:
+	# TODO: Fix this
+	if (game_state.sanity_level <= _min_amount_to_not_lose_by_assassin):
+		GlobalEventBus.signal_drink_create_success()
 
 func _on_exit_assassin() -> void:
 	game_state.can_look_at_book = true
@@ -141,7 +147,7 @@ func _on_enter_blinder() -> void:
 	GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
 
 func _on_exit_blinder() -> void:
-	GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+	pass
 #endregion
 
 #region Reverser Modifier
@@ -164,11 +170,12 @@ func _wraith_complete_ingredient() -> void:
 	game_state.wraith_has_completed_ingredient = true
 
 func _on_enter_wraith() -> void:
-	var timer: SceneTreeTimer = get_tree().create_timer(5.0, false)
+	var timer: SceneTreeTimer = get_tree().create_timer(7.0, false)
 
 	game_state.wraith_has_completed_ingredient = false
 	GlobalEventBus.drink_create_success.connect(_wraith_complete_ingredient)
 	GlobalEventBus.drink_generated.connect(_wraith_drink_modify)
+	# Maybe add if you fuck up, the game is reset.
 
 	timer.timeout.connect(func() -> void:
 		if (game_state.wraith_has_completed_ingredient):

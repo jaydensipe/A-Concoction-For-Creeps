@@ -1,15 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgwrcy7vx0yyw"]
 
 [ext_resource type="Texture2D" uid="uid://evccbf6elsmh" path="res://assets/ui/temp_ingredient_list/ingredient_list.png" id="1_4iv5r"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_bag8f"]
-size = Vector3(0.4, 0.035, 0.74)
+[ext_resource type="PackedScene" uid="uid://c3lbjn6obppls" path="res://assets/models/book/bookmain.tscn" id="2_8j14y"]
 
 [node name="Book" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_bag8f")
-
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-3.81455e-10, -0.015115, 0.00872668, -6.607e-10, 0.00872668, 0.015115, -0.0174534, -2.9947e-17, -7.6291e-10, 0.1, 0.17692, -0.0714115)
+transform = Transform3D(-3.81455e-10, -0.015115, 0.00872668, -6.607e-10, 0.00872668, 0.015115, -0.0174534, -2.9947e-17, -7.6291e-10, 0.1, 0.27692, -0.0714115)
 texture = ExtResource("1_4iv5r")
+
+[node name="Book" parent="." instance=ExtResource("2_8j14y")]
+transform = Transform3D(-0.128751, 0, 2.09605, 0, 2.1, 0, -2.09605, 0, -0.128751, 0, 0, 0)
