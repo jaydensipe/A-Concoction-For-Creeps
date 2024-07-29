@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://bri65e4kh0xj"]
+[gd_scene load_steps=7 format=3 uid="uid://bri65e4kh0xj"]
 
-[ext_resource type="FontFile" uid="uid://cbu5g6uv31jit" path="res://addons/jaysreusablecomponentsandthings/assets/font/montserrat.otf" id="1_01ls8"]
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_bup5r"]
 [ext_resource type="Script" path="res://assets/ui/main_menu/main_menu.gd" id="1_thua1"]
 [ext_resource type="PackedScene" uid="uid://2wcwmqlls41y" path="res://assets/ui/music_slider_component/music_slider_component.tscn" id="4_npsos"]
@@ -8,7 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yvpvt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5l8o5"]
-font_size = 32
+font_size = 38
 font_color = Color(0.613144, 0.613144, 0.613144, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vl47p"]
@@ -31,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_bup5r")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -44,7 +44,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1_01ls8")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yvpvt")
 text = "Skip Intro?"
@@ -81,8 +80,11 @@ size_flags_vertical = 4
 [node name="PlayButton" type="Button" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_01ls8")
-theme_override_font_sizes/font_size = 128
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.627451, 0.105882, 0.105882, 1)
+theme_override_colors/font_pressed_color = Color(0.627451, 0.105882, 0.105882, 1)
+theme_override_font_sizes/font_size = 192
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vl47p")
 text = "OPEN FOR BUSINESS"
 flat = true

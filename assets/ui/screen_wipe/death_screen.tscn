@@ -137,13 +137,6 @@ size_flags_horizontal = 4
 text = "Customers Served: %s"
 label_settings = SubResource("LabelSettings_80w8q")
 
-[node name="IngredientsLabel" type="Label" parent="InfoVBoxContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Correct Ingredients: %s"
-label_settings = SubResource("LabelSettings_80w8q")
-
 [node name="Button" type="Button" parent="InfoVBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2

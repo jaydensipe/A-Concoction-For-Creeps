@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbn4wd43gbcrm"]
+
+[ext_resource type="Texture2D" uid="uid://dtrh8f6dni1yo" path="res://assets/ui/checkmark/checkmark.png" id="1_jckvi"]
+
+[node name="Checkmark" type="TextureRect"]
+modulate = Color(0.294175, 0.549783, 0.298515, 1)
+z_index = 1
+offset_right = 512.0
+offset_bottom = 512.0
+texture = ExtResource("1_jckvi")

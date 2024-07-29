@@ -30,7 +30,7 @@ script = ExtResource("1_o5ugh")
 [node name="Bar" parent="." instance=ExtResource("1_qqe3r")]
 
 [node name="Book" parent="." instance=ExtResource("3_3tv4j")]
-transform = Transform3D(0.981677, 0, -0.190552, -0.0121972, 0.997949, -0.0628369, 0.190161, 0.0640098, 0.979664, -1.20575, 0.572923, -0.0686409)
+transform = Transform3D(0.995265, 0.00605611, -0.0970091, -0.00664135, 0.999961, -0.00571081, 0.0969705, 0.00632811, 0.995267, -1.20575, 0.565232, 0.0392329)
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.523549, 0.0180161)
@@ -74,7 +74,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 1.1, 0.2)
 
 [node name="BookMarker3D" parent="Camera" index="3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.3, 0.8, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.499206, 0.868742, 0)
 
 [node name="Shaders" parent="." instance=ExtResource("8_6urt7")]
 

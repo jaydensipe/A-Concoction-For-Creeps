@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://diwppgtdaog0w"]
+[gd_scene load_steps=3 format=3 uid="uid://diwppgtdaog0w"]
 
-[ext_resource type="Script" path="res://assets/ui/game_menu/game_menu.gd" id="1_rci8l"]
 [ext_resource type="PackedScene" uid="uid://o5sk53klvqsp" path="res://assets/ui/sanity_component/sanity_component.tscn" id="2_psj8g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_isem8"]
@@ -13,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_rci8l")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

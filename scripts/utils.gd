@@ -15,6 +15,7 @@ static func parse_ingredient(ingredient_name: StringName) -> Ingredient:
 	ingredient.tier = int(split[1])
 	ingredient.color = split[2]
 	ingredient.model = Utils.match_ingredient_model(split[0])
+	ingredient.icon = Utils.match_ingredient_icon(split[0])
 
 	return ingredient
 
@@ -59,6 +60,92 @@ static func match_ingredient_model(ingredient_name: StringName) -> PackedScene:
 			model = load("res://assets/models/ingredients/meshes/goop.tscn")
 
 	return model
+
+static func match_ingredient_icon(ingredient_name: StringName) -> TextureRect:
+	var texture: TextureRect = TextureRect.new()
+	texture.texture = AnimatedTexture.new()
+	texture.texture.frames = 3
+	texture.texture.set_frame_duration(0, 0.1)
+	texture.texture.set_frame_duration(1, 0.1)
+	texture.texture.set_frame_duration(2, 0.1)
+	texture.expand_mode = TextureRect.EXPAND_FIT_HEIGHT
+	texture.size_flags_horizontal = 0x3
+
+	match (ingredient_name):
+		&"flamefern":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_3.png"))
+		&"frostfern":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/frostfern/order_frostfern_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/frostfern/order_frostfern_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/frostfern/order_frostfern_3.png"))
+		&"faefern":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/faefern/faefern_order_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/faefern/faefern_order_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/faefern/faefern_order_3.png"))
+		&"skiverwing_feathers":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/skiverwing/order_skiverwing_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/skiverwing/order_skiverwing_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/skiverwing/order_skiverwing_3.png"))
+		&"blood_feather":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/blood/order_blood_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/blood/order_blood_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/blood/order_blood_3.png"))
+		&"harpy_feather":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/harpy/order_harpy_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/harpy/order_harpy_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/harpy/order_harpy_3.png"))
+		&"sackfruit":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/sackfruit/order_sackfruit_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/sackfruit/order_sackfruit_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/sackfruit/order_sackfruit_3.png"))
+		&"imbued_salt":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/salt/order_salt_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/salt/order_salt_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/salt/order_salt_3.png"))
+		&"harpberry_cluster":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/harpberry/order_harpberry_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/harpberry/order_harpberry_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/harpberry/order_harpberry_3.png"))
+		&"baobulb_cluster":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/baobulb/order_baobulb_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/baobulb/order_baobulb_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/baobulb/order_baobulb_3.png"))
+		&"poppletop_mushroom":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/poppletop/order_poppletop_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/poppletop/order_poppletop_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/poppletop/order_poppletop_3.png"))
+		&"dragon_dewdrop":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/dewdrop/order_dewdrop_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/dewdrop/order_dewdrop_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/dewdrop/order_dewdrop_3.png"))
+		&"bundled_ragweed":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/ragweed/order_ragweed_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/ragweed/order_ragweed_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/ragweed/order_ragweed_3.png"))
+		&"wolpertinger_antler":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/antler/order_antler_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/antler/order_antler_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/antler/order_antler_3.png"))
+		&"aged_hydra_skin":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/skin/order_skin_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/skin/order_skin_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/skin/order_skin_3.png"))
+		&"siren_eye":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/siren/order_siren_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/siren/order_siren_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/siren/order_siren_3.png"))
+		&"coiled_gloworm":
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/gloworm/order_gloworm_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/gloworm/order_gloworm_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/gloworm/order_gloworm_3.png"))
+		_:
+			texture.texture.set_frame_texture(0, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_1.png"))
+			texture.texture.set_frame_texture(1, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_2.png"))
+			texture.texture.set_frame_texture(2, preload("res://assets/models/ingredients/icons/flamefern/order_flamefern_3.png"))
+
+	return texture
 
 static func pick_random_ingredient_with_tier(tier: int) -> Ingredient:
 	# Cache ingredient list

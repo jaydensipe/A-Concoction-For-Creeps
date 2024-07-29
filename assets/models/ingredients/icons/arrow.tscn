@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmto658arpd6k"]
+
+[ext_resource type="Texture2D" uid="uid://j34w0g8x335k" path="res://assets/ui/ingredient_bubble/icons/arrow.png" id="1_aqapv"]
+
+[node name="Arrow" type="TextureRect"]
+modulate = Color(0.373278, 6.9039e-05, 6.9039e-05, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 6
+texture = ExtResource("1_aqapv")
+stretch_mode = 3

@@ -10,6 +10,14 @@ signal waiting_at_table
 func _ready() -> void:
 	_init_shadow_person()
 	GlobalEventBus.drink_create_success.connect(func() -> void: speech_bubble.hide())
+	GlobalEventBus.camera_changed_state.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
+		# Perhaps show speech bubble from book?
+		if (new_camera_state == GameStateResource.CAMERA_STATE.BOOK):
+			speech_bubble.hide()
+		else:
+			await get_tree().create_timer(0.15).timeout
+			speech_bubble.show()
+	)
 
 func _init_shadow_person() -> void:
 	var tween: Tween = create_tween()

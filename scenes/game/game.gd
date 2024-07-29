@@ -65,7 +65,7 @@ func _calculate_sanity() -> void:
 
 	GameState.game_state.sanity_level -= GameState.game_state.difficulty_stats.sanity_depletion_rate
 	GameState.game_state.sanity_level = clampf(GameState.game_state.sanity_level, 0.0, 100.0)
-	DebugIt.show_value_on_screen("Sanity", GameState.game_state.sanity_level)
+	#DebugIt.show_value_on_screen("Sanity", GameState.game_state.sanity_level)
 
 	# End game if less than 0
 	if (GameState.game_state.sanity_level <= 0.0):
@@ -98,7 +98,7 @@ func _match_ingredient() -> void:
 
 func _add_drink_ingredient(ingredient: Ingredient) -> void:
 	GameState.game_state.concocted_drink.append(ingredient)
-	DebugIt.show_value_on_screen("Concocted Drink", str(GameState.game_state.concocted_drink))
+	#DebugIt.show_value_on_screen("Concocted Drink", str(GameState.game_state.concocted_drink))
 
 	# Checks if ingredient at position is correct, if not clear the current concocted drink
 	_verify_ingredient()
@@ -147,15 +147,15 @@ func _clear_symbol() -> void:
 func _clear_drink() -> void:
 	GameState.game_state.concocted_drink = []
 	GameState.game_state.current_correct_ingredient_count = 0
-	DebugIt.show_value_on_screen("Concocted Drink", str(GameState.game_state.concocted_drink))
+	#DebugIt.show_value_on_screen("Concocted Drink", str(GameState.game_state.concocted_drink))
 
 func _clear_wanted_drink() -> void:
 	GameState.game_state.wanted_drink = []
-	DebugIt.show_value_on_screen("Wanted Drink", str(GameState.game_state.wanted_drink))
+	#DebugIt.show_value_on_screen("Wanted Drink", str(GameState.game_state.wanted_drink))
 
 func _generated_drink(drink: Array[Ingredient]) -> void:
 	GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.FORWARD)
-	DebugIt.show_value_on_screen("Wanted Drink", drink)
+	#DebugIt.show_value_on_screen("Wanted Drink", drink)
 
 static func generate_wanted_drink() -> void:
 	# Always have a min of two ingredients

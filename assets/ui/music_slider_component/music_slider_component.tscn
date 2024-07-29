@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://2wcwmqlls41y"]
+[gd_scene load_steps=4 format=3 uid="uid://2wcwmqlls41y"]
 
+[ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_1rsku"]
 [ext_resource type="Script" path="res://assets/ui/music_slider_component/music_slider_component.gd" id="1_y5lle"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfsft"]
@@ -14,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_1rsku")
 script = ExtResource("1_y5lle")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
