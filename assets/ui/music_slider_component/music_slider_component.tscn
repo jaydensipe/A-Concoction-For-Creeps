@@ -5,7 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfsft"]
 font_size = 32
-font_color = Color(0.611765, 0.611765, 0.611765, 1)
+font_color = Color(0.82133, 0.425069, 0.425069, 1)
 
 [node name="MusicSliderComponent" type="Control"]
 layout_mode = 3
@@ -31,7 +31,7 @@ value = 100.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Music Volume ♫"
+text = "Music Volume"
 label_settings = SubResource("LabelSettings_sfsft")
 horizontal_alignment = 1
 

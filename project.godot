@@ -26,14 +26,14 @@ general/default_playback_type.web=0
 
 [autoload]
 
-DebugIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/debugit.tscn"
+GlobalEventBus="*res://scripts/global_event_bus.gd"
+GameState="*res://scenes/game/state/game_state.gd"
 DrawIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/draw/drawit.gd"
+DebugIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/debug/debugit.tscn"
 LevelIt="*res://addons/jaysreusablecomponentsandthings/common_components/scene/level/level_it.gd"
 RaycastIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/raycast/raycastit.gd"
 ResonateIt="*res://addons/jaysreusablecomponentsandthings/common_components/autoloads/audio/resonateit.gd"
 SceneIt="*res://addons/jaysreusablecomponentsandthings/common_components/scene/scene_it.gd"
-GlobalEventBus="*res://scripts/global_event_bus.gd"
-GameState="*res://scenes/game/state/game_state.gd"
 
 [debug]
 
@@ -46,6 +46,10 @@ window/size/viewport_height=1080
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 

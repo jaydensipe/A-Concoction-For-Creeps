@@ -3,14 +3,14 @@ extends Node
 @onready var game_state: GameStateResource = preload("res://resources/state/original_game_state.tres")
 
 func _ready() -> void:
-	_init_debug()
+	#_init_debug()
 
 	GlobalEventBus.game_end.connect(_reset_game_state)
 
-func _init_debug() -> void:
-	var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game Stats", Color.BROWN)
-	debug_box.add_button("End Tutorial", func() -> void: game_state.tutorial_complete = true)
-	debug_box.add_button("End Intro", func() -> void: game_state.intro_complete = true)
+#func _init_debug() -> void:
+	#var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game Stats", Color.BROWN)
+	#debug_box.add_button("End Tutorial", func() -> void: game_state.tutorial_complete = true)
+	#debug_box.add_button("End Intro", func() -> void: game_state.intro_complete = true)
 
 func _reset_game_state() -> void:
 	# Maybe skip tutorial by default?
@@ -81,6 +81,7 @@ func init_modifier_state_machine() -> void:
 func _on_enter_none() -> void:
 	game_state.difficulty_stats = preload("res://resources/state/base_difficulty_stats.tres")
 	game_state.should_deplete_sanity = true
+	game_state.intro_complete = true
 
 func _on_exit_none() -> void:
 	pass

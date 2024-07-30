@@ -67,7 +67,7 @@ label_settings = SubResource("LabelSettings_5l8o5")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Special Thanks: Helix Gud, Ross"
+text = "Special Thanks: Goose, Tilly, Helix Güd"
 label_settings = SubResource("LabelSettings_5l8o5")
 
 [node name="MusicSliderComponent" parent="PanelContainer/MarginContainer" instance=ExtResource("4_npsos")]

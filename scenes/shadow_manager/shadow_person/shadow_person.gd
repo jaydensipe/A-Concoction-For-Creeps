@@ -30,7 +30,7 @@ func _ready() -> void:
 			&"Wraith":
 				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.RED
 			&"Thirsty":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.DARK_TURQUOISE
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.ORANGE
 			_:
 				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
 
