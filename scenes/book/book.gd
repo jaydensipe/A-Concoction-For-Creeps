@@ -8,12 +8,14 @@ extends Node3D
 @onready var current_page_index: int = 0
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var book_audio: AudioStreamPlayer = $BookAudio
+@onready var animation_player: AnimationPlayer = $BookS/AnimationPlayer
 
 func _ready() -> void:
 	GlobalEventBus.camera_changed_state.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
 		if (new_camera_state == GameStateResource.CAMERA_STATE.BOOK):
 			current_page.show()
 			margin_container.show()
+			animation_player.play(&"Armature|BookOpen")
 		else:
 			current_page.hide()
 			margin_container.hide()

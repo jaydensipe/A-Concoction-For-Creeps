@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://2v7gnhj0sijg"]
+
+[ext_resource type="PackedScene" uid="uid://b8qr0fw3aiuvc" path="res://assets/models/book/book_stegfix.fbx" id="1_l68ah"]
+
+[node name="BookS" instance=ExtResource("1_l68ah")]
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(6.48812e-07, 1.77343e-06, -10.8853, 10.8853, -4.7581e-07, 6.48812e-07, -4.7581e-07, -10.8853, -1.77343e-06, 0.111306, -0.02934, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(0.707107, 2.08766e-15, 2.49804e-08, 0.707107)
+bones/1/rotation = Quaternion(6.29138e-08, 5.92524e-08, -0.690992, 0.722863)
+bones/2/rotation = Quaternion(-5.70632e-08, 1.7149e-07, -0.723316, 0.690518)

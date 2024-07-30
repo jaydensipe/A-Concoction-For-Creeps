@@ -4,48 +4,71 @@ class_name ShadowPerson
 @onready var speech_bubble: AnimatedSprite3D = $SpeechBubble
 @onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
 @onready var ghost_audio: AudioStreamPlayer3D = $GhostAudio
-@onready var eyes_low: MeshInstance3D = $ShadowMan/Eyes_low
+@onready var eyes_low: MeshInstance3D = $Shadowman_Anims/rig/Skeleton3D/Eyes
+@onready var animation_player: AnimationPlayer = $Shadowman_Anims/AnimationPlayer
+@onready var cup_in_hand: MeshInstance3D = $Shadowman_Anims/rig/Skeleton3D/Cup_InHand/Cup_InHand
+var _beaten: bool = false
 
 signal waiting_at_table
 
 func _ready() -> void:
 	_init_shadow_person()
-	GlobalEventBus.drink_create_success.connect(func() -> void: speech_bubble.hide())
+	GlobalEventBus.drink_create_success.connect(func() -> void:
+		_beaten = true
+
+		speech_bubble.hide()
+		await get_tree().create_timer(4.5).timeout
+		animation_player.speed_scale = 1.75
+		animation_player.play(&"rig|Cheers_02")
+		await get_tree().create_timer(0.72).timeout
+		cup_in_hand.show()
+	)
 	GlobalEventBus.camera_changed_state.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
 		# Perhaps show speech bubble from book?
 		if (new_camera_state == GameStateResource.CAMERA_STATE.BOOK):
 			speech_bubble.hide()
 		else:
-			await get_tree().create_timer(0.15).timeout
-			speech_bubble.show()
+			if (!_beaten):
+				speech_bubble.show()
+				await get_tree().create_timer(0.15).timeout
+
 	)
 	GlobalEventBus.modifier_changed.connect(func(current: LimboState, _previous: LimboState) -> void:
-		match (current.name):
-			&"Assassin":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.PURPLE
-			&"Reverser":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.YELLOW
-			&"Blinder":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
-			&"Wraith":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.RED
-			&"Thirsty":
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.ORANGE
-			_:
-				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
+		pass
+		#match (current.name):
+			#&"Assassin":
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.PURPLE
+			#&"Reverser":
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.YELLOW
+			#&"Blinder":
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
+			#&"Wraith":
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.RED
+			#&"Thirsty":
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.ORANGE
+			#_:
+				#(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
 
+	)
+
+	animation_player.animation_finished.connect(func(anim_name: StringName) -> void:
+		if (anim_name == &"rig|StepUp"):
+			animation_player.speed_scale = 1.1
+			animation_player.play(&"rig|Idle_Breathe")
 	)
 
 func _init_shadow_person() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(self, ^"position:z", position.z + 3.35, 0.75).as_relative().set_trans(Tween.TRANS_SPRING)
+	tween.tween_callback(func() -> void:
+		animation_player.speed_scale = 1.2
+		animation_player.play(&"rig|StepUp")
+	)
+	tween.tween_property(self, ^"position:z", position.z + 2.9, 0.75).as_relative().set_trans(Tween.TRANS_SPRING)
 	footstep_audio.play()
 	tween.tween_interval(0.25)
 	tween.tween_callback(func() -> void: footstep_audio.play())
-	tween.tween_property(self, ^"position:z", position.z + 3.35, 0.75).as_relative().set_trans(Tween.TRANS_SPRING)
-	tween.tween_callback(func() -> void:
-		footstep_audio.play()
-	)
+	tween.tween_property(self, ^"position:z", position.z + 2.9, 0.75).as_relative().set_trans(Tween.TRANS_SPRING)
+	tween.tween_callback(func() -> void: footstep_audio.play())
 	tween.tween_interval(0.25)
 	tween.tween_callback(func() -> void:
 		speech_bubble.show()

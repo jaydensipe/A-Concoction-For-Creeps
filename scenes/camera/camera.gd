@@ -52,7 +52,7 @@ func move_camera_to_playspace() -> void:
 	_switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
 
 func move_camera_to_book() -> void:
-	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.PLAYSPACE and GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.BOOK and GameState.game_state.can_look_at_book):
+	if (GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.BOOK and GameState.game_state.can_look_at_book):
 		create_tween().tween_property(camera_3d, "global_transform", book_marker_3d.global_transform, camera_tween_speed).set_trans(Tween.TRANS_SINE)
 		_switch_camera_state(GameStateResource.CAMERA_STATE.BOOK)
 

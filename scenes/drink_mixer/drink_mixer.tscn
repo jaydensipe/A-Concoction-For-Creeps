@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfthp5641qtne"]
+[gd_scene load_steps=12 format=3 uid="uid://cfthp5641qtne"]
 
 [ext_resource type="Script" path="res://scenes/drink_mixer/drink_mixer.gd" id="1_digkv"]
 [ext_resource type="AudioStream" uid="uid://demcyuetwfhyp" path="res://assets/audio/sfx/glass_end.wav" id="2_6q1qv"]
@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://dwfexl5qbit42" path="res://assets/audio/sfx/drink_mix_1.wav" id="3_7iavo"]
 [ext_resource type="AudioStream" uid="uid://cg54gjw5uyim1" path="res://assets/audio/sfx/drink_mix_2.wav" id="4_erfe0"]
 [ext_resource type="AudioStream" uid="uid://bnnc51xtl31sg" path="res://assets/audio/sfx/drip.wav" id="6_vep0o"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_nwsdo"]
+[ext_resource type="PackedScene" uid="uid://d2kkjr0x7ai44" path="res://assets/models/shaker/shaker.tscn" id="7_nk7nx"]
+[ext_resource type="PackedScene" uid="uid://c0d6iojwij3qy" path="res://assets/models/cup/cup.tscn" id="8_tiw45"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryt36"]
 transparency = 1
@@ -26,28 +26,40 @@ stream_0/stream = ExtResource("6_vep0o")
 [node name="DrinkMixer" type="Node3D"]
 script = ExtResource("1_digkv")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_nwsdo")
+[node name="Cup" parent="." instance=ExtResource("8_tiw45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="Fluid" parent="Cup" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ryt36")
 
-[node name="GlassStartAudio" type="AudioStreamPlayer3D" parent="MeshInstance3D"]
-stream = ExtResource("2_w2w20")
-volume_db = -7.0
-unit_size = 3.0
-bus = &"SFX"
-
-[node name="ShakeAudio" type="AudioStreamPlayer3D" parent="MeshInstance3D"]
-stream = SubResource("AudioStreamRandomizer_mxue0")
-unit_size = 3.0
-bus = &"SFX"
-
-[node name="GlassEndAudio" type="AudioStreamPlayer3D" parent="MeshInstance3D"]
+[node name="GlassEndAudio" type="AudioStreamPlayer3D" parent="Cup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145, 0)
 stream = ExtResource("2_6q1qv")
 volume_db = -7.0
 unit_size = 3.0
 bus = &"SFX"
 
-[node name="DripAudio" type="AudioStreamPlayer3D" parent="MeshInstance3D"]
+[node name="Shaker" parent="." instance=ExtResource("7_nk7nx")]
+transform = Transform3D(0.0849929, 0, 0, 0, 0.0849929, 0, 0, 0, 0.0849929, 0, -0.2, 0)
+
+[node name="Shaker_Fluid" parent="Shaker" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ryt36")
+
+[node name="GlassStartAudio" type="AudioStreamPlayer3D" parent="Shaker"]
+transform = Transform3D(13.5305, 0, 0, 0, 13.5305, 0, 0, 0, 13.5305, 0, 4.05916, 0)
+stream = ExtResource("2_w2w20")
+volume_db = -7.0
+unit_size = 3.0
+bus = &"SFX"
+
+[node name="ShakeAudio" type="AudioStreamPlayer3D" parent="Shaker"]
+transform = Transform3D(13.5305, 0, 0, 0, 13.5305, 0, 0, 0, 13.5305, 0, 4.05916, 0)
+stream = SubResource("AudioStreamRandomizer_mxue0")
+unit_size = 3.0
+bus = &"SFX"
+
+[node name="DripAudio" type="AudioStreamPlayer3D" parent="Shaker"]
+transform = Transform3D(13.5305, 0, 0, 0, 13.5305, 0, 0, 0, 13.5305, 0, 4.05916, 0)
 stream = SubResource("AudioStreamRandomizer_nkxkh")
 attenuation_model = 3
 volume_db = -2.0
@@ -65,3 +77,6 @@ bus = &"SFX"
 [node name="IngredientMoveToMixer" type="Marker3D" parent="."]
 
 [node name="IngredientMoveToDrink" type="Marker3D" parent="."]
+
+[editable path="Cup"]
+[editable path="Shaker"]
