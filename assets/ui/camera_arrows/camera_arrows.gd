@@ -24,8 +24,12 @@ func _ready() -> void:
 				up_arrow.disabled = false
 				down_arrow.modulate = Color(0.0, 0.0, 0.0, 0.0)
 				down_arrow.disabled = true
-				left_arrow.modulate = Color(1.0, 1.0, 1.0, 1.0)
-				left_arrow.disabled = false
+				if (GameState.game_state.modifier_hsm.get_active_state().name == &"Assassin"):
+					left_arrow.modulate = Color(0.5, 0.5, 0.5, 1.0)
+					left_arrow.disabled = true
+				else:
+					left_arrow.modulate = Color(1.0, 1.0, 1.0, 1.0)
+					left_arrow.disabled = false
 				right_arrow.modulate = Color(0.0, 0.0, 0.0, 0.0)
 				right_arrow.disabled = true
 			GameStateResource.CAMERA_STATE.BOOK:

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bjap6knnp5lsa"]
 
 [ext_resource type="PackedScene" uid="uid://dyv6xgf1csd3e" path="res://users/stephen_test/Shadowman_Anims.fbx" id="1_ajk32"]
-[ext_resource type="Texture2D" uid="uid://bb1gdwkptace3" path="res://assets/models/shadow/t_shadowman_d.png" id="2_7eiom"]
-[ext_resource type="Texture2D" uid="uid://b3q5muixc1hcc" path="res://assets/models/shadow/t_shadowman_n.png" id="3_4mloj"]
+[ext_resource type="Texture2D" uid="uid://cm33a3hep2bj1" path="res://assets/models/shadow/t_shadowman_d.png" id="2_7eiom"]
+[ext_resource type="Texture2D" uid="uid://dlwmpmsosxveh" path="res://assets/models/shadow/t_shadowman_n.png" id="3_4mloj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efqnj"]
 albedo_texture = ExtResource("2_7eiom")
@@ -134,7 +134,7 @@ bones/435/position = Vector3(-4.2608e-10, -4.4558e-10, 1.90921e-10)
 bones/437/rotation = Quaternion(-7.50879e-09, 1.03398e-25, -1.81899e-10, 1)
 
 [node name="Cup_InHand" parent="rig/Skeleton3D" index="0"]
-transform = Transform3D(1, 4.91738e-07, 1.11759e-08, -7.45058e-08, 1, -5.81145e-07, 9.68575e-08, 6.25849e-07, 1, -3.25963e-09, 9.04402e-09, 9.31323e-10)
+transform = Transform3D(1, 8.49366e-07, 8.9407e-08, -5.66244e-07, 1, 5.21541e-07, 2.23517e-08, -3.42727e-07, 1, -3.95812e-09, -9.2914e-09, 9.31323e-10)
 bone_idx = 269
 
 [node name="Shadowman" parent="rig/Skeleton3D" index="1"]
@@ -142,7 +142,3 @@ material_override = SubResource("StandardMaterial3D_efqnj")
 
 [node name="Eyes" parent="rig/Skeleton3D" index="2"]
 material_override = SubResource("StandardMaterial3D_n5v8y")
-blend_shapes/bottom_left = 0.151257
-blend_shapes/bottom_right = 1.0
-blend_shapes/top_left = 1.0
-blend_shapes/top_right = 1.0

@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c4u6yvffauhhq" path="res://assets/ui/book/page_05and06.png" id="4_xc14o"]
 [ext_resource type="Texture2D" uid="uid://c1tar50c0hcwk" path="res://assets/ui/book/page_07and08.png" id="5_pladi"]
 [ext_resource type="Texture2D" uid="uid://dfueq5iugqaot" path="res://assets/ui/book/book_arrow_right.png" id="8_3kaoa"]
-[ext_resource type="AudioStream" uid="uid://cfmtl853f761e" path="res://assets/audio/sfx/book_1.wav" id="8_2476u"]
-[ext_resource type="AudioStream" uid="uid://dvkk151dkq072" path="res://assets/audio/sfx/book_2.wav" id="9_b7veb"]
-[ext_resource type="AudioStream" uid="uid://v685o7avebsr" path="res://assets/audio/sfx/book_3.wav" id="10_sajdm"]
+[ext_resource type="AudioStream" uid="uid://dg08r4h1elihd" path="res://assets/audio/sfx/book_1.wav" id="8_2476u"]
+[ext_resource type="AudioStream" uid="uid://cfkysxin4djrc" path="res://assets/audio/sfx/book_2.wav" id="9_b7veb"]
+[ext_resource type="AudioStream" uid="uid://c2fk751agsjt" path="res://assets/audio/sfx/book_3.wav" id="10_sajdm"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r4btb"]
 random_pitch = 1.2
