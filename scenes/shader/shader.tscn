@@ -15,10 +15,10 @@ shader_parameter/vignette_color = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmb2u"]
 shader = ExtResource("4_bryaq")
-shader_parameter/alpha = 0.655
+shader_parameter/alpha = 1.0
 shader_parameter/scale = 1.0
-shader_parameter/border_mask = 5.0
-shader_parameter/strength = 3.383
+shader_parameter/border_mask = 2.795
+shader_parameter/strength = 2.444
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
 shader = ExtResource("1_oe5rb")
@@ -38,15 +38,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="ChromaticAbberation" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_wmb2u")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="AbberationVignette" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_wmb2u")
 anchors_preset = 15
 anchor_right = 1.0

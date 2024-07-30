@@ -3,6 +3,8 @@ class_name Utils
 
 static var _ingredient_list: Array[Ingredient] = []
 
+# This whole class is pretty disgusting >:).
+
 static func print_symbol(symbol: Array) -> void:
 	print("%d %d %d" % [symbol[0], symbol[1], symbol[2]])
 	print("%d %d %d" % [symbol[3], symbol[4], symbol[5]])

@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://diwppgtdaog0w"]
+[gd_scene load_steps=6 format=3 uid="uid://diwppgtdaog0w"]
 
+[ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_8ddmk"]
+[ext_resource type="Texture2D" uid="uid://2o8j3n2isitj" path="res://assets/ui/modifier_component/icons/thirsty.png" id="2_32jqd"]
+[ext_resource type="Script" path="res://assets/ui/game_menu/game_menu.gd" id="2_bvdan"]
+[ext_resource type="PackedScene" uid="uid://yfdv6he4l1jv" path="res://assets/ui/modifier_component/modifier_component.tscn" id="2_e7b6c"]
 [ext_resource type="PackedScene" uid="uid://o5sk53klvqsp" path="res://assets/ui/sanity_component/sanity_component.tscn" id="2_psj8g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_isem8"]
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -12,8 +14,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_8ddmk")
+script = ExtResource("2_bvdan")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,14 +25,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_isem8")
+theme_override_constants/margin_right = 45
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 290
-
-[node name="SanityComponent" parent="PanelContainer/MarginContainer" instance=ExtResource("2_psj8g")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="SanityComponent" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_psj8g")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ModifierComponent" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_e7b6c")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_32jqd")
+expand_mode = 1
+
+[node name="ModifierDesc" type="RichTextLabel" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]The Reverser flips your ingredient crafting order.[/center]"
+fit_content = true
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/VBoxContainer/ModifierComponent" to="." method="_on_modifier_component_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/VBoxContainer/ModifierComponent" to="." method="_on_modifier_component_mouse_exited"]

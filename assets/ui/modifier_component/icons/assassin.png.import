@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bckomfldwn274"
-path="res://.godot/imported/t_book_d.png-fc9c0397c9dd784e1706629750a23adf.ctex"
+uid="uid://nfloo80g80qj"
+path="res://.godot/imported/assassin.png-91d0e4131d64618788935e68aa240290.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/book/open/t_book_d.png"
-dest_files=["res://.godot/imported/t_book_d.png-fc9c0397c9dd784e1706629750a23adf.ctex"]
+source_file="res://assets/ui/modifier_component/icons/assassin.png"
+dest_files=["res://.godot/imported/assassin.png-91d0e4131d64618788935e68aa240290.ctex"]
 
 [params]
 

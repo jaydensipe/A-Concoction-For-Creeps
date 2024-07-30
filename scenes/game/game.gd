@@ -153,7 +153,7 @@ func _clear_wanted_drink() -> void:
 	GameState.game_state.wanted_drink = []
 	#DebugIt.show_value_on_screen("Wanted Drink", str(GameState.game_state.wanted_drink))
 
-func _generated_drink(drink: Array[Ingredient]) -> void:
+func _generated_drink(_drink: Array[Ingredient]) -> void:
 	GlobalEventBus.signal_request_camera_change(GameStateResource.CAMERA_STATE.FORWARD)
 	#DebugIt.show_value_on_screen("Wanted Drink", drink)
 
@@ -178,5 +178,6 @@ static func generate_modifier_chance() -> void:
 	var random_gen: int = randi() % 100
 	if (random_gen <= GameState.game_state.difficulty_stats.base_percent_chance_of_modifier):
 		GameState.game_state.modifier_hsm.dispatch(Utils.picked_weighted_modifier())
-	pass
+	else:
+		GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
 #endregion

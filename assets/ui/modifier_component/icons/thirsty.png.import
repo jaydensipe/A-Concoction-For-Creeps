@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p781remwi77h"
-path="res://.godot/imported/t_book_e.png-27fd7dd03b522f4542c3c706a59988ef.ctex"
+uid="uid://2o8j3n2isitj"
+path="res://.godot/imported/thirsty.png-a4171d562b857b1b1852e7693c01fa50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/book/open/t_book_e.png"
-dest_files=["res://.godot/imported/t_book_e.png-27fd7dd03b522f4542c3c706a59988ef.ctex"]
+source_file="res://assets/ui/modifier_component/icons/thirsty.png"
+dest_files=["res://.godot/imported/thirsty.png-a4171d562b857b1b1852e7693c01fa50.ctex"]
 
 [params]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://yfdv6he4l1jv"]
+
+[ext_resource type="Texture2D" uid="uid://h7wmf53remg7" path="res://assets/ui/modifier_component/icons/reverser.png" id="2_8q35b"]
+
+[node name="ModifierComponent" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8q35b")
+expand_mode = 4

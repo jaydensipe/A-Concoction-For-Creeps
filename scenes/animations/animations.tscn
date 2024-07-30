@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0p8m5uovvryf"]
+[gd_scene load_steps=9 format=3 uid="uid://c0p8m5uovvryf"]
 
 [ext_resource type="Script" path="res://scenes/animations/animations.gd" id="1_eu48h"]
 [ext_resource type="AudioStream" uid="uid://co5p6mskxx6l6" path="res://assets/audio/sfx/snap.wav" id="2_7qb1e"]
 [ext_resource type="AudioStream" uid="uid://dkmmah4o0hinf" path="res://assets/audio/sfx/knife_spawn.wav" id="2_huej6"]
 [ext_resource type="AudioStream" uid="uid://leem6jq5mfp1" path="res://assets/audio/sfx/knife_swoosh.wav" id="3_jrl1l"]
 [ext_resource type="AudioStream" uid="uid://vtknjd0p3uny" path="res://assets/audio/sfx/knife_impact.wav" id="4_n3lxh"]
+[ext_resource type="AudioStream" uid="uid://sud0eix2f5b5" path="res://assets/audio/sfx/knife_reverse.wav" id="5_ag1ub"]
 [ext_resource type="AudioStream" uid="uid://bwlywmwqjk1s7" path="res://assets/audio/sfx/wraith_enter.wav" id="6_5p82a"]
 [ext_resource type="AudioStream" uid="uid://c057ovyohqoao" path="res://assets/audio/sfx/wraith_music.wav" id="7_fhul0"]
 
@@ -29,6 +30,11 @@ bus = &"SFX"
 
 [node name="KnifeImpactAudio" type="AudioStreamPlayer3D" parent="Assassin"]
 stream = ExtResource("4_n3lxh")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="KnifeReverseAudio" type="AudioStreamPlayer3D" parent="Assassin"]
+stream = ExtResource("5_ag1ub")
 volume_db = -7.0
 bus = &"SFX"
 

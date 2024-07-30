@@ -50,3 +50,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449191, 0)
 stream = SubResource("AudioStreamRandomizer_7a2m7")
 volume_db = -15.0
 bus = &"SFX"
+
+[editable path="ShadowMan"]

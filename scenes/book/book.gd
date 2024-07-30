@@ -7,6 +7,7 @@ extends Node3D
 @onready var current_page: Sprite3D = page_1_and_2
 @onready var current_page_index: int = 0
 @onready var margin_container: MarginContainer = $MarginContainer
+@onready var book_audio: AudioStreamPlayer = $BookAudio
 
 func _ready() -> void:
 	GlobalEventBus.camera_changed_state.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
@@ -39,6 +40,7 @@ func _on_page_right_pressed() -> void:
 	_match_page()
 
 func _match_page() -> void:
+	book_audio.play()
 	match (current_page_index):
 		0:
 			current_page = page_1_and_2

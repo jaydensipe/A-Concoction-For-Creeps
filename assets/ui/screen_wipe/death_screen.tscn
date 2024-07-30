@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dvgp3cls6kblx"]
+[gd_scene load_steps=26 format=3 uid="uid://dvgp3cls6kblx"]
 
 [ext_resource type="Texture2D" uid="uid://d24rgu6l4s6xd" path="res://assets/ui/screen_wipe/screen-10000.png" id="1_bpvpk"]
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_cogw0"]
@@ -88,11 +88,13 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_auo15"]
-font_size = 128
+font_size = 256
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_80w8q"]
 font_size = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttvuc"]
 
 [node name="DeathScreen" type="Control"]
 layout_mode = 3
@@ -113,7 +115,6 @@ centered = false
 
 [node name="InfoVBoxContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,7 +143,10 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.635294, 0.635294, 0.635294, 1)
+theme_override_colors/font_pressed_color = Color(0.627451, 0.105882, 0.105882, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ttvuc")
 text = "PLAY AGAIN"
 flat = true
 

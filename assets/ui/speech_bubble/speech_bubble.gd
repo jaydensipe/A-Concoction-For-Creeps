@@ -4,7 +4,12 @@ extends AnimatedSprite3D
 
 func _ready() -> void:
 	GlobalEventBus.drink_generated.connect(func(drink: Array[Ingredient]) -> void:
-		match (len(drink)):
+		# Wraith drink icons for Wraith
+		var temp_drink: Array[Ingredient] = drink.duplicate()
+		if (GameState.game_state.modifier_hsm.get_active_state().name == &"Wraith"):
+			temp_drink = [temp_drink[0]]
+
+		match (len(temp_drink)):
 			1:
 				mesh_instance_3d.mesh.size = Vector2(30, 30)
 				mesh_instance_3d.position = Vector3(5.475, -6.09, 0)

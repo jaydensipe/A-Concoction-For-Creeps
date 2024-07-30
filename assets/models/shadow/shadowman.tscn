@@ -15,7 +15,9 @@ ao_texture = ExtResource("2_0prgx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm5ji"]
 emission_enabled = true
-emission_energy_multiplier = 6.73
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
 emission_texture = ExtResource("4_i0j77")
 
 [node name="ShadowMan" instance=ExtResource("1_m1k31")]

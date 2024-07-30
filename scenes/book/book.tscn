@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgwrcy7vx0yyw"]
+[gd_scene load_steps=12 format=3 uid="uid://cgwrcy7vx0yyw"]
 
 [ext_resource type="Texture2D" uid="uid://b2run30i3fgsl" path="res://assets/ui/book/page_01and02.png" id="1_f2a6w"]
 [ext_resource type="Script" path="res://scenes/book/book.gd" id="1_o4ye3"]
@@ -6,8 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://cep245o5xij68" path="res://assets/ui/book/page_03and04.png" id="3_titoo"]
 [ext_resource type="Texture2D" uid="uid://c4u6yvffauhhq" path="res://assets/ui/book/page_05and06.png" id="4_xc14o"]
 [ext_resource type="Texture2D" uid="uid://c1tar50c0hcwk" path="res://assets/ui/book/page_07and08.png" id="5_pladi"]
-[ext_resource type="Texture2D" uid="uid://b52v1qvhblnos" path="res://assets/ui/camera_arrows/icon_arrow_left_light.png" id="6_pbnyb"]
-[ext_resource type="Texture2D" uid="uid://c3dkdtsxle7oj" path="res://assets/ui/camera_arrows/icon_arrow_right_light.png" id="7_rkqf3"]
+[ext_resource type="Texture2D" uid="uid://dfueq5iugqaot" path="res://assets/ui/book/book_arrow_right.png" id="8_3kaoa"]
+[ext_resource type="AudioStream" uid="uid://cfmtl853f761e" path="res://assets/audio/sfx/book_1.wav" id="8_2476u"]
+[ext_resource type="AudioStream" uid="uid://dvkk151dkq072" path="res://assets/audio/sfx/book_2.wav" id="9_b7veb"]
+[ext_resource type="AudioStream" uid="uid://v685o7avebsr" path="res://assets/audio/sfx/book_3.wav" id="10_sajdm"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r4btb"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("8_2476u")
+stream_1/stream = ExtResource("9_b7veb")
+stream_2/stream = ExtResource("10_sajdm")
 
 [node name="Book" type="Node3D"]
 script = ExtResource("1_o4ye3")
@@ -44,22 +53,31 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 mouse_filter = 2
-theme_override_constants/margin_bottom = 175
+theme_override_constants/margin_bottom = 145
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
-theme_override_constants/separation = 700
+theme_override_constants/separation = 375
 
 [node name="PageLeft" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.816804, 0.392907, 0.093261, 1)
 layout_mode = 2
-texture_normal = ExtResource("6_pbnyb")
+texture_normal = ExtResource("8_3kaoa")
+flip_h = true
 
 [node name="PageRight" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.816804, 0.392907, 0.093261, 1)
 layout_mode = 2
-texture_normal = ExtResource("7_rkqf3")
+texture_normal = ExtResource("8_3kaoa")
+
+[node name="BookAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_r4btb")
+volume_db = -2.0
+max_polyphony = 3
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PageLeft" to="." method="_on_page_left_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PageRight" to="." method="_on_page_right_pressed"]

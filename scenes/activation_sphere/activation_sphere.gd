@@ -8,10 +8,16 @@ extends Node3D
 @onready var tween: Tween
 @onready var _reset_position: Vector3 = global_position
 @onready var _mat: StandardMaterial3D = button.get_surface_override_material(0)
-
 var activated: bool = false
 
 func _ready() -> void:
+	match (get_index()):
+		1:
+			_mat.albedo_texture = preload("res://assets/models/stone/t_button_02_d.png")
+		5:
+			_mat.albedo_texture = preload("res://assets/models/stone/t_button_03_d.png")
+		7:
+			_mat.albedo_texture = preload("res://assets/models/stone/t_button_04_d.png")
 	_clear()
 
 	GlobalEventBus.symbol_clear.connect(_clear)

@@ -71,10 +71,10 @@ func init_modifier_state_machine() -> void:
 
 	game_state.modifier_hsm.active_state_changed.connect(func(current: LimboState, _previous: LimboState) -> void:
 		GlobalEventBus.signal_modifier_changed(current, _previous)
-		DebugIt.show_value_on_screen("Current Modifier", current.name)
+		#DebugIt.show_value_on_screen("Current Modifier", current.name)
 	)
 
-	DebugIt.show_value_on_screen("Current Modifier", game_state.modifier_hsm.get_active_state().name)
+	#DebugIt.show_value_on_screen("Current Modifier", game_state.modifier_hsm.get_active_state().name)
 #endregion
 
 #region None Modifier
@@ -144,7 +144,7 @@ func _on_exit_assassin() -> void:
 
 #region Blinder Modifier
 func _on_enter_blinder() -> void:
-	GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
+	pass
 
 func _on_exit_blinder() -> void:
 	pass

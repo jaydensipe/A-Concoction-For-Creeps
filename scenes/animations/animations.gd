@@ -10,6 +10,9 @@ class_name Animations
 @onready var knife_spawn_audio: AudioStreamPlayer3D = $Assassin/KnifeSpawnAudio
 @onready var knife_swoosh_audio: AudioStreamPlayer3D = $Assassin/KnifeSwooshAudio
 @onready var knife_impact_audio: AudioStreamPlayer3D = $Assassin/KnifeImpactAudio
+@onready var knife_reverse_audio: AudioStreamPlayer3D = $Assassin/KnifeReverseAudio
+
+var dagger: Node3D
 const DAGGERMAIN = preload("res://assets/models/dagger/daggermain.tscn")
 
 # Blinder
@@ -43,7 +46,7 @@ func _assassin_animation(reverse: bool) -> void:
 	if (!reverse):
 		music._modifier_show_up()
 
-		var dagger: Node3D = DAGGERMAIN.instantiate()
+		dagger = DAGGERMAIN.instantiate()
 		dagger.scale = Vector3.ZERO
 		dagger_spawn.add_child(dagger)
 		knife_spawn_audio.play()
@@ -52,13 +55,21 @@ func _assassin_animation(reverse: bool) -> void:
 		tween.parallel().tween_property(dagger, "scale", Vector3(2.0, 2.0, 2.0), 0.5)
 		tween.parallel().tween_callback(func() -> void: knife_spawn_audio.play())
 		tween.tween_interval(0.05)
-		tween.parallel().tween_property(dagger, "global_transform", dagger_move_book.global_transform, 0.2)
+		tween.parallel().tween_property(dagger, "global_position", dagger_move_book.global_position, 0.2)
 		tween.parallel().tween_callback(func() -> void: knife_swoosh_audio.play())
 		tween.tween_callback(func() -> void: knife_impact_audio.play())
 		tween.tween_interval(1.0)
 		tween.tween_callback(func() -> void: GlobalEventBus.signal_shadow_finish_modifier_animation())
 	else:
-		music._modifier_leave()
+		var tween: Tween = create_tween().set_trans(Tween.TRANS_SPRING)
+		tween.parallel().tween_property(dagger, "global_position", dagger_spawn.global_position, 0.55)
+		tween.parallel().tween_callback(func() -> void: knife_swoosh_audio.play())
+		tween.tween_interval(0.25)
+		tween.parallel().tween_property(dagger, "scale", Vector3(0.0, 0.0, 0.0), 0.30)
+		tween.parallel().tween_callback(func() -> void: knife_reverse_audio.play())
+		tween.tween_interval(0.25)
+		tween.parallel().tween_callback(func() -> void: dagger.queue_free())
+		tween.parallel().tween_callback(func() -> void: music._modifier_leave())
 
 func _reverser_animation(reverse: bool) -> void:
 	if (!reverse):
@@ -80,6 +91,7 @@ func _blinder_animation(reverse: bool) -> void:
 		music._modifier_show_up()
 
 		snap_audio.play()
+		GlobalEventBus.signal_shader_toggle(ShaderModifier.SHADER_TYPES.GRAYSCALE)
 		await get_tree().create_timer(0.40).timeout
 		GlobalEventBus.signal_shadow_finish_modifier_animation()
 	else:

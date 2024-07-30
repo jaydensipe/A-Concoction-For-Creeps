@@ -4,6 +4,7 @@ class_name ShadowPerson
 @onready var speech_bubble: AnimatedSprite3D = $SpeechBubble
 @onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
 @onready var ghost_audio: AudioStreamPlayer3D = $GhostAudio
+@onready var eyes_low: MeshInstance3D = $ShadowMan/Eyes_low
 
 signal waiting_at_table
 
@@ -17,6 +18,22 @@ func _ready() -> void:
 		else:
 			await get_tree().create_timer(0.15).timeout
 			speech_bubble.show()
+	)
+	GlobalEventBus.modifier_changed.connect(func(current: LimboState, _previous: LimboState) -> void:
+		match (current.name):
+			&"Assassin":
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.PURPLE
+			&"Reverser":
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.YELLOW
+			&"Blinder":
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
+			&"Wraith":
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.RED
+			&"Thirsty":
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.DARK_TURQUOISE
+			_:
+				(eyes_low.get_surface_override_material(0) as StandardMaterial3D).emission = Color.WHITE
+
 	)
 
 func _init_shadow_person() -> void:
