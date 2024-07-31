@@ -1,6 +1,7 @@
 extends Node
 
 @onready var game_state: GameStateResource = preload("res://resources/state/original_game_state.tres")
+@onready var _save_customers_death_screen: int = 0
 
 func _ready() -> void:
 	#_init_debug()

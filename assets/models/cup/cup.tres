@@ -7,5 +7,9 @@
 transparency = 1
 blend_mode = 1
 albedo_texture = ExtResource("1_jul8a")
+metallic = 1.0
+rim_tint = 1.0
+clearcoat_roughness = 0.0
 ao_enabled = true
 ao_texture = ExtResource("2_hd3cg")
+texture_filter = 0

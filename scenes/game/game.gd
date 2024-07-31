@@ -43,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 
 func start_game() -> void:
 	GameState.init_modifier_state_machine()
+	GameState._save_customers_death_screen = 0
 
 	ui.add_child(GAME_MENU.instantiate())
 	shadow_manager.spawn_shadow_person(true)

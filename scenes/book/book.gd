@@ -8,7 +8,6 @@ extends Node3D
 @onready var current_page_index: int = 0
 @onready var omni_light_3d: OmniLight3D = $BookS/AnimationPlayer/OmniLight3D
 @onready var book_open_audio: AudioStreamPlayer = $BookOpenAudio
-
 const PAGE_01_GUIDE = preload("res://assets/ui/book/page_01_guide.png")
 const PAGE_02_FERNS = preload("res://assets/ui/book/page_02_ferns.png")
 const PAGE_03_FEATHERS = preload("res://assets/ui/book/page_03_feathers.png")
@@ -34,7 +33,6 @@ func _ready() -> void:
 				_open = false
 				await get_tree().create_timer(0.4).timeout
 				omni_light_3d.visible = false
-
 	)
 
 func _on_page_left_pressed() -> void:

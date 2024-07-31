@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://irsnjlysj0uu"]
 
 [ext_resource type="Script" path="res://scenes/activation_sphere/activation_sphere.gd" id="1_f21om"]
-[ext_resource type="AudioStream" uid="uid://b202vnhejyuh6" path="res://assets/audio/stone/stone_activate.wav" id="2_wkgmh"]
+[ext_resource type="AudioStream" uid="uid://b202vnhejyuh6" path="res://assets/audio/sfx/stone_activate.wav" id="2_wkgmh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgdk5"]
 resource_name = "DefaultMaterial"

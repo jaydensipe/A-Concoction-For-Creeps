@@ -75,7 +75,7 @@ func _init_shadow_person() -> void:
 				bone_attachment_3d.add_child(hat)
 				hat.scale = Vector3(0.009, 0.009, 0.009)
 				hat.position = Vector3(0.0, -0.016, 0.0)
-				(eyes_low.material_override as StandardMaterial3D).emission = Color.ROYAL_BLUE
+				(eyes_low.material_override as StandardMaterial3D).emission = Color.DODGER_BLUE
 			&"Blinder":
 				var hat: Node3D = BLINDFOLD.instantiate()
 				bone_attachment_3d.add_child(hat)

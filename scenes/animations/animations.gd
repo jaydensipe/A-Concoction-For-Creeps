@@ -11,7 +11,6 @@ class_name Animations
 @onready var knife_swoosh_audio: AudioStreamPlayer3D = $Assassin/KnifeSwooshAudio
 @onready var knife_impact_audio: AudioStreamPlayer3D = $Assassin/KnifeImpactAudio
 @onready var knife_reverse_audio: AudioStreamPlayer3D = $Assassin/KnifeReverseAudio
-
 var dagger: Node3D
 const DAGGERMAIN = preload("res://assets/models/dagger/daggermain.tscn")
 

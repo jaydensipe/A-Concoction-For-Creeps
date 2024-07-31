@@ -85,13 +85,13 @@ mouse_filter = 2
 theme_override_constants/separation = 375
 
 [node name="PageLeft" type="TextureButton" parent="MarginContainer/HBoxContainer"]
-modulate = Color(0.816804, 0.392907, 0.093261, 1)
+modulate = Color(0.757969, 0.233601, 0.17627, 1)
 layout_mode = 2
 texture_normal = ExtResource("8_3kaoa")
 flip_h = true
 
 [node name="PageRight" type="TextureButton" parent="MarginContainer/HBoxContainer"]
-modulate = Color(0.816804, 0.392907, 0.093261, 1)
+modulate = Color(0.757969, 0.233601, 0.17627, 1)
 layout_mode = 2
 texture_normal = ExtResource("8_3kaoa")
 
