@@ -6,7 +6,6 @@ extends Node3D
 @onready var book_audio: AudioStreamPlayer = $BookAudio
 @onready var animation_player: AnimationPlayer = $BookS/AnimationPlayer
 @onready var current_page_index: int = 0
-@onready var omni_light_3d: OmniLight3D = $BookS/AnimationPlayer/OmniLight3D
 @onready var book_open_audio: AudioStreamPlayer = $BookOpenAudio
 const PAGE_01_GUIDE = preload("res://assets/ui/book/page_01_guide.png")
 const PAGE_02_FERNS = preload("res://assets/ui/book/page_02_ferns.png")
@@ -23,7 +22,6 @@ func _ready() -> void:
 		if (new_camera_state == GameStateResource.CAMERA_STATE.BOOK):
 			margin_container.show()
 			animation_player.play(&"Armature|BookOpen")
-			omni_light_3d.visible = true
 			_open = true
 			book_open_audio.play()
 		else:
@@ -32,7 +30,6 @@ func _ready() -> void:
 				animation_player.play_backwards(&"Armature|BookOpen")
 				_open = false
 				await get_tree().create_timer(0.4).timeout
-				omni_light_3d.visible = false
 	)
 
 func _on_page_left_pressed() -> void:
