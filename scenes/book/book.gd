@@ -31,7 +31,6 @@ func _ready() -> void:
 			if (_open):
 				animation_player.play_backwards(&"Armature|BookOpen")
 				_open = false
-				await get_tree().create_timer(0.4).timeout
 				omni_light_3d.visible = false
 	)
 
