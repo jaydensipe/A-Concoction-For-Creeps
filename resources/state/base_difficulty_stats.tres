@@ -23,7 +23,7 @@ ingredient_chance = {
 
 [resource]
 script = ExtResource("1_io1nr")
-base_percent_chance_of_modifier = 25.0
+base_percent_chance_of_modifier = 35.0
 per_modifier_percent_chance = SubResource("Resource_li10y")
 tier_ingredient_percent_chance = SubResource("Resource_hymmw")
 max_amount_of_ingredients = 6
