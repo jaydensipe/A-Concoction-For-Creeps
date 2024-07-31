@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bri65e4kh0xj"]
+[gd_scene load_steps=11 format=3 uid="uid://bri65e4kh0xj"]
 
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_bup5r"]
 [ext_resource type="Script" path="res://assets/ui/main_menu/main_menu.gd" id="1_thua1"]
+[ext_resource type="AudioStream" uid="uid://ca55p28u7cv0n" path="res://assets/audio/sfx/call_bell.wav" id="3_0almf"]
 [ext_resource type="Texture2D" uid="uid://b6qf05w5im5oe" path="res://logo.png" id="4_22qsf"]
 [ext_resource type="PackedScene" uid="uid://2wcwmqlls41y" path="res://assets/ui/music_slider_component/music_slider_component.tscn" id="4_npsos"]
 
@@ -34,6 +35,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_bup5r")
 script = ExtResource("1_thua1")
+
+[node name="CallBellAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0almf")
+volume_db = -7.0
+bus = &"SFX"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

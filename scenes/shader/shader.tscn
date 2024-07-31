@@ -1,24 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpytofi11kvg2"]
+[gd_scene load_steps=10 format=3 uid="uid://cpytofi11kvg2"]
 
 [ext_resource type="Script" path="res://scenes/shader/shader.gd" id="1_nf8vu"]
 [ext_resource type="Shader" path="res://assets/shaders/grayscale.gdshader" id="1_oe5rb"]
 [ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="2_yglo8"]
 [ext_resource type="Shader" path="res://assets/shaders/abberation_vignette.gdshader" id="4_bryaq"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7qoo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e51ld"]
+noise = SubResource("FastNoiseLite_e7qoo")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
 shader = ExtResource("2_yglo8")
-shader_parameter/inner_radius = 0.1
-shader_parameter/outer_radius = 1.0
-shader_parameter/vignette_strength = 1.0
-shader_parameter/dither_strength = 0.03
-shader_parameter/vignette_color = null
+shader_parameter/shake = 0.0
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.379
+shader_parameter/pixelSize = 999.94
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = false
+shader_parameter/use_lens_distortion = false
+shader_parameter/overlay_color = Color(0, 0, 0, 10)
+shader_parameter/lens_distortion_strength = 0.05
+shader_parameter/overlay_texture = SubResource("NoiseTexture2D_e51ld")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wmb2u"]
 shader = ExtResource("4_bryaq")
 shader_parameter/alpha = 1.0
 shader_parameter/scale = 1.0
-shader_parameter/border_mask = 2.795
-shader_parameter/strength = 2.444
+shader_parameter/border_mask = 0.8
+shader_parameter/strength = 2.82
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3oble"]
 shader = ExtResource("1_oe5rb")

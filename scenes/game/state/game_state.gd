@@ -177,7 +177,7 @@ func _wraith_complete_ingredient() -> void:
 	game_state.wraith_has_completed_ingredient = true
 
 func _on_enter_wraith() -> void:
-	var timer: SceneTreeTimer = get_tree().create_timer(7.0, false)
+	var timer: SceneTreeTimer = get_tree().create_timer(10.0, false)
 
 	game_state.wraith_has_completed_ingredient = false
 	GlobalEventBus.drink_create_success.connect(_wraith_complete_ingredient)

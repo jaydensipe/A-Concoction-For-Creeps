@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvgp3cls6kblx"]
+[gd_scene load_steps=27 format=3 uid="uid://dvgp3cls6kblx"]
 
 [ext_resource type="Texture2D" uid="uid://d24rgu6l4s6xd" path="res://assets/ui/screen_wipe/screen-10000.png" id="1_bpvpk"]
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_cogw0"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ftxcb2bg6nt" path="res://assets/ui/screen_wipe/screen-10016.png" id="17_j0ek2"]
 [ext_resource type="Texture2D" uid="uid://d7cp2lq8b7y7" path="res://assets/ui/screen_wipe/screen-10017.png" id="18_yfpsn"]
 [ext_resource type="Texture2D" uid="uid://hd278pkgxu13" path="res://assets/ui/screen_wipe/screen-10018.png" id="19_47cvs"]
+[ext_resource type="AudioStream" uid="uid://cq125dsxn1i2w" path="res://assets/audio/sfx/bass_lose.wav" id="22_q52vr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_26onp"]
 animations = [{
@@ -149,6 +150,11 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ttvuc")
 text = "PLAY AGAIN"
 flat = true
+
+[node name="BassLose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_q52vr")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="DeathAnimatedSprite" to="." method="_on_death_animated_sprite_animation_finished"]
 [connection signal="pressed" from="InfoVBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp4ar4jimtk8x"]
+[gd_scene load_steps=5 format=3 uid="uid://dp4ar4jimtk8x"]
 
 [ext_resource type="PackedScene" uid="uid://d2paaf31alpwr" path="res://assets/models/hats/blindfold/blindfold.fbx" id="1_6lv51"]
 [ext_resource type="Texture2D" uid="uid://bnmabyhsu5s16" path="res://assets/models/hats/blindfold/t_blindfold_d.png" id="2_bqcrs"]
 [ext_resource type="Texture2D" uid="uid://d8jf60klt4yk" path="res://assets/models/hats/blindfold/t_blindfold_ao.png" id="3_acf85"]
-[ext_resource type="Texture2D" uid="uid://dnuwepuljyc6e" path="res://assets/models/hats/blindfold/t_blindfold_n.png" id="4_ruhhf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqun8"]
 albedo_texture = ExtResource("2_bqcrs")
-normal_enabled = true
-normal_texture = ExtResource("4_ruhhf")
 ao_enabled = true
 ao_texture = ExtResource("3_acf85")
 texture_filter = 0

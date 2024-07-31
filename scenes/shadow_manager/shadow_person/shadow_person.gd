@@ -8,7 +8,7 @@ class_name ShadowPerson
 @onready var grab_audio: AudioStreamPlayer3D = $GrabAudio
 @onready var eyes_low: MeshInstance3D = $Shadowman_Anims/rig/Skeleton3D/Eyes
 @onready var animation_player: AnimationPlayer = $Shadowman_Anims/AnimationPlayer
-@onready var cup_in_hand: MeshInstance3D = $Shadowman_Anims/rig/Skeleton3D/Cup_InHand/Cup_InHand
+@onready var cup: Node3D = $Shadowman_Anims/rig/Skeleton3D/CupAttachment/Cup
 @onready var eyes: MeshInstance3D = $Shadowman_Anims/rig/Skeleton3D/Eyes
 
 const BLINDFOLD = preload("res://assets/models/hats/blindfold/blindfold.tscn")
@@ -39,11 +39,11 @@ func _ready() -> void:
 			animation_player.speed_scale = 1.75
 			animation_player.play(&"rig|Cheers_02")
 			await get_tree().create_timer(0.72).timeout
-			cup_in_hand.show()
+			cup.show()
 			grab_audio.play()
 			await get_tree().create_timer(1.0).timeout
 			footstep_audio.play()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(1.25).timeout
 			footstep_audio.play()
 	)
 	GlobalEventBus.camera_changed_state.connect(func(new_camera_state: GameStateResource.CAMERA_STATE) -> void:
@@ -91,7 +91,7 @@ func _init_shadow_person() -> void:
 			&"Thirsty":
 				(eyes_low.material_override as StandardMaterial3D).emission = Color.ORANGE
 			_:
-				pass
+				(eyes_low.material_override as StandardMaterial3D).emission = Color.WHITE
 
 	var tween: Tween = create_tween()
 	tween.tween_callback(func() -> void:
