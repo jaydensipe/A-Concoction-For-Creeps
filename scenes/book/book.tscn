@@ -1,17 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgwrcy7vx0yyw"]
+[gd_scene load_steps=12 format=3 uid="uid://cgwrcy7vx0yyw"]
 
-[ext_resource type="Texture2D" uid="uid://b2run30i3fgsl" path="res://assets/ui/book/page_01and02.png" id="1_f2a6w"]
 [ext_resource type="Script" path="res://scenes/book/book.gd" id="1_o4ye3"]
-[ext_resource type="PackedScene" uid="uid://c3lbjn6obppls" path="res://assets/models/book/bookmain.tscn" id="2_8j14y"]
 [ext_resource type="Texture2D" uid="uid://2plkruq1jelo" path="res://assets/ui/book/page_02_ferns.png" id="3_053yu"]
 [ext_resource type="Texture2D" uid="uid://dxmu3e6iyy6om" path="res://assets/ui/book/page_01_guide.png" id="3_eugpd"]
-[ext_resource type="Texture2D" uid="uid://cep245o5xij68" path="res://assets/ui/book/page_03and04.png" id="3_titoo"]
-[ext_resource type="Texture2D" uid="uid://c4u6yvffauhhq" path="res://assets/ui/book/page_05and06.png" id="4_xc14o"]
-[ext_resource type="Texture2D" uid="uid://c1tar50c0hcwk" path="res://assets/ui/book/page_07and08.png" id="5_pladi"]
+[ext_resource type="AudioStream" uid="uid://s1k2f0ewwkyy" path="res://assets/audio/sfx/book_open_1.wav" id="6_cxh1n"]
 [ext_resource type="Texture2D" uid="uid://dfueq5iugqaot" path="res://assets/ui/book/book_arrow_right.png" id="8_3kaoa"]
-[ext_resource type="AudioStream" uid="uid://dg08r4h1elihd" path="res://assets/audio/sfx/book_1.wav" id="8_2476u"]
-[ext_resource type="AudioStream" uid="uid://cfkysxin4djrc" path="res://assets/audio/sfx/book_2.wav" id="9_b7veb"]
-[ext_resource type="AudioStream" uid="uid://c2fk751agsjt" path="res://assets/audio/sfx/book_3.wav" id="10_sajdm"]
+[ext_resource type="AudioStream" uid="uid://biyt8iiqnuecm" path="res://assets/audio/sfx/book_open_3.wav" id="8_k3efe"]
+[ext_resource type="AudioStream" uid="uid://xmfr1qgqqf5p" path="res://assets/audio/sfx/book_open_4.wav" id="9_ngb5o"]
 [ext_resource type="PackedScene" uid="uid://2v7gnhj0sijg" path="res://assets/models/book/book_s.tscn" id="11_55u5w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7nsx"]
@@ -25,11 +20,10 @@ backlight_enabled = true
 backlight = Color(1, 1, 1, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r4btb"]
-random_pitch = 1.2
 streams_count = 3
-stream_0/stream = ExtResource("8_2476u")
-stream_1/stream = ExtResource("9_b7veb")
-stream_2/stream = ExtResource("10_sajdm")
+stream_0/stream = ExtResource("6_cxh1n")
+stream_1/stream = ExtResource("8_k3efe")
+stream_2/stream = ExtResource("9_ngb5o")
 
 [node name="Book" type="Node3D"]
 script = ExtResource("1_o4ye3")
@@ -37,42 +31,31 @@ script = ExtResource("1_o4ye3")
 [node name="BookS" parent="." instance=ExtResource("11_55u5w")]
 transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
 
-[node name="Armature" parent="BookS" index="0"]
-transform = Transform3D(6.48814e-07, 1.77344e-06, -10.8853, 10.8853, -4.75812e-07, 6.48814e-07, -4.75811e-07, -10.8853, -1.77344e-06, 0.111306, -0.02934, 0)
+[node name="Book_Cornerbots_low_001" parent="BookS/Armature/Skeleton3D" index="0"]
+layers = 4
 
-[node name="Skeleton3D" parent="BookS/Armature" index="0"]
-bones/1/rotation = Quaternion(9.26376e-08, 5.47322e-08, -0.350814, 0.936445)
-bones/2/rotation = Quaternion(4.27984e-08, 1.75642e-07, -0.247623, 0.968857)
+[node name="Book_Cornertops_low_001" parent="BookS/Armature/Skeleton3D" index="1"]
+layers = 4
+
+[node name="Book_Main_low_001" parent="BookS/Armature/Skeleton3D" index="2"]
+layers = 4
 
 [node name="PageRight" parent="BookS/Armature/Skeleton3D" index="3"]
+layers = 4
 material_override = SubResource("StandardMaterial3D_n7nsx")
 
 [node name="PageLeft" parent="BookS/Armature/Skeleton3D" index="4"]
+layers = 4
 material_override = SubResource("StandardMaterial3D_o1rr8")
 
-[node name="Book" parent="." instance=ExtResource("2_8j14y")]
-transform = Transform3D(-0.128751, 0, 2.09605, 0, 2.1, 0, -2.09605, 0, -0.128751, 0, 0, 0)
+[node name="OmniLight3D" type="OmniLight3D" parent="BookS/AnimationPlayer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226082, 0.534765, 0.49006)
 visible = false
-
-[node name="Page1and2" type="Sprite3D" parent="Book"]
-transform = Transform3D(0.0232673, 5.1386e-06, 0.000427773, -0.000111004, 0.022545, 0.00576676, -0.000413153, -0.00576778, 0.0225412, 0.00289211, 0.163646, 0.0478864)
-visible = false
-texture = ExtResource("1_f2a6w")
-
-[node name="Page3and4" type="Sprite3D" parent="Book"]
-transform = Transform3D(0.0232673, 5.1386e-06, 0.000427773, -0.000111004, 0.022545, 0.00576676, -0.000413153, -0.00576778, 0.0225412, 0.00289211, 0.163646, 0.0478864)
-visible = false
-texture = ExtResource("3_titoo")
-
-[node name="Page5and6" type="Sprite3D" parent="Book"]
-transform = Transform3D(0.0232673, 5.1386e-06, 0.000427773, -0.000111004, 0.022545, 0.00576676, -0.000413153, -0.00576778, 0.0225412, 0.00289211, 0.163646, 0.0478864)
-visible = false
-texture = ExtResource("4_xc14o")
-
-[node name="Page7and8" type="Sprite3D" parent="Book"]
-transform = Transform3D(0.0232673, 5.1386e-06, 0.000427773, -0.000111004, 0.022545, 0.00576676, -0.000413153, -0.00576778, 0.0225412, 0.00289211, 0.163646, 0.0478864)
-visible = false
-texture = ExtResource("5_pladi")
+layers = 4
+light_color = Color(1, 0.749026, 0.613993, 1)
+light_energy = 0.5
+light_cull_mask = 4293918724
+omni_range = 2.00563
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
@@ -106,6 +89,13 @@ texture_normal = ExtResource("8_3kaoa")
 [node name="BookAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_r4btb")
 volume_db = -2.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="BookOpenAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_r4btb")
+volume_db = -2.0
+pitch_scale = 1.1
 max_polyphony = 3
 bus = &"SFX"
 

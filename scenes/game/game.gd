@@ -124,7 +124,9 @@ func _concoct_drink() -> void:
 	#GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
 	GameState.game_state.ready_to_take_order = false
 	GlobalEventBus.signal_symbol_clear()
-	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
+
+	if (!GameState.game_state.assassin_let_go):
+		GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
 
 func _fail_drink() -> void:
 	_clear_drink()

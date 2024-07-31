@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm1ps0833jo8a"]
+
+[ext_resource type="PackedScene" uid="uid://i7qqtuyywmlp" path="res://assets/models/hats/crown/crown.fbx" id="1_7532b"]
+[ext_resource type="Texture2D" uid="uid://cmnixddk0rj0q" path="res://assets/models/hats/crown/t_crown_d.png" id="2_g37x3"]
+[ext_resource type="Texture2D" uid="uid://cpwg7588yneju" path="res://assets/models/hats/crown/t_crown_ao.png" id="3_pjagl"]
+[ext_resource type="Texture2D" uid="uid://fl4rpxmihh80" path="res://assets/models/hats/crown/t_crown_n.png" id="4_rq23r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ktr"]
+albedo_texture = ExtResource("2_g37x3")
+normal_enabled = true
+normal_texture = ExtResource("4_rq23r")
+ao_enabled = true
+ao_texture = ExtResource("3_pjagl")
+texture_filter = 0
+
+[node name="Crown" instance=ExtResource("1_7532b")]
+
+[node name="Crown_low" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_j2ktr")

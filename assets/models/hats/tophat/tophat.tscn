@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://by365ejlrckpw"]
+
+[ext_resource type="PackedScene" uid="uid://mb2lgsfokqee" path="res://assets/models/hats/tophat/tophat.fbx" id="1_f5bwk"]
+[ext_resource type="Texture2D" uid="uid://imru2wafkj3v" path="res://assets/models/hats/tophat/t_tophat_d.png" id="2_6ladm"]
+[ext_resource type="Texture2D" uid="uid://dip4cmkx4mx31" path="res://assets/models/hats/tophat/t_tophat_ao.png" id="3_msp0p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2u33"]
+albedo_texture = ExtResource("2_6ladm")
+normal_enabled = true
+ao_enabled = true
+ao_texture = ExtResource("3_msp0p")
+texture_filter = 0
+
+[node name="Tophat" instance=ExtResource("1_f5bwk")]
+
+[node name="TopHat" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_g2u33")

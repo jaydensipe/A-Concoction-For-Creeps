@@ -30,19 +30,10 @@ script = ExtResource("1_o5ugh")
 [node name="Bar" parent="." instance=ExtResource("1_qqe3r")]
 
 [node name="Book" parent="." instance=ExtResource("3_3tv4j")]
-transform = Transform3D(0.995265, 0.00605611, -0.0970091, -0.00664135, 0.999961, -0.00571081, 0.0969705, 0.00632811, 0.995267, -1.20575, 0.565232, 0.0352931)
+transform = Transform3D(0.995265, 0.00605611, -0.0970091, -0.00664135, 0.999961, -0.00571081, 0.0969705, 0.00632811, 0.995267, -1.30528, 0.565896, 0.025596)
 
 [node name="BookS" parent="Book" index="0"]
-transform = Transform3D(1.52134, -0.00268439, -0.407624, 0.00197154, 1.575, -0.00301377, 0.407627, 0.0024008, 1.52134, 0.476574, 0.0051505, -0.264422)
-
-[node name="Armature" parent="Book/BookS" index="0"]
-transform = Transform3D(6.48814e-07, 1.77344e-06, -10.8853, 10.8853, -4.75812e-07, 6.48814e-07, -4.75811e-07, -10.8853, -1.77344e-06, 0.111306, -0.02934, 0)
-
-[node name="Skeleton3D" parent="Book/BookS/Armature" index="0"]
-bones/0/position = Vector3(0.020545, -2.27097e-07, 1.06945e-06)
-bones/0/rotation = Quaternion(0.786924, -0.27224, -0.462628, 0.304322)
-bones/1/rotation = Quaternion(0.0315215, -0.00837434, -0.552301, 0.833007)
-bones/2/rotation = Quaternion(-0.00243699, 0.0135717, 0.277694, 0.960571)
+transform = Transform3D(1.52134, -0.00268439, -0.407624, 0.00197154, 1.575, -0.00301377, 0.407627, 0.0024008, 1.52134, 0.435812, 0.00484912, -0.112288)
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.523549, 0.0180161)
@@ -54,7 +45,7 @@ transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0.6, 0.573076, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7143, 2.7161, -5)
 
 [node name="Shaker" parent="DrinkMixer" index="1"]
-transform = Transform3D(0.0739069, 0, 0, 0, 0.0739069, 0, 0, 0, 0.0739069, 0, -0.3, -0.714286)
+transform = Transform3D(0.0849929, 0, 0, 0, 0.0849929, 0, 0, 0, 0.0849929, 0, -0.280477, -0.714)
 
 [node name="SlideRightMarker3D" parent="DrinkMixer" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4285, 0, -0.714286)
@@ -72,7 +63,7 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -1.8338, -9.53674e-0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42857, -0.714284)
 
 [node name="IngredientMoveToDrink" parent="DrinkMixer" index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.714284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28, -0.714)
 
 [node name="ShadowManager" parent="." instance=ExtResource("5_5aau3")]
 
@@ -90,7 +81,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 1.1, 0.2)
 
 [node name="BookMarker3D" parent="Camera" index="3"]
-transform = Transform3D(0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, -0.299206, 1.20018, 0.7)
+transform = Transform3D(0.692974, -0.186599, 0.696396, 0, 0.965926, 0.258819, -0.720962, -0.179355, 0.669361, -0.537801, 1.00018, 0.644192)
 
 [node name="Shaders" parent="." instance=ExtResource("8_6urt7")]
 
@@ -116,10 +107,10 @@ bus = &"Music"
 [node name="Animations" parent="." instance=ExtResource("13_vt2t7")]
 
 [node name="DaggerSpawn" parent="Animations/Assassin" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.844204, 1.2, -0.0560776)
 
 [node name="DaggerMoveBook" parent="Animations/Assassin" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.844204, 0.5, -0.0560776)
 
 [node name="KnifeSpawnAudio" parent="Animations/Assassin" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)

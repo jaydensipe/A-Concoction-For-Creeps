@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4ch85oi15thb"]
+
+[ext_resource type="PackedScene" uid="uid://ck7kkgjx1b0pd" path="res://assets/models/hats/hood/hood.fbx" id="1_s2hqi"]
+[ext_resource type="Texture2D" uid="uid://ditgk2ddyq32" path="res://assets/models/hats/hood/t_hood_d.png" id="2_h3wdo"]
+[ext_resource type="Texture2D" uid="uid://k71606i6eeh8" path="res://assets/models/hats/hood/t_hood_ao.png" id="3_ckdy4"]
+[ext_resource type="Texture2D" uid="uid://dain0kwju1g3i" path="res://assets/models/hats/hood/t_hood_n.png" id="4_ingb5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lad3l"]
+albedo_texture = ExtResource("2_h3wdo")
+normal_enabled = true
+normal_texture = ExtResource("4_ingb5")
+ao_enabled = true
+ao_texture = ExtResource("3_ckdy4")
+texture_filter = 0
+
+[node name="Hood" instance=ExtResource("1_s2hqi")]
+
+[node name="Hood_low" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_lad3l")

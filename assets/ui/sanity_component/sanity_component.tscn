@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://o5sk53klvqsp"]
+[gd_scene load_steps=8 format=3 uid="uid://o5sk53klvqsp"]
 
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_7igff"]
 [ext_resource type="Script" path="res://assets/ui/sanity_component/sanity_component.gd" id="1_surqp"]
@@ -9,6 +9,8 @@
 font = ExtResource("3_qe2hn")
 font_size = 48
 outline_size = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imujk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1efdv"]
 font_size = 24
@@ -32,6 +34,7 @@ vertical_alignment = 1
 
 [node name="SanityProgressBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_imujk")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

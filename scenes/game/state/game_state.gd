@@ -135,12 +135,18 @@ func _on_enter_assassin() -> void:
 	game_state.can_look_at_book = false
 
 func _on_update_assassin(_delta: float) -> void:
-	# TODO: Fix this
 	if (game_state.sanity_level <= _min_amount_to_not_lose_by_assassin):
-		GlobalEventBus.signal_drink_create_success()
+		if (game_state.sanity_level <= 0):
+			GlobalEventBus.signal_game_end()
+		else:
+			game_state.assassin_let_go = true
+			GlobalEventBus.signal_drink_create_success()
+			game_state.modifier_hsm.dispatch(&"end_modifier")
+
 
 func _on_exit_assassin() -> void:
 	game_state.can_look_at_book = true
+	game_state.assassin_let_go = false
 #endregion
 
 #region Blinder Modifier
@@ -176,7 +182,6 @@ func _on_enter_wraith() -> void:
 	game_state.wraith_has_completed_ingredient = false
 	GlobalEventBus.drink_create_success.connect(_wraith_complete_ingredient)
 	GlobalEventBus.drink_generated.connect(_wraith_drink_modify)
-	# Maybe add if you fuck up, the game is reset.
 
 	timer.timeout.connect(func() -> void:
 		if (game_state.wraith_has_completed_ingredient):

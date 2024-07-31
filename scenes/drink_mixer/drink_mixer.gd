@@ -28,7 +28,7 @@ func _reset_drink() -> void:
 
 	_mat.albedo_color = Color(0.0, 0.0, 0.0, 0.0)
 	shaker.global_position = ingredient_move_to_drink.global_position
-	shaker.show()
+	cup.show()
 	cup.global_position = reset_position_marker_3d.global_position
 	shaker_fluid.set_surface_override_material(0, _mat)
 
@@ -36,7 +36,7 @@ func _add_ingredient_to_drink_and_change_color(ingredient: Ingredient) -> void:
 	# Instantiate the ingredient model
 	var model: Node3D = ingredient.model.instantiate()
 	add_child(model)
-	model.global_transform = ingredient_spawn_point.global_transform
+	model.global_position = ingredient_spawn_point.global_position
 
 	# Animate model going into drink
 	var tween: Tween = create_tween().set_trans(Tween.TRANS_BACK)
@@ -61,6 +61,11 @@ func _add_ingredient_to_drink_and_change_color(ingredient: Ingredient) -> void:
 	)
 
 func _mix_and_serve_drink_animation() -> void:
+	if (GameState.game_state.assassin_let_go):
+		await get_tree().create_timer(4.0).timeout
+		GlobalEventBus.signal_shadow_finish_drink_animation()
+		return
+
 	await get_tree().create_timer(1.5).timeout
 
 	# Slide to the right
