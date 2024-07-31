@@ -7,6 +7,7 @@ class_name ShadowManager
 func _ready() -> void:
 	GlobalEventBus.shadow_finish_drink_animation.connect(func() -> void:
 		GameState.game_state.customers_served += 1
+		GameState._save_customers_death_screen += 1
 		#DebugIt.show_value_on_screen("Customers Served", GameState.game_state.customers_served)
 		Game.generate_modifier_chance()
 

@@ -18,11 +18,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mdkjy"]
 shader = ExtResource("9_onv0f")
-shader_parameter/inner_radius = 0.1
-shader_parameter/outer_radius = 1.0
-shader_parameter/vignette_strength = 1.0
-shader_parameter/dither_strength = 0.03
-shader_parameter/vignette_color = null
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.05
+shader_parameter/colorOffsetIntensity = 0.5
+shader_parameter/pixelSize = 200.0
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.05
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_o5ugh")
@@ -30,7 +36,10 @@ script = ExtResource("1_o5ugh")
 [node name="Bar" parent="." instance=ExtResource("1_qqe3r")]
 
 [node name="Book" parent="." instance=ExtResource("3_3tv4j")]
-transform = Transform3D(0.995265, 0.00605611, -0.0970091, -0.00664135, 0.999961, -0.00571081, 0.0969705, 0.00632811, 0.995267, -1.20575, 0.565232, 0.0352931)
+transform = Transform3D(0.995265, 0.00605611, -0.0970091, -0.00664135, 0.999961, -0.00571081, 0.0969705, 0.00632811, 0.995267, -1.30528, 0.565896, 0.025596)
+
+[node name="BookS" parent="Book" index="0"]
+transform = Transform3D(1.52134, -0.00268439, -0.407624, 0.00197154, 1.575, -0.00301377, 0.407627, 0.0024008, 1.52134, 0.435812, 0.00484912, -0.112288)
 
 [node name="MagicalTablet" parent="." instance=ExtResource("4_hh4kn")]
 transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.523549, 0.0180161)
@@ -38,26 +47,29 @@ transform = Transform3D(0.225, 0, 0, 0, 0.225, 0, 0, 0, 0.225, 0.00139616, 0.523
 [node name="DrinkMixer" parent="." instance=ExtResource("6_t51f0")]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0.6, 0.573076, 0)
 
-[node name="MeshInstance3D" parent="DrinkMixer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42857)
+[node name="Cup" parent="DrinkMixer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.2143, 2.7161, -5)
 
-[node name="SlideRightMarker3D" parent="DrinkMixer" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4285, 0, 0)
+[node name="Shaker" parent="DrinkMixer" index="1"]
+transform = Transform3D(0.165736, 0, 0, 0, 0.0828681, 0, 0, 0, 0.165736, 0, -0.280477, -0.714)
 
-[node name="ResetPositionMarker3D" parent="DrinkMixer" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4281, 1.8598, -5)
+[node name="SlideRightMarker3D" parent="DrinkMixer" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9285, 0, -0.714286)
 
-[node name="SlideLeftMarker3D" parent="DrinkMixer" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28529, 1.8598, -5)
+[node name="ResetPositionMarker3D" parent="DrinkMixer" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9281, 2.67288, -5)
 
-[node name="IngredientSpawnPoint" parent="DrinkMixer" index="4"]
+[node name="SlideLeftMarker3D" parent="DrinkMixer" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28529, 2.67288, -5)
+
+[node name="IngredientSpawnPoint" parent="DrinkMixer" index="5"]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -1.8338, -9.53674e-07, -2.76736e-06)
 
-[node name="IngredientMoveToMixer" parent="DrinkMixer" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42857, -1.42857)
+[node name="IngredientMoveToMixer" parent="DrinkMixer" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42857, -0.714284)
 
-[node name="IngredientMoveToDrink" parent="DrinkMixer" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.42857)
+[node name="IngredientMoveToDrink" parent="DrinkMixer" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.28, -0.714)
 
 [node name="ShadowManager" parent="." instance=ExtResource("5_5aau3")]
 
@@ -75,7 +87,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 1.1, 0.2)
 
 [node name="BookMarker3D" parent="Camera" index="3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.499206, 0.868742, 0)
+transform = Transform3D(0.692974, -0.186599, 0.696396, 0, 0.965926, 0.258819, -0.720962, -0.179355, 0.669361, -0.537801, 1.00018, 0.644192)
 
 [node name="Shaders" parent="." instance=ExtResource("8_6urt7")]
 
@@ -101,10 +113,10 @@ bus = &"Music"
 [node name="Animations" parent="." instance=ExtResource("13_vt2t7")]
 
 [node name="DaggerSpawn" parent="Animations/Assassin" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.844204, 1.2, -0.0560776)
 
 [node name="DaggerMoveBook" parent="Animations/Assassin" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.844204, 0.5, -0.0560776)
 
 [node name="KnifeSpawnAudio" parent="Animations/Assassin" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)
@@ -121,7 +133,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.6, 0)
 
 [node name="CameraArrows" parent="UI" instance=ExtResource("9_ljnq5")]
 
+[editable path="Book"]
+[editable path="Book/BookS"]
 [editable path="DrinkMixer"]
+[editable path="DrinkMixer/Cup"]
+[editable path="DrinkMixer/Shaker"]
 [editable path="ShadowManager"]
 [editable path="Camera"]
 [editable path="Shaders"]

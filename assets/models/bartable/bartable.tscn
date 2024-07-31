@@ -1,16 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh6iv4iyc06ub"]
+[gd_scene load_steps=6 format=3 uid="uid://bh6iv4iyc06ub"]
 
 [ext_resource type="PackedScene" uid="uid://dumw4h6batb5d" path="res://assets/models/bartable/bartable.fbx" id="1_t3jwt"]
 [ext_resource type="Texture2D" uid="uid://cxftnxmsidq5y" path="res://assets/models/bartable/t_bartable_d.png" id="2_grjsj"]
 [ext_resource type="Texture2D" uid="uid://dc5c056ogabkm" path="res://assets/models/bartable/t_bartable_ao.png" id="3_4bob0"]
-[ext_resource type="Texture2D" uid="uid://nxt0j6r7vc8p" path="res://assets/models/bartable/t_bartable_r.png" id="5_ormkx"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4t5s2"]
-load_path = "res://.godot/imported/t_bartable_e.png-111711b7c4dded4643d439641a159bcb.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7trw7"]
 albedo_texture = ExtResource("2_grjsj")
-roughness_texture = ExtResource("5_ormkx")
 emission_energy_multiplier = 0.12
 emission_texture = SubResource("CompressedTexture2D_4t5s2")
 ao_enabled = true

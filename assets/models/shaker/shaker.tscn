@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2kkjr0x7ai44"]
+
+[ext_resource type="PackedScene" uid="uid://dsq77r7wfwl3r" path="res://assets/models/shaker/shaker.fbx" id="1_7gvlo"]
+[ext_resource type="Texture2D" uid="uid://diiia54fdo0h8" path="res://assets/models/shaker/t_shaker_d.png" id="2_kga30"]
+[ext_resource type="Texture2D" uid="uid://sd77na0ce2b6" path="res://assets/models/shaker/t_shaker_ao.png" id="3_6dv8h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8u3h"]
+albedo_texture = ExtResource("2_kga30")
+ao_enabled = true
+ao_texture = ExtResource("3_6dv8h")
+
+[node name="Shaker" instance=ExtResource("1_7gvlo")]
+
+[node name="Shaker_Cup" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_f8u3h")

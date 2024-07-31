@@ -14,6 +14,7 @@ ao_texture = ExtResource("3_b1cjt")
 texture_filter = 0
 
 [node name="dragon_dewdrop" instance=ExtResource("1_mlly4")]
+transform = Transform3D(-0.259152, 0.0691881, 0.185715, -0.0799175, 0.243278, -0.202152, -0.181357, -0.206071, -0.176298, 0, 0, 0)
 
 [node name="Retopo_dewdrop" parent="." index="0"]
 transform = Transform3D(10000, 0, 0, 0, -0.000437114, 10000, 0, -10000, -0.000437114, 0, 0, 0)

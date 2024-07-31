@@ -13,4 +13,5 @@ texture_filter = 0
 [node name="berry_cluster" instance=ExtResource("1_juln5")]
 
 [node name="berry_cluster" parent="." index="0"]
+transform = Transform3D(-1.90615, -16.9145, 3.98664, -13.8012, 3.9106, 9.99313, -10.5604, -2.05764, -13.7794, 0, 0.450663, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_n6tbv")

@@ -4,6 +4,10 @@ extends Control
 @onready var modifier_desc: RichTextLabel = %ModifierDesc
 
 func _ready() -> void:
+	var tween: Tween = create_tween().set_loops().set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(modifier_component, "custom_minimum_size", Vector2(168, 168), 1.0)
+	tween.tween_property(modifier_component, "custom_minimum_size", Vector2(156, 156), 1.0)
+
 	GlobalEventBus.modifier_changed.connect(func(current: LimboState, _previous: LimboState) -> void:
 		modifier_component.show()
 		match (current.name):
@@ -21,7 +25,7 @@ func _ready() -> void:
 				modifier_desc.text = "[center]The Wraith kills you quickly if you do not concoct his order with haste.[/center]"
 			&"Thirsty":
 				modifier_component.texture = preload("res://assets/ui/modifier_component/icons/thirsty.png")
-				modifier_desc.text = "[center]The Thirsty modifier adds +1 ingredient.[/center]"
+				modifier_desc.text = "[center]The Thirsty modifier adds 1 extra ingredient.[/center]"
 			_:
 				modifier_component.hide()
 

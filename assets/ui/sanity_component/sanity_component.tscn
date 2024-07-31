@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://o5sk53klvqsp"]
+[gd_scene load_steps=8 format=3 uid="uid://o5sk53klvqsp"]
 
 [ext_resource type="Theme" uid="uid://bg3qtag78l1y3" path="res://assets/ui/base_theme.tres" id="1_7igff"]
 [ext_resource type="Script" path="res://assets/ui/sanity_component/sanity_component.gd" id="1_surqp"]
@@ -7,11 +7,13 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_omf5h"]
 font = ExtResource("3_qe2hn")
-font_size = 64
+font_size = 48
 outline_size = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imujk"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_1efdv"]
-font_size = 32
+font_size = 24
 
 [node name="SanityComponent" type="VBoxContainer"]
 offset_right = 508.0
@@ -32,6 +34,7 @@ vertical_alignment = 1
 
 [node name="SanityProgressBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_imujk")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -43,21 +46,17 @@ tint_progress = Color(0.866588, 0.235724, 0.267072, 1)
 
 [node name="SanityAmount" type="Label" parent="SanityProgressBar"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -36.2675
-offset_right = 47.5
-offset_bottom = 26.7325
+offset_left = -17.5
+offset_top = -28.0
+offset_right = 13.5
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "10/100"
+text = "100/100"
 label_settings = SubResource("LabelSettings_1efdv")
-
-[connection signal="mouse_entered" from="SanityProgressBar" to="." method="_on_sanity_progress_bar_mouse_entered"]
-[connection signal="mouse_exited" from="SanityProgressBar" to="." method="_on_sanity_progress_bar_mouse_exited"]

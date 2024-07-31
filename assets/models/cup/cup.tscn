@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0d6iojwij3qy"]
+
+[ext_resource type="PackedScene" uid="uid://ctrkbq5u5rpyl" path="res://assets/models/cup/cup.fbx" id="1_818e4"]
+[ext_resource type="Material" uid="uid://sn8sxj13nfcy" path="res://assets/models/cup/cup.tres" id="2_mvvx4"]
+[ext_resource type="Material" uid="uid://cb8mty25k10ru" path="res://scenes/drink_mixer/drink_mixer.tres" id="3_we8h0"]
+
+[node name="Cup" instance=ExtResource("1_818e4")]
+
+[node name="Cup" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_mvvx4")
+
+[node name="Fluid" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_we8h0")

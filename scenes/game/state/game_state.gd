@@ -1,16 +1,17 @@
 extends Node
 
 @onready var game_state: GameStateResource = preload("res://resources/state/original_game_state.tres")
+@onready var _save_customers_death_screen: int = 0
 
 func _ready() -> void:
-	_init_debug()
+	#_init_debug()
 
 	GlobalEventBus.game_end.connect(_reset_game_state)
 
-func _init_debug() -> void:
-	var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game Stats", Color.BROWN)
-	debug_box.add_button("End Tutorial", func() -> void: game_state.tutorial_complete = true)
-	debug_box.add_button("End Intro", func() -> void: game_state.intro_complete = true)
+#func _init_debug() -> void:
+	#var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game Stats", Color.BROWN)
+	#debug_box.add_button("End Tutorial", func() -> void: game_state.tutorial_complete = true)
+	#debug_box.add_button("End Intro", func() -> void: game_state.intro_complete = true)
 
 func _reset_game_state() -> void:
 	# Maybe skip tutorial by default?
@@ -81,6 +82,7 @@ func init_modifier_state_machine() -> void:
 func _on_enter_none() -> void:
 	game_state.difficulty_stats = preload("res://resources/state/base_difficulty_stats.tres")
 	game_state.should_deplete_sanity = true
+	game_state.intro_complete = true
 
 func _on_exit_none() -> void:
 	pass
@@ -134,12 +136,18 @@ func _on_enter_assassin() -> void:
 	game_state.can_look_at_book = false
 
 func _on_update_assassin(_delta: float) -> void:
-	# TODO: Fix this
 	if (game_state.sanity_level <= _min_amount_to_not_lose_by_assassin):
-		GlobalEventBus.signal_drink_create_success()
+		if (game_state.sanity_level <= 0):
+			GlobalEventBus.signal_game_end()
+		else:
+			game_state.assassin_let_go = true
+			GlobalEventBus.signal_drink_create_success()
+			game_state.modifier_hsm.dispatch(&"end_modifier")
+
 
 func _on_exit_assassin() -> void:
 	game_state.can_look_at_book = true
+	game_state.assassin_let_go = false
 #endregion
 
 #region Blinder Modifier
@@ -170,12 +178,11 @@ func _wraith_complete_ingredient() -> void:
 	game_state.wraith_has_completed_ingredient = true
 
 func _on_enter_wraith() -> void:
-	var timer: SceneTreeTimer = get_tree().create_timer(7.0, false)
+	var timer: SceneTreeTimer = get_tree().create_timer(10.0, false)
 
 	game_state.wraith_has_completed_ingredient = false
 	GlobalEventBus.drink_create_success.connect(_wraith_complete_ingredient)
 	GlobalEventBus.drink_generated.connect(_wraith_drink_modify)
-	# Maybe add if you fuck up, the game is reset.
 
 	timer.timeout.connect(func() -> void:
 		if (game_state.wraith_has_completed_ingredient):

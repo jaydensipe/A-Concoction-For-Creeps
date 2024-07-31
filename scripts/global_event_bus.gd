@@ -69,6 +69,10 @@ signal modifier_changed(current: LimboState, _previous: LimboState)
 func signal_modifier_changed(current: LimboState, _previous: LimboState) -> void:
 	LogIt.custom("Modifier changed to %s from %s!" % [current.name, _previous.name], "MODIFIER", "chocolate")
 	modifier_changed.emit(current, _previous)
+
+signal assassin_let_go()
+func signal_assassin_let_go() -> void:
+	assassin_let_go.emit()
 #endregion
 
 #region Sanity Signals

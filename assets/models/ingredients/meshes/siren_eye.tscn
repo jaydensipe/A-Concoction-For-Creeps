@@ -8,6 +8,7 @@ albedo_texture = ExtResource("2_ats14")
 texture_filter = 0
 
 [node name="SirenEye" instance=ExtResource("1_el5ie")]
+transform = Transform3D(0.319054, 0.22037, -0.179567, -0.0225615, 0.288712, 0.314228, 0.283369, -0.225134, 0.227198, 0, 0, 0)
 
 [node name="Sphere" parent="." index="0"]
 transform = Transform3D(120, 0, 0, 0, -5.24537e-06, 120, 0, -120, -5.24537e-06, 0, 0, 0)

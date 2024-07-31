@@ -11,7 +11,7 @@ const GAME_MENU = preload("res://assets/ui/game_menu/game_menu.tscn")
 #endregion
 
 func _ready() -> void:
-	_init_debug()
+	#_init_debug()
 
 	GlobalEventBus.symbol_lock_in.connect(_match_ingredient)
 	GlobalEventBus.symbol_clear.connect(_clear_symbol)
@@ -27,15 +27,15 @@ func _ready() -> void:
 	GlobalEventBus.game_start.connect(start_game)
 	GlobalEventBus.game_end.connect(end_game)
 
-func _init_debug() -> void:
-	var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game", Color.DODGER_BLUE)
-	debug_box.add_button("Generate Correct Drink", func() -> void:
-		GameState.game_state.concocted_drink = GameState.game_state.wanted_drink
-		GlobalEventBus.signal_drink_create_success()
-	)
-	debug_box.add_button("End Game", func() -> void:
-		GlobalEventBus.signal_game_end()
-	)
+#func _init_debug() -> void:
+	#var debug_box: DebugBoxContainer = DebugIt.create_debug_box("Game", Color.DODGER_BLUE)
+	#debug_box.add_button("Generate Correct Drink", func() -> void:
+		#GameState.game_state.concocted_drink = GameState.game_state.wanted_drink
+		#GlobalEventBus.signal_drink_create_success()
+	#)
+	#debug_box.add_button("End Game", func() -> void:
+		#GlobalEventBus.signal_game_end()
+	#)
 
 #region Game Logic
 func _physics_process(_delta: float) -> void:
@@ -43,12 +43,13 @@ func _physics_process(_delta: float) -> void:
 
 func start_game() -> void:
 	GameState.init_modifier_state_machine()
+	GameState._save_customers_death_screen = 0
 
 	ui.add_child(GAME_MENU.instantiate())
 	shadow_manager.spawn_shadow_person(true)
 
 func end_game() -> void:
-	DebugIt.clear_debug_values_temp()
+	#DebugIt.clear_debug_values_temp()
 
 	ui.add_child(DEATH_SCREEN.instantiate())
 #endregion
@@ -61,7 +62,7 @@ func _gain_sanity(amount: float) -> void:
 	GameState.game_state.sanity_level += amount
 
 func _calculate_sanity() -> void:
-	if (!GameState.game_state.should_deplete_sanity or !GameState.game_state.ready_to_take_order): return
+	if (!GameState.game_state.should_deplete_sanity or !GameState.game_state.ready_to_take_order or GameState.game_state.modifier_hsm.get_active_state().name == &"Wraith"): return
 
 	GameState.game_state.sanity_level -= GameState.game_state.difficulty_stats.sanity_depletion_rate
 	GameState.game_state.sanity_level = clampf(GameState.game_state.sanity_level, 0.0, 100.0)
@@ -124,7 +125,9 @@ func _concoct_drink() -> void:
 	#GameState.game_state.modifier_hsm.dispatch(&"end_modifier")
 	GameState.game_state.ready_to_take_order = false
 	GlobalEventBus.signal_symbol_clear()
-	GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
+
+	if (!GameState.game_state.assassin_let_go):
+		GlobalEventBus.signal_sanity_gain(GameState.game_state.difficulty_stats.sanity_correct_drink)
 
 func _fail_drink() -> void:
 	_clear_drink()
@@ -175,6 +178,8 @@ static func is_board_empty() -> bool:
 
 #region Modifier Logic
 static func generate_modifier_chance() -> void:
+	if (!GameState.game_state.intro_complete): return
+
 	var random_gen: int = randi() % 100
 	if (random_gen <= GameState.game_state.difficulty_stats.base_percent_chance_of_modifier):
 		GameState.game_state.modifier_hsm.dispatch(Utils.picked_weighted_modifier())

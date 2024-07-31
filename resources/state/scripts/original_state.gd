@@ -15,6 +15,7 @@ var customer_intro_thirsty_modifier: int = 3
 var tutorial_complete: bool = false
 var intro_complete: bool = false
 var should_deplete_sanity: bool = false
+var assassin_let_go: bool = false
 var sanity_level: float = 100.0
 var wraith_has_completed_ingredient: bool = false
 enum CAMERA_STATE { FORWARD, PLAYSPACE, BOOK, DISABLED }
@@ -60,7 +61,7 @@ var ingredients: Dictionary = {
 				SYMBOL_STATES.EMPTY, SYMBOL_STATES.TWO, SYMBOL_STATES.EMPTY, \
 				SYMBOL_STATES.START, SYMBOL_STATES.EMPTY, SYMBOL_STATES.FOUR],
 
-	"imbued_salt:1:FFF600": [SYMBOL_STATES.START, SYMBOL_STATES.EMPTY, SYMBOL_STATES.FOUR, \
+	"imbued_salt:1:00FFA8": [SYMBOL_STATES.START, SYMBOL_STATES.EMPTY, SYMBOL_STATES.FOUR, \
 				SYMBOL_STATES.EMPTY, SYMBOL_STATES.TWO, SYMBOL_STATES.EMPTY, \
 				SYMBOL_STATES.EMPTY, SYMBOL_STATES.THREE, SYMBOL_STATES.EMPTY],
 
@@ -68,7 +69,7 @@ var ingredients: Dictionary = {
 				SYMBOL_STATES.FIVE, SYMBOL_STATES.TWO, SYMBOL_STATES.EMPTY, \
 				SYMBOL_STATES.START, SYMBOL_STATES.SIX, SYMBOL_STATES.EMPTY],
 
-	"baobulb_cluster:2:0FF095": [SYMBOL_STATES.EMPTY, SYMBOL_STATES.THREE, SYMBOL_STATES.FOUR, \
+	"baobulb_cluster:2:FFEA00": [SYMBOL_STATES.EMPTY, SYMBOL_STATES.THREE, SYMBOL_STATES.FOUR, \
 				SYMBOL_STATES.EMPTY, SYMBOL_STATES.FIVE, SYMBOL_STATES.TWO, \
 				SYMBOL_STATES.EMPTY, SYMBOL_STATES.START, SYMBOL_STATES.SIX],
 

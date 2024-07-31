@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp4ar4jimtk8x"]
+
+[ext_resource type="PackedScene" uid="uid://d2paaf31alpwr" path="res://assets/models/hats/blindfold/blindfold.fbx" id="1_6lv51"]
+[ext_resource type="Texture2D" uid="uid://bnmabyhsu5s16" path="res://assets/models/hats/blindfold/t_blindfold_d.png" id="2_bqcrs"]
+[ext_resource type="Texture2D" uid="uid://d8jf60klt4yk" path="res://assets/models/hats/blindfold/t_blindfold_ao.png" id="3_acf85"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqun8"]
+albedo_texture = ExtResource("2_bqcrs")
+ao_enabled = true
+ao_texture = ExtResource("3_acf85")
+texture_filter = 0
+
+[node name="Blindfold" instance=ExtResource("1_6lv51")]
+
+[node name="Blindfold_low" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_lqun8")

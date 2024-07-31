@@ -35,24 +35,26 @@ func _camera_controls() -> void:
 		move_camera_to_book()
 
 	if (Input.is_action_just_pressed(&"move_right")):
-		move_camera_to_playspace()
+		move_camera_to_playspace(true)
 
 func move_camera_forward(disable: bool = false) -> void:
-	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.FORWARD or GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.BOOK): return
+	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.FORWARD): return
 
 	create_tween().tween_property(camera_3d, "global_transform", forward_marker_3d.global_transform, camera_tween_speed).set_trans(Tween.TRANS_SINE)
 	_switch_camera_state(GameStateResource.CAMERA_STATE.DISABLED if disable else GameStateResource.CAMERA_STATE.FORWARD)
 
-func move_camera_to_playspace() -> void:
+func move_camera_to_playspace(from_book: bool = false) -> void:
 	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.BOOK):
 		create_tween().tween_property(camera_3d, "global_transform", play_space_marker_3d.global_transform, camera_tween_speed).set_trans(Tween.TRANS_SINE)
 	else:
+		if (from_book): return
+
 		if (GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.PLAYSPACE):
 			create_tween().tween_property(camera_3d, "global_transform", play_space_marker_3d.global_transform, camera_tween_speed).set_trans(Tween.TRANS_SINE)
 	_switch_camera_state(GameStateResource.CAMERA_STATE.PLAYSPACE)
 
 func move_camera_to_book() -> void:
-	if (GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.PLAYSPACE and GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.BOOK and GameState.game_state.can_look_at_book):
+	if ((GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.PLAYSPACE or GameState.game_state.camera_state == GameStateResource.CAMERA_STATE.FORWARD) and GameState.game_state.camera_state != GameStateResource.CAMERA_STATE.BOOK and GameState.game_state.can_look_at_book):
 		create_tween().tween_property(camera_3d, "global_transform", book_marker_3d.global_transform, camera_tween_speed).set_trans(Tween.TRANS_SINE)
 		_switch_camera_state(GameStateResource.CAMERA_STATE.BOOK)
 
