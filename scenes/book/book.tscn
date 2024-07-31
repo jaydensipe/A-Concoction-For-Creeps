@@ -57,6 +57,15 @@ material_override = SubResource("StandardMaterial3D_n7nsx")
 layers = 4
 material_override = SubResource("StandardMaterial3D_o1rr8")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="BookS/AnimationPlayer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226082, 0.534765, 0.49006)
+visible = false
+layers = 4
+light_color = Color(1, 0.749026, 0.613993, 1)
+light_energy = 0.5
+light_cull_mask = 4293918724
+omni_range = 2.00563
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
 anchors_preset = 15
