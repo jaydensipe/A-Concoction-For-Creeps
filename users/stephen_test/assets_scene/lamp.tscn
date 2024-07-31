@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu0aih72g47xx"]
+
+[ext_resource type="PackedScene" uid="uid://bd8l46q36brwm" path="res://users/stephen_test/environment/lamp/lamp.fbx" id="1_nw7gk"]
+[ext_resource type="Texture2D" uid="uid://bl035qmjkey4c" path="res://users/stephen_test/environment/lamp/Textures/lamp_lampshade_BaseColor.png" id="2_gwv12"]
+[ext_resource type="Texture2D" uid="uid://deyied3vo8fj2" path="res://users/stephen_test/environment/lamp/Textures/lamp_lampshade_AO.png" id="3_4do2u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eltx"]
+albedo_texture = ExtResource("2_gwv12")
+ao_enabled = true
+ao_texture = ExtResource("3_4do2u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ymjb"]
+albedo_color = Color(1, 1, 0.627451, 1)
+emission_enabled = true
+emission = Color(1, 0.588235, 0.247059, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="Animation" id="Animation_ftjvw"]
+resource_name = "lamp_swingloop"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 5.2, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0872665, 0, -0.0872665), Vector3(0.0872665, 0, 0.0872665), Vector3(0.0872665, 0, 0.0837758), Vector3(0.0872665, 0, -0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_fiu2g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxsew"]
+_data = {
+"RESET": SubResource("Animation_fiu2g"),
+"lamp_swingloop": SubResource("Animation_ftjvw")
+}
+
+[node name="lamp" instance=ExtResource("1_nw7gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SwingPoint" parent="." index="0"]
+transform = Transform3D(11.4595, 0, 0, 0, -5.00911e-07, 11.4595, 0, -11.4595, -5.00911e-07, 0.568595, 0.954496, -0.0673465)
+
+[node name="LampShade" parent="SwingPoint" index="0"]
+transform = Transform3D(8.69965, -0.665437, 0.15159, 0.665437, 7.83994, -3.77388, 0.151589, 3.77388, 7.86667, -0.0496177, -0.00587691, -0.0832929)
+layers = 8
+material_override = SubResource("StandardMaterial3D_2eltx")
+
+[node name="bulb" parent="SwingPoint/LampShade" index="0"]
+material_override = SubResource("StandardMaterial3D_3ymjb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SwingPoint/LampShade/bulb" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_uxsew")
+}
+autoplay = "lamp_swingloop"

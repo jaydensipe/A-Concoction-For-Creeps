@@ -1,47 +1,22 @@
-[gd_scene load_steps=16 format=4 uid="uid://ol8kdxictbe1"]
+[gd_scene load_steps=13 format=4 uid="uid://c68mbnlnb3k7w"]
 
-[ext_resource type="VoxelGIData" uid="uid://xe4846ht1kar" path="res://scenes/bar/lightmap/bar.VoxelGI_data.res" id="1_610vp"]
-[ext_resource type="PackedScene" uid="uid://bh6iv4iyc06ub" path="res://assets/models/bartable/bartable.tscn" id="2_y34ti"]
-[ext_resource type="PackedScene" uid="uid://bu0aih72g47xx" path="res://users/stephen_test/assets_scene/lamp.tscn" id="3_b8vux"]
-[ext_resource type="PackedScene" uid="uid://c68mbnlnb3k7w" path="res://users/stephen_test/assets_scene/bottle_01.tscn" id="3_laenb"]
-[ext_resource type="Texture2D" uid="uid://bannnswt4w0n5" path="res://users/stephen_test/environment/bottle/Textures/t_bottle_d.png" id="5_cedly"]
-[ext_resource type="Texture2D" uid="uid://q0pic1l71xfw" path="res://users/stephen_test/environment/bottle/Textures/t_bottle_ao.png" id="6_0hk16"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5a88"]
-albedo_color = Color(0.318969, 0.125604, 0.00705136, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fswpb"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Environment" id="Environment_hum5y"]
-background_mode = 1
-ssr_enabled = true
-ssao_enabled = true
-glow_enabled = true
-glow_normalized = true
-glow_bloom = 0.15
-fog_mode = 1
-fog_light_color = Color(0.0515887, 0.194352, 0.224348, 1)
-fog_light_energy = 1.27
-fog_sun_scatter = 0.33
-fog_density = 0.1097
-fog_height = 2.0
-fog_height_density = 0.0235
-fog_depth_curve = 0.75786
-fog_depth_begin = -68.5
-fog_depth_end = 19.0
-volumetric_fog_density = 0.163
-volumetric_fog_albedo = Color(0.18317, 0.695783, 0.691816, 1)
-adjustment_brightness = 1.03
-adjustment_contrast = 1.7
-adjustment_saturation = 0.51
+[ext_resource type="PackedScene" uid="uid://bfxv3xuc80hmu" path="res://users/stephen_test/environment/bottle/bottle_01.fbx" id="1_nut4o"]
+[ext_resource type="Texture2D" uid="uid://bannnswt4w0n5" path="res://users/stephen_test/environment/bottle/Textures/t_bottle_d.png" id="2_1ymto"]
+[ext_resource type="Texture2D" uid="uid://q0pic1l71xfw" path="res://users/stephen_test/environment/bottle/Textures/t_bottle_ao.png" id="3_5k84x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vydc1"]
 transparency = 1
 depth_draw_mode = 1
-albedo_texture = ExtResource("5_cedly")
+albedo_texture = ExtResource("2_1ymto")
 ao_enabled = true
-ao_texture = ExtResource("6_0hk16")
+ao_texture = ExtResource("3_5k84x")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_odojl"]
+albedo_color = Color(0.635294, 0, 0.12549, 1)
+emission_enabled = true
+emission = Color(0.72689, 0, 0.166327, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3ywot"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2q8ak"]
 resource_name = "DefaultMaterial"
@@ -83,209 +58,59 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yk2or")
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_odojl"]
-albedo_color = Color(0.635294, 0, 0.12549, 1)
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lqq6p"]
 emission_enabled = true
-emission = Color(0.72689, 0, 0.166327, 1)
+emission = Color(0.223529, 0.796078, 0.027451, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_3ywot"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_iiqrn"]
+emission_enabled = true
+emission = Color(0.956164, 0.561509, 1.15514e-06, 1)
 
-[node name="Bar" type="Node3D"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_uyhgr"]
+albedo_color = Color(0.267595, 0.877079, 1, 1)
+emission_enabled = true
+emission = Color(1.92523e-06, 0.826989, 0.905101, 1)
 
-[node name="Geometry" type="Node" parent="."]
+[node name="bottle_01" instance=ExtResource("1_nut4o")]
 
-[node name="VoxelGI" type="VoxelGI" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, -5)
-size = Vector3(15, 8, 20)
-data = ExtResource("1_610vp")
-
-[node name="BarTable" parent="Geometry" instance=ExtResource("2_y34ti")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -5)
-layers = 2
-size = Vector3(11, 1, 16)
-material = SubResource("StandardMaterial3D_n5a88")
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5)
-layers = 2
-size = Vector3(11, 1, 16)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -12)
-size = Vector3(1, 5, 1)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, -5)
-size = Vector3(1, 4, 16)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, 3)
-size = Vector3(1, 4, 11)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 1.5, -12)
-size = Vector3(1, 4, 5)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 1.5, -12)
-size = Vector3(1, 4, 5)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -5)
-layers = 2
-size = Vector3(1, 4, 16)
-material = SubResource("StandardMaterial3D_fswpb")
-
-[node name="Lighting" type="Node" parent="."]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.977754, 0.208746, -0.0205513, -0.0177514, 0.179975, 0.983511, 0.209002, -0.961267, 0.179676, -0.0368717, 2.44535, -0.868586)
-light_color = Color(0.875639, 0.588367, 0.284256, 1)
-light_indirect_energy = 16.0
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 7.0
-spot_angle = 57.16
-spot_angle_attenuation = 0.683018
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Lighting/SpotLight3D"]
-transform = Transform3D(1, -5.96046e-08, -3.72529e-09, 8.9407e-08, 1, 1.04308e-07, -3.72529e-09, -7.45058e-08, 1, 0.119679, -0.50636, 0.550646)
-layers = 8
-light_color = Color(0.936687, 0.662471, 0.563108, 1)
-light_energy = 0.846
-light_cull_mask = 4294966280
-omni_range = 0.932
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.791853, 0.215153, 0.571558, -0.573575, -0.0593732, 0.816998, 0.209715, -0.974774, 0.0763917, 0.818233, 1.49513, 0.0365202)
-light_color = Color(0.427745, 0.24296, 0.116902, 1)
-light_indirect_energy = 16.0
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 2.36
-spot_angle = 77.46
-spot_angle_attenuation = 0.683018
-
-[node name="SpotLight3D5" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.535097, -0.782324, 0.318812, -0.573575, -0.0593732, 0.816998, -0.620228, -0.620036, -0.480492, 0.818233, 1.49513, -2.9627)
-light_color = Color(0.551521, 0.309743, 0.183948, 1)
-light_energy = 0.806
-light_indirect_energy = 16.0
-light_specular = 1.101
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 2.36
-spot_angle = 77.46
-spot_angle_attenuation = 0.683018
-
-[node name="SpotLight3D6" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.382571, -0.806638, -0.450527, -0.281954, -0.56629, 0.774479, -0.879853, -0.169266, -0.444081, -1.04214, 1.49513, -2.9627)
-light_color = Color(0.420379, 0.20145, 0.0483025, 1)
-light_energy = 1.432
-light_indirect_energy = 16.0
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 2.36
-spot_angle = 77.46
-spot_angle_attenuation = 0.683018
-
-[node name="SpotLight3D8" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.404591, -0.914256, -0.0210508, 0.499111, 0.201469, 0.842792, -0.766286, -0.351492, 0.537827, -0.251622, 2.26608, -1.64565)
-light_color = Color(0.809153, 0.597563, 0.467135, 1)
-light_energy = 0.349
-light_indirect_energy = 16.0
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 2.36
-spot_angle = 77.46
-spot_angle_attenuation = 0.683018
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.962868, 0.192304, -0.189483, 0.170013, 0.113293, 0.978908, 0.209715, -0.974774, 0.0763917, -1.09406, 1.49513, 0.0893296)
-light_color = Color(0.309814, 0.186271, 0.0934737, 1)
-light_indirect_energy = 16.0
-shadow_bias = 0.0
-shadow_normal_bias = 1.811
-spot_range = 2.999
-spot_angle = 56.6937
-spot_angle_attenuation = 0.683018
-
-[node name="lamp" parent="Lighting" instance=ExtResource("3_b8vux")]
-transform = Transform3D(0.363599, 0, 0, 0, 0.363599, 0, 0, 0, 0.363599, 0.0152295, 2.82933, -0.573427)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hum5y")
-
-[node name="bottle_01" parent="." instance=ExtResource("3_laenb")]
-transform = Transform3D(0.423198, 0, -0.181619, 0, 0.460524, 0, 0.181619, 0, 0.423198, 1.39337, 0.493875, -0.195728)
-
-[node name="Bottle_Type_02" parent="bottle_01" index="1"]
-transform = Transform3D(10.0114, 2.84217e-14, 0, 0, 6.7008, 7.55838e-07, 0, -5.05896e-07, 10.0114, 0.387278, 0.0264935, -0.542088)
-
-[node name="Bottle_Type_04" parent="bottle_01" index="2"]
-transform = Transform3D(8.36201, 7.10543e-14, 0, 0, 5.59685, 6.31314e-07, 0, -4.2255e-07, 8.36201, 0.255703, 0, -0.112415)
-
-[node name="Bottle_Type_05" type="MeshInstance3D" parent="bottle_01"]
-transform = Transform3D(5.584, 0, 0, 0, 5.584, 4.2158e-07, 0, -4.2158e-07, 5.584, 0.845769, -0.033335, -0.820811)
+[node name="Bottle_Type_01" parent="." index="0"]
+transform = Transform3D(5.584, 0, 0, 0, 5.584, 4.2158e-07, 0, -4.2158e-07, 5.584, -0.315481, 0, -0.240624)
 material_override = SubResource("StandardMaterial3D_vydc1")
-mesh = SubResource("ArrayMesh_gub76")
-skeleton = NodePath("")
 
-[node name="Fluid_01" type="MeshInstance3D" parent="bottle_01/Bottle_Type_05"]
+[node name="Fluid_01" type="MeshInstance3D" parent="Bottle_Type_01" index="0"]
 transform = Transform3D(0.040116, 0, 0, 0, 0.0284662, 2.22045e-16, 0, -2.22045e-16, 0.040116, -6.55651e-06, 0.0382253, 1.72286e-05)
 material_override = SubResource("ORMMaterial3D_odojl")
 mesh = SubResource("CylinderMesh_3ywot")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24212, 0.578979, -0.282104)
-light_color = Color(0.840078, 0, 0.11445, 1)
-light_energy = 0.25
-light_indirect_energy = 1.135
-light_volumetric_fog_energy = 3.444
-omni_range = 0.681
-omni_attenuation = 1.278
+[node name="Bottle_Type_02" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(10.0114, 0, 0, 0, 6.7008, 7.55838e-07, 0, -5.05896e-07, 10.0114, 0.378144, 0.0264935, -0.132083)
+material_override = SubResource("StandardMaterial3D_vydc1")
+mesh = SubResource("ArrayMesh_gub76")
+skeleton = NodePath("")
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87084, 0.567454, -0.253235)
-light_color = Color(0.840078, 0, 0.11445, 1)
-light_energy = 1.005
-omni_range = 0.918269
-omni_attenuation = 0.744
+[node name="Fluid_02" type="MeshInstance3D" parent="Bottle_Type_02" index="0"]
+transform = Transform3D(0.040116, 0, 0, 0, 0.0284662, 2.22045e-16, 0, -2.22045e-16, 0.040116, -6.55651e-06, 0.0382253, 1.72286e-05)
+material_override = SubResource("ORMMaterial3D_lqq6p")
+mesh = SubResource("CylinderMesh_3ywot")
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65825, 0.596709, -0.323335)
-light_color = Color(0.0392157, 0.886275, 0.298039, 1)
-light_energy = 0.05
-light_indirect_energy = 0.778
-omni_range = 0.5
+[node name="Bottle_Type_04" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(10.6779, 0, 0, 0, 7.1469, 8.06158e-07, 0, -5.39576e-07, 10.6779, 0.536843, 0, -0.598253)
+material_override = SubResource("StandardMaterial3D_vydc1")
+mesh = SubResource("ArrayMesh_gub76")
+skeleton = NodePath("")
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33225, 0.626405, -0.192907)
-light_color = Color(3.85046e-07, 0.487719, 0.754537, 1)
-light_energy = 0.2
-omni_range = 2.304
+[node name="Fluid_04" type="MeshInstance3D" parent="Bottle_Type_04" index="0"]
+transform = Transform3D(0.040116, 0, 0, 0, 0.0284662, 2.22045e-16, 0, -2.22045e-16, 0.040116, -6.55651e-06, 0.0382253, 1.72286e-05)
+material_override = SubResource("ORMMaterial3D_iiqrn")
+mesh = SubResource("CylinderMesh_3ywot")
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40248, 0.619149, -0.105702)
-light_color = Color(0.802057, 0.562385, 0.0508151, 1)
-light_energy = 0.002
-omni_range = 1.414
-omni_attenuation = 2.627
+[node name="Bottle_Type_03" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(5.60637, 0, 0, 0, 10.9173, 4.23269e-07, 0, -8.24235e-07, 5.60637, 0.00308937, 0.00934792, -0.293343)
+material_override = SubResource("StandardMaterial3D_vydc1")
+mesh = SubResource("ArrayMesh_gub76")
+skeleton = NodePath("")
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7012, 0.619149, -0.132764)
-light_color = Color(0.23961, 0.72189, 0.367154, 1)
-light_energy = 0.002
-omni_range = 1.414
-omni_attenuation = 2.627
-
-[editable path="bottle_01"]
+[node name="Fluid_03" type="MeshInstance3D" parent="Bottle_Type_03" index="0"]
+transform = Transform3D(0.040116, 0, 0, 0, 0.0284662, 2.22045e-16, 0, -4.44089e-16, 0.040116, -6.55651e-06, 0.0382253, 1.72286e-05)
+material_override = SubResource("ORMMaterial3D_uyhgr")
+mesh = SubResource("CylinderMesh_3ywot")
