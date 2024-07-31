@@ -13,4 +13,5 @@ texture_filter = 0
 [node name="imbued_salt" instance=ExtResource("1_jdm6r")]
 
 [node name="imbued_salt" parent="." index="0"]
+transform = Transform3D(29.1795, 15.1125, -2.00019, 2.17794, 0.142495, 32.8491, 15.0879, -29.2476, -0.873475, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_sq0ik")

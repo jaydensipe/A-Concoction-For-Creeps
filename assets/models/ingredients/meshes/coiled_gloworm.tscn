@@ -14,7 +14,8 @@ ao_texture = ExtResource("3_8owr1")
 texture_filter = 0
 
 [node name="coiled_gloworm" instance=ExtResource("1_es508")]
+transform = Transform3D(0.743944, 0, 0.208511, 0, 0.772613, 0, -0.208511, 0, 0.743944, 0.23737, 0, 0)
 
 [node name="Fearworm_low" parent="." index="0"]
-transform = Transform3D(5000, 0, 0, 0, -0.000218557, 5000, 0, -5000, -0.000218557, 0, 0, 0)
+transform = Transform3D(2188.22, 1193.28, -394.201, -2.24124e-12, 791.538, 2396.06, 1256.71, -2077.78, 686.395, -0.609185, 0, -0.730293)
 surface_material_override/0 = SubResource("StandardMaterial3D_jug84")

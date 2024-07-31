@@ -16,5 +16,5 @@ texture_filter = 0
 [node name="aged_hydra_skin" instance=ExtResource("1_jk8kx")]
 
 [node name="hydraskin_low" parent="." index="0"]
-transform = Transform3D(50, 0, 0, 0, 50, 3.77489e-06, 0, -3.77489e-06, 50, 0, 0, 0)
+transform = Transform3D(-9.78477, 4.12963e-07, -5.46987, 2.63907e-14, 11.2099, 8.4632e-07, 5.46987, 7.38728e-07, -9.78477, 0.214506, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_8josm")

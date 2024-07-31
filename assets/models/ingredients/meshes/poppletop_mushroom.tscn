@@ -13,4 +13,5 @@ texture_filter = 0
 [node name="poppletop_mushroom" instance=ExtResource("1_gnu2h")]
 
 [node name="Cylinder" parent="." index="0"]
+transform = Transform3D(18.9313, -0.337494, 4.20843, -4.19377, -3.73284, 18.566, 0.486868, -19.0308, -3.71631, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_8gnt7")

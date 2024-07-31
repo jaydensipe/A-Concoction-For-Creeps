@@ -11,6 +11,7 @@ ao_texture = ExtResource("3_1vhmu")
 texture_filter = 0
 
 [node name="berry_cluster" instance=ExtResource("1_dwhx6")]
+transform = Transform3D(0.0476457, 0.0212568, 0.197689, -0.169595, 0.110452, 0.0289981, -0.103781, -0.170738, 0.0433713, 0, 0, 0)
 
 [node name="berry_cluster" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n6tbv")

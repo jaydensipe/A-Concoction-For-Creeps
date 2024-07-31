@@ -16,4 +16,5 @@ texture_filter = 0
 [node name="fern" instance=ExtResource("1_ixekr")]
 
 [node name="fern" parent="." index="0"]
+transform = Transform3D(13.3298, 4.9651, -1.69713, 0.577577, 1.90103, 19.7915, 5.07821, -13.2491, 2.20376, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_nvq7r")

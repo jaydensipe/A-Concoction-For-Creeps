@@ -17,5 +17,5 @@ texture_filter = 0
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="feather_stack" parent="." index="0"]
-transform = Transform3D(20, 0, 0, 0, -8.01142e-07, 118.924, 0, -18.328, -5.19833e-06, 0, 0.224467, 0.807474)
+transform = Transform3D(15.7465, 11.2723, -5.12358, -5.71231, 7.80356, 102.105, 10.9278, -12.1637, 60.7564, -1.65497, 0.224467, 0.807474)
 surface_material_override/0 = SubResource("StandardMaterial3D_623ur")
