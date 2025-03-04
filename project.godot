@@ -13,12 +13,13 @@ config_version=5
 config/name="A Concoction for Creeps"
 config/description="Created for the Pirate Software - Game Jam 15."
 run/main_scene="res://scenes/game/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://helix.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
+config/tags=PackedStringArray("collecting_dust", "game_jam")
 
 [audio]
 
